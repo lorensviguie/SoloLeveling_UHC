@@ -10,14 +10,17 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import fr.farkas.Main.UHCListeners;
+import fr.farkas.Main.UHCRule.ApplyRules;
 import fr.farkas.Main.configuration.BasicInventoryConfig;
 
 public class CommandSpawn implements CommandExecutor {
 	
 	private BasicInventoryConfig basicInventory;
+	private Map<String, List<String>> configdata;
 	
 	public CommandSpawn(Map<String, List<String>> configData, BasicInventoryConfig basicInventory) {
 		this.basicInventory = basicInventory;
+		this.configdata = configData;
 	}
 
 	@Override
@@ -25,6 +28,8 @@ public class CommandSpawn implements CommandExecutor {
 		if (sender.isOp()) {
 			if (args[0].equalsIgnoreCase("start")) {
 				UHCListeners.onstart();
+				ApplyRules uhcrule = new ApplyRules(configdata);
+				uhcrule.Applyallrules();
 				return true;
 			}
 			if (args[0].equalsIgnoreCase("config")) {
@@ -34,6 +39,7 @@ public class CommandSpawn implements CommandExecutor {
 			if (args[0].equalsIgnoreCase("stop")) {
 				for (Player player : Bukkit.getOnlinePlayers()) {
 				    // Kill the player
+					player.getInventory().clear();
 				    player.setHealth(0);
 				}
 				return true;

@@ -1,6 +1,5 @@
 package fr.farkas.Main.configuration;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -9,20 +8,21 @@ import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.event.EventHandler;
-import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-public class BasicInventoryConfig implements Listener {
+public class BasicInventoryConfig {
 
     private Inventory inventory;
+    private UHCBasicRules uhcBasicRules;
     private Map<String, List<String>> configData;
         
     public BasicInventoryConfig(Map<String, List<String>> configData) {
-		this.configData = configData;
+		this.setConfigData(configData);
+		this.uhcBasicRules = new UHCBasicRules(configData);
+		uhcBasicRules.createInventory();
 	}
     public void openConfig(Player player) {
         player.openInventory(inventory);
@@ -30,7 +30,7 @@ public class BasicInventoryConfig implements Listener {
 
 	public void createInventory() {
         // Create the inventory
-        inventory = Bukkit.createInventory(null, 9, ChatColor.DARK_GREEN + "Locked Inventory");
+        inventory = Bukkit.createInventory(null, 9,"§eLocked Inventory");
 
         // Add the items to the inventory
         ItemStack charSelect = new ItemStack(Material.IRON_SWORD);
@@ -65,25 +65,32 @@ public class BasicInventoryConfig implements Listener {
         openConfig(player);
     }
 
-    @EventHandler
-    public void onInventoryClick(InventoryClickEvent event) {
-        if (event.getInventory().equals(inventory)) {
+    public void BasicInventoryClick(InventoryClickEvent event) {
+    		Inventory inv = event.getInventory();
         	Player player = (Player) event.getWhoClicked();
         	ItemStack current = event.getCurrentItem();
-        	System.out.println("COUCOU");
         	event.setCancelled(true);
         	player.closeInventory();
+    		if(inv.getName().equalsIgnoreCase("§6UHC Basic Rules")){
+    			uhcBasicRules.UHCRulesClick(event);
+    			uhcBasicRules.openConfig(player);
+    		}
 		switch(current.getType()) {
 		case DIAMOND:
-			Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "give @"+ player.getDisplayName()+"minecraft:diamond 2");
-			
+			System.out.println("Canard");
+			uhcBasicRules.openConfig(player);
 			break;
 		case ANVIL:
 			break;
 			
 		default:break;
 		}
-        }
     }
+	public Map<String, List<String>> getConfigData() {
+		return configData;
+	}
+	public void setConfigData(Map<String, List<String>> configData) {
+		this.configData = configData;
+	}
 }
 

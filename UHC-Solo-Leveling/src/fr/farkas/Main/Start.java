@@ -16,13 +16,13 @@ public class Start extends JavaPlugin {
 	
 	CharacterManager characterManager = new CharacterManager();
 	Map<String, List<String>> ConfigData = new HashMap<>();
-	BasicInventoryConfig BasicInventory =  new BasicInventoryConfig(ConfigData);
 	public void onEnable() {
 		System.out.println("Plugin Start");
-		BasicInventory.createInventory();
+		
 		ConfigData.put("UHCBasicRules", new ArrayList<>());
-		getServer().getPluginManager().registerEvents(new BasicInventoryConfig(ConfigData), this);
-		getServer().getPluginManager().registerEvents(new UHCListeners(characterManager), this);
+		BasicInventoryConfig BasicInventory =  new BasicInventoryConfig(ConfigData);
+		BasicInventory.createInventory();
+		getServer().getPluginManager().registerEvents(new UHCListeners(characterManager, BasicInventory), this);
 		getCommand("sl").setExecutor(new SlDarkCommands(characterManager));
 		getCommand("dh").setExecutor(new CommandSpawn(ConfigData, BasicInventory));
         
