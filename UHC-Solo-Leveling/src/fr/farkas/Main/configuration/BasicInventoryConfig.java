@@ -90,7 +90,9 @@ public class BasicInventoryConfig {
 		case DARK_OAK_FENCE:
 			borderConfig.openConfig(player);
 			break;
+		case SHEARS:
 			
+			break;
 		default:
 			break;
 		}

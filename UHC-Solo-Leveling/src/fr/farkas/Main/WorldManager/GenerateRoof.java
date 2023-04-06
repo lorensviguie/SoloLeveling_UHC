@@ -1,46 +1,37 @@
 package fr.farkas.Main.WorldManager;
 
-import org.bukkit.Bukkit;
+import java.util.Random;
+
+import org.bukkit.Chunk;
 import org.bukkit.World;
-import org.bukkit.plugin.Plugin;
+import org.bukkit.block.Biome;
+import org.bukkit.generator.BlockPopulator;
 
-import com.sk89q.worldedit.IncompleteRegionException;
-import com.sk89q.worldedit.LocalSession;
-import com.sk89q.worldedit.bukkit.WorldEditPlugin;
-import com.sk89q.worldedit.extent.clipboard.Clipboard;
-import com.sk89q.worldedit.regions.Region;
-import com.sk89q.worldedit.session.ClipboardHolder;
+public class GenerateRoof extends BlockPopulator {
+    private static final int REGION_SIZE = 500;
 
-public class GenerateRoof {
-    
-    public static void changeBiomeInCenter(World world) {
-        Plugin worldEditPlugin = Bukkit.getServer().getPluginManager().getPlugin("WorldEdit");
-        if (!(worldEditPlugin instanceof WorldEditPlugin)) {
-            System.out.println("WorldEdit plugin not found!");
-            return;
+    @Override
+    public void populate(World world, Random random, Chunk chunk) {
+        int cx = chunk.getX() * 16;
+        int cz = chunk.getZ() * 16;
+
+        // Center of the region
+        int center_x = 0;
+        int center_z = 0;
+
+        // Calculate the distance from the center of the region
+        double distance = Math.sqrt(Math.pow(cx - center_x, 2) + Math.pow(cz - center_z, 2));
+
+        // Only change the biome if the chunk is within the radius of the region
+        if (distance <= REGION_SIZE) {
+            // Change the biome to a roofed forest
+            for (int x = cx; x < cx + 16; x++) {
+                for (int z = cz; z < cz + 16; z++) {
+                    world.setBiome(x, z, Biome.ROOFED_FOREST);
+                }
+            }
         }
-
-        WorldEditPlugin worldEdit = (WorldEditPlugin) worldEditPlugin;
-
-        Region region = null;
-        try {
-            region = worldEdit.getSession(BukkitAdapter.adapt(world)).getSelection(BukkitAdapter.adapt(world)).getRegionSelector().getRegion().expand(BlockVector3.at(250, 0, 250)).shift(Vector3.at(-250, 0, -250));
-        } catch (IncompleteRegionException e) {
-            e.printStackTrace();
-            return;
-        }
-
-        // Get the clipboard to store the original blocks
-        Clipboard clipboard = worldEdit.getWorldEdit().getClipboardFormats().getReader(worldEdit.getWorldEdit().getClipboardFormats().findByAlias("schematic")).read(null, getClass().getResourceAsStream("/schematics/empty.schem"));
-
-        // Save the original blocks in the clipboard
-        LocalSession session = worldEdit.getSession(BukkitAdapter.adapt(world));
-        session.setClipboard(new ClipboardHolder(clipboard, worldEdit.getWorldEdit().getServer().createWorldData()));
-
-        // Change the biome to plains in the region
-        worldEdit.getWorldEdit().getBiomeClipboard().setBiomes(region, worldEdit.getWorldEdit().getServer().createWorldData().getBiome("plains"));
-
-        // Paste the modified blocks back into the world
-        worldEdit.getSession(BukkitAdapter.adapt(world)).paste(session.getClipboard().getClipboard(), region.getMinimumPoint(), false, true, null);
     }
+
+
 }

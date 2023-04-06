@@ -9,6 +9,7 @@ import org.bukkit.World;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.farkas.Main.Character.CharacterManager;
+import fr.farkas.Main.WorldManager.GenerateRoof;
 import fr.farkas.Main.WorldManager.MapManager;
 import fr.farkas.Main.commands.CommandSpawn;
 import fr.farkas.Main.commands.SlDarkCommands;
@@ -22,6 +23,7 @@ public class Start extends JavaPlugin {
 	MapManager mapManager = new MapManager(world,ConfigData);
 	public void onEnable() {
 		System.out.println("Plugin Start");
+		world.getPopulators().add(new GenerateRoof());
 		ConfigData.put("UHCBasicRules", new ArrayList<>());
 		ConfigData.put("Border", new ArrayList<>());
 		BasicInventoryConfig BasicInventory =  new BasicInventoryConfig(ConfigData);

@@ -22,5 +22,7 @@ public class MapManager {
 	public void createborder() {
 		BorderManager.createBorder(world,configdata);
 	}
-
+	public void createRoof() {
+		
+	}
 }
