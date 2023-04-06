@@ -16,6 +16,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -23,17 +24,20 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import fr.farkas.Main.Character.CharacterManager;
 import fr.farkas.Main.Character.SungJinWoo.SungJinWoo;
+import fr.farkas.Main.WorldManager.MapManager;
 import fr.farkas.Main.configuration.BasicInventoryConfig;
 
 public class UHCListeners implements Listener {
 		
     private CharacterManager characterManager;
     private BasicInventoryConfig basicinventoryconfig;
+    private MapManager mapManager;
 
 
-	public UHCListeners(CharacterManager characterManager, BasicInventoryConfig basicInventory) {
+	public UHCListeners(CharacterManager characterManager, BasicInventoryConfig basicInventory,MapManager mapManager) {
 		this.basicinventoryconfig = basicInventory;
 		this.characterManager = characterManager;
+		this.mapManager = mapManager;
 	}
 
 
@@ -84,6 +88,9 @@ public class UHCListeners implements Listener {
 		if(inv.getName().equalsIgnoreCase("§6UHC Basic Rules")){
 			basicinventoryconfig.BasicInventoryClick(event);
 		}
+		if(inv.getName().equalsIgnoreCase("§6Border Config")){
+			basicinventoryconfig.BasicInventoryClick(event);
+		}
 		if(inv.getName().equalsIgnoreCase("§7Config")){
 			
 			event.setCancelled(true);
@@ -117,6 +124,12 @@ public class UHCListeners implements Listener {
         player.setMaxHealth(20);
         player.getInventory().clear();
         characterManager.removeCharacter(player);
+    }
+    @EventHandler
+    public void onPlayerJoin(PlayerJoinEvent event) {
+        Player player = event.getPlayer();
+        mapManager.tptoSpawn(player);
+
     }
 
 
