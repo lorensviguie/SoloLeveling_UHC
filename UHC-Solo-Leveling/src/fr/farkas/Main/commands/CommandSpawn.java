@@ -11,19 +11,24 @@ import org.bukkit.entity.Player;
 
 import fr.farkas.Main.UHCListeners;
 import fr.farkas.Main.configuration.BasicInventoryConfig;
+import fr.farkas.Main.game.Scoreboard;
 
 public class CommandSpawn implements CommandExecutor {
 	
 	private BasicInventoryConfig basicInventory;
+	private Scoreboard scoreboard;
 	
-	public CommandSpawn(Map<String, List<String>> configData, BasicInventoryConfig basicInventory) {
+	public CommandSpawn(Map<String, List<String>> configData, BasicInventoryConfig basicInventory, Scoreboard scoreboard) {
 		this.basicInventory = basicInventory;
+		this.scoreboard = scoreboard;
 	}
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+
 		if (sender.isOp()) {
 			if (args[0].equalsIgnoreCase("start")) {
+				this.scoreboard.GetTimer().Start();
 				UHCListeners.onstart();
 				return true;
 			}
@@ -32,6 +37,7 @@ public class CommandSpawn implements CommandExecutor {
 				return true;
 			}
 			if (args[0].equalsIgnoreCase("stop")) {
+				scoreboard.GetTimer().Stop();
 				for (Player player : Bukkit.getOnlinePlayers()) {
 				    // Kill the player
 				    player.setHealth(0);

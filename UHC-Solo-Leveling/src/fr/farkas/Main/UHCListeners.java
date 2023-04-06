@@ -4,6 +4,7 @@ package fr.farkas.Main;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -16,6 +17,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -23,6 +26,8 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import fr.farkas.Main.Character.CharacterManager;
 import fr.farkas.Main.Character.SungJinWoo.SungJinWoo;
+import fr.farkas.Main.game.Scoreboard;
+import fr.farkas.Main.game.TimerManager;
 
 public class UHCListeners implements Listener {
 		
@@ -46,8 +51,10 @@ public class UHCListeners implements Listener {
 		player.getInventory().setItem(2, customsword);
 				
 		player.updateInventory();
-		}
+		}		
 	}
+	
+	
 	@EventHandler
 	 public void onInteract(PlayerInteractEvent event) {
 		
@@ -65,6 +72,12 @@ public class UHCListeners implements Listener {
 			player.openInventory(inv);
 		}
 	}
+	
+	@EventHandler
+    public void onPlayerJoin(PlayerJoinEvent event) {
+		Scoreboard scoreboard = new Scoreboard(new TimerManager());
+		scoreboard.Display(event.getPlayer());
+    }
 	
 	@EventHandler
 	public void onClick(InventoryClickEvent event) {
