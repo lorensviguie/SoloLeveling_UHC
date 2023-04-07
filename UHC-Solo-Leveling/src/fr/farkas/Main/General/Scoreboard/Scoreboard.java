@@ -47,12 +47,14 @@ public class Scoreboard {
         Score dayNb = objective.getScore(Bukkit.getOfflinePlayer(String.format("§bJour %d", 1)));
         dayNb.setScore(4);
 
-        if(this.onlinePlayerNumber != Bukkit.getOnlinePlayers().size()) {
-        	objective.getScoreboard().resetScores(String.format("§cPlayers: §f%d", this.onlinePlayerNumber));
-        	this.onlinePlayerNumber = Bukkit.getOnlinePlayers().size();
+        if(Bukkit.getOnlinePlayers().size() != 0) {
+            if(this.onlinePlayerNumber != Bukkit.getOnlinePlayers().size()) {
+            	objective.getScoreboard().resetScores(String.format("§cPlayers: §f%d", this.onlinePlayerNumber));
+            	this.onlinePlayerNumber = Bukkit.getOnlinePlayers().size();
+            }
+            Score playerNb = objective.getScore(Bukkit.getOfflinePlayer(String.format("§c%d §4Joueurs ", this.onlinePlayerNumber)));
+            playerNb.setScore(3);
         }
-        Score playerNb = objective.getScore(Bukkit.getOfflinePlayer(String.format("§c%d §4Joueurs ", this.onlinePlayerNumber)));
-        playerNb.setScore(3);
         
         Score space = objective.getScore(Bukkit.getOfflinePlayer("§8."));
         space.setScore(2);
