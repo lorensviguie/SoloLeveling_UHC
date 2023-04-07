@@ -27,7 +27,7 @@ public class Start extends JavaPlugin {
 		
 		getServer().getPluginManager().registerEvents(new UHCListeners(game.getCharacterManager(), game.getConfig().getBasicInventoryConfig(),mapManager, game), this);
 		getCommand("sl").setExecutor(new SlDarkCommands(game.getCharacterManager()));
-		getCommand("dh").setExecutor(new CommandSpawn(game.getConfig().getConfigData(), game.getConfig().getBasicInventoryConfig(), game.getScoreboard(),world));		
+		getCommand("dh").setExecutor(new CommandSpawn(game.getConfig().getConfigData(), game.getConfig().getBasicInventoryConfig(), game.getScoreboard(),world,game));		
 
 	}
 	

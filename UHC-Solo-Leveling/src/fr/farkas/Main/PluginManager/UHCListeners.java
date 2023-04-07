@@ -20,6 +20,7 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import fr.farkas.Main.Characters.CharacterListeners;
 import fr.farkas.Main.Characters.CharacterManager;
 import fr.farkas.Main.Characters.Fragments.GoGunHee.GoGunHee;
 import fr.farkas.Main.Characters.SungJinWoo.SungJinWoo;
@@ -33,6 +34,7 @@ public class UHCListeners implements Listener {
     private BasicInventoryConfig basicinventoryconfig;
     private MapManager mapManager;
     private Game game;
+    private CharacterListeners characterListeners;
 
 
 	public UHCListeners(CharacterManager characterManager, BasicInventoryConfig basicInventory,MapManager mapManager, Game game) {
@@ -40,6 +42,7 @@ public class UHCListeners implements Listener {
 		this.characterManager = characterManager;
 		this.mapManager = mapManager;
 		this.game = game;
+		this.characterListeners = new CharacterListeners(game);
 	}
 
 
@@ -95,8 +98,9 @@ public class UHCListeners implements Listener {
 		Player player = (Player) event.getWhoClicked();
 		ItemStack current = event.getCurrentItem();
 		if(current == null) return;
+		System.out.println(game.DidgameStart());
 		if(game.DidgameStart()) {
-			
+			characterListeners.CharacterClick(event,player);
 		}else {
 		
 			if(inv.getName().equalsIgnoreCase("§eLocked Inventory")){

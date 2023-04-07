@@ -10,6 +10,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import fr.farkas.Main.General.Game;
 import fr.farkas.Main.General.Configuration.ApplyRules;
 import fr.farkas.Main.General.Configuration.BasicInventoryConfig;
 import fr.farkas.Main.General.Scoreboard.Scoreboard;
@@ -22,19 +23,22 @@ public class CommandSpawn implements CommandExecutor {
 	private Scoreboard scoreboard;
 	private Map<String, List<String>> configdata;
 	private World world;
+	private Game game;
 	
-	public CommandSpawn(Map<String, List<String>> configData, BasicInventoryConfig basicInventory, Scoreboard scoreboard, World world) {
+	public CommandSpawn(Map<String, List<String>> configData, BasicInventoryConfig basicInventory, Scoreboard scoreboard, World world,Game game) {
 		this.basicInventory = basicInventory;
 		this.scoreboard = scoreboard;
 		this.configdata = configData;
 		this.world = world;
-	}
+		this.game = game;}
+
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 
 		if (sender.isOp()) {
 			if (args[0].equalsIgnoreCase("start")) {
+				game.SetGameStatus(true);
 				BorderManager.createBorder(world, configdata);
 				this.scoreboard.GetTimer().Start();
 				UHCListeners.onstart();
@@ -47,6 +51,7 @@ public class CommandSpawn implements CommandExecutor {
 				return true;
 			}
 			if (args[0].equalsIgnoreCase("stop")) {
+				game.SetGameStatus(false);
 				BorderManager.destroyBorder(world);
 				scoreboard.GetTimer().Stop();
 				for (Player player : Bukkit.getOnlinePlayers()) {

@@ -14,8 +14,8 @@ public class GoGunHee extends Fragments {
 
     public GoGunHee(Player player, String key) {
         super(player, key);
-        this.name = "SungJinWoo";
-        player.getInventory().addItem(createMat(Material.NETHER_STAR, "Transformation"));
+        this.name = "GoGunHee";
+        player.getInventory().addItem(createMat(Material.NETHER_STAR, "§6Transformation"));
     }
 
     public String getName() { // Add a getter method for the name field
