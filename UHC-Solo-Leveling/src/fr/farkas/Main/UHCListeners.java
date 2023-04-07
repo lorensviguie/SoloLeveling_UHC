@@ -85,6 +85,8 @@ public class UHCListeners implements Listener {
     public void onPlayerJoin(PlayerJoinEvent event) {
 		Scoreboard scoreboard = new Scoreboard(new TimerManager());
 		scoreboard.Display(event.getPlayer());
+        Player player = event.getPlayer();
+        mapManager.tptoSpawn(player);
     }
 	
 	@EventHandler
@@ -137,14 +139,6 @@ public class UHCListeners implements Listener {
         player.getInventory().clear();
         characterManager.removeCharacter(player);
     }
-    @EventHandler
-    public void onPlayerJoin(PlayerJoinEvent event) {
-        Player player = event.getPlayer();
-        mapManager.tptoSpawn(player);
-
-    }
-
-
 
 public ItemStack getItem(Material material, String customDisplayName) {
 	ItemStack it = new ItemStack(material, 1);
