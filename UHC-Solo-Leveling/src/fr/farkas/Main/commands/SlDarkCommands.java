@@ -1,4 +1,4 @@
-package fr.farkas.Main.commands;
+package fr.farkas.Main.Commands;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -8,10 +8,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import fr.farkas.Main.Start;
-import fr.farkas.Main.Character.CharacterManager;
-import fr.farkas.Main.Character.SungJinWoo.DarkPower;
-import fr.farkas.Main.Character.SungJinWoo.ShadowPower;
-import fr.farkas.Main.Character.SungJinWoo.ShadowTpPower;
+import fr.farkas.Main.Characters.CharacterManager;
+import fr.farkas.Main.Characters.SungJinWoo.DarkPower;
+import fr.farkas.Main.Characters.SungJinWoo.ShadowPower;
+import fr.farkas.Main.Characters.SungJinWoo.ShadowTpPower;
 
 public class SlDarkCommands implements CommandExecutor {
 	private CharacterManager characterManager;

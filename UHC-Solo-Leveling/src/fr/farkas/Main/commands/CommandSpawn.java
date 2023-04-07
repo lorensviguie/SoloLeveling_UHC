@@ -1,4 +1,4 @@
-package fr.farkas.Main.commands;
+package fr.farkas.Main.Commands;
 
 import java.util.List;
 import java.util.Map;
@@ -10,11 +10,11 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import fr.farkas.Main.UHCListeners;
-import fr.farkas.Main.UHCRule.ApplyRules;
-import fr.farkas.Main.WorldManager.BorderManager;
-import fr.farkas.Main.configuration.BasicInventoryConfig;
-import fr.farkas.Main.game.Scoreboard;
+import fr.farkas.Main.General.Configuration.ApplyRules;
+import fr.farkas.Main.General.Configuration.BasicInventoryConfig;
+import fr.farkas.Main.General.Scoreboard.Scoreboard;
+import fr.farkas.Main.General.World.BorderManager;
+import fr.farkas.Main.PluginManager.UHCListeners;
 
 public class CommandSpawn implements CommandExecutor {
 	
