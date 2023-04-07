@@ -95,45 +95,50 @@ public class UHCListeners implements Listener {
 		Player player = (Player) event.getWhoClicked();
 		ItemStack current = event.getCurrentItem();
 		if(current == null) return;
-		if(inv.getName().equalsIgnoreCase("§eLocked Inventory")){
-			basicinventoryconfig.BasicInventoryClick(event);
-		}
-		if(inv.getName().equalsIgnoreCase("§6UHC Basic Rules")){
-			basicinventoryconfig.BasicInventoryClick(event);
-		}
-		if(inv.getName().equalsIgnoreCase("§6Border Config")){
-			basicinventoryconfig.BasicInventoryClick(event);
-		}
-		if(inv.getName().equalsIgnoreCase("§7Config")){
+		if(game.DidgameStart()) {
 			
-			event.setCancelled(true);
-			player.closeInventory();
-			switch(current.getType()) {
-			case APPLE:
-				player.setGameMode(GameMode.CREATIVE);
-				Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "give @"+ player.getDisplayName()+"minecraft:diamond 2");
-				
-				break;
-			case OBSIDIAN:
-				// Assuming you have a player object called "player"
-				SungJinWoo sungJinWoo = new SungJinWoo(player, "sungjinwoo");
-				characterManager.chooseCharacter(player, sungJinWoo);
-				System.out.println(characterManager.getCharacter(player));
-
-				player.closeInventory();
-                player.sendMessage(ChatColor.GREEN + "You are now playing as " + SungJinWoo.getDescription());
-                break;
-			case DAYLIGHT_DETECTOR:
-				GoGunHee goGunHee = new GoGunHee(player, "GoGunHee");
-				characterManager.chooseCharacter(player, goGunHee);
-				
-				player.closeInventory();
-				 player.sendMessage(ChatColor.GREEN + "You are now playing as " + GoGunHee.getDescription());
-				break;
-			default:break;
+		}else {
+		
+			if(inv.getName().equalsIgnoreCase("§eLocked Inventory")){
+				basicinventoryconfig.BasicInventoryClick(event);
 			}
+			if(inv.getName().equalsIgnoreCase("§6UHC Basic Rules")){
+				basicinventoryconfig.BasicInventoryClick(event);
+			}
+			if(inv.getName().equalsIgnoreCase("§6Border Config")){
+				basicinventoryconfig.BasicInventoryClick(event);
+			}
+			if(inv.getName().equalsIgnoreCase("§7Config")){
+			
+				event.setCancelled(true);
+				player.closeInventory();
+				switch(current.getType()) {
+				case APPLE:
+					player.setGameMode(GameMode.CREATIVE);
+					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "give @"+ player.getDisplayName()+"minecraft:diamond 2");
+				
+					break;
+				case OBSIDIAN:
+					// Assuming you have a player object called "player"
+					SungJinWoo sungJinWoo = new SungJinWoo(player, "sungjinwoo");
+					characterManager.chooseCharacter(player, sungJinWoo);
+					System.out.println(characterManager.getCharacter(player));
+
+					player.closeInventory();
+                	player.sendMessage(ChatColor.GREEN + "You are now playing as " + SungJinWoo.getDescription());
+                	break;
+				case DAYLIGHT_DETECTOR:
+					GoGunHee goGunHee = new GoGunHee(player, "GoGunHee");
+					characterManager.chooseCharacter(player, goGunHee);
+				
+					player.closeInventory();
+				 	player.sendMessage(ChatColor.GREEN + "You are now playing as " + GoGunHee.getDescription());
+				 	break;
+				default:break;
+				}
 
 			
+			}
 		}
 		
 	}

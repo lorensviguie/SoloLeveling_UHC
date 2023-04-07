@@ -15,7 +15,7 @@ import fr.farkas.Main.General.Configuration.Config;
 
 public class Game {
 	
-
+	public  boolean GameStart;
 	private Timer timer = new Timer();
 	private TimerManager time = new TimerManager();
 	private Scoreboard scoreboard;
@@ -32,6 +32,7 @@ public class Game {
 		}
 		
 		public void run(){
+			GameStart = true;
 			List<Player> players = new ArrayList<>(Bukkit.getOnlinePlayers());
 			this.scoreboard.GetTimer().AddSecond();
 			for (Player player : players) {
@@ -52,8 +53,12 @@ public class Game {
 	
 	
 	public void StopGame() {
+		GameStart = false;
 		this.timer.cancel();
 		this.timer.purge();
+	}
+	public boolean DidgameStart() {
+		return this.GameStart;
 	}
 	
 	
