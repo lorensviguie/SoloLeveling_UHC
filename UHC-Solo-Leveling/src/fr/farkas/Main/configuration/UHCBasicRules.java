@@ -30,6 +30,7 @@ public class UHCBasicRules {
 
     private void updateInventory() {
         List<String> rules = ConfigData.get("UHCBasicRules");
+
         if (rules.contains("NightVision")) {    	
         	inventory.setItem(3, createMat(Material.STAINED_CLAY, "§aNight Vision: ON"));
         } else {

@@ -23,7 +23,6 @@ import fr.farkas.Main.game.TimerManager;
 
 class GlobalEverySecond extends TimerTask{
 	private Scoreboard scoreboard;
-	private TimerManager timer;
 	public GlobalEverySecond(Scoreboard scoreboard){
 		this.scoreboard = scoreboard;
 	}
@@ -42,11 +41,12 @@ public class Start extends JavaPlugin {
 	Timer timer = new Timer();
 	CharacterManager characterManager = new CharacterManager();
 	Map<String, List<String>> ConfigData = new HashMap<>();
-	BasicInventoryConfig BasicInventory =  new BasicInventoryConfig(ConfigData);
+	BasicInventoryConfig BasicInventory;
 	TimerManager time = new TimerManager();
 	Scoreboard scoreboard = new Scoreboard(time);
 	World world = getServer().getWorld("world");
 	MapManager mapManager = new MapManager(world,ConfigData);
+
 	public void onEnable() {
 		System.out.println("Plugin Start");
 		world.getPopulators().add(new GenerateRoof());
@@ -55,11 +55,12 @@ public class Start extends JavaPlugin {
 		timer.schedule(task, 1000,1000);
 		
 		
-		
-		BasicInventory.createInventory();
 		ConfigData.put("UHCBasicRules", new ArrayList<>());
 		ConfigData.put("Border", new ArrayList<>());
-		BasicInventoryConfig BasicInventory =  new BasicInventoryConfig(ConfigData);
+		BasicInventory = new BasicInventoryConfig(ConfigData);
+
+		BasicInventory.createInventory();
+		
 		mapManager.createSpawn();
 		BasicInventory.createInventory();
 		getServer().getPluginManager().registerEvents(new UHCListeners(characterManager, BasicInventory,mapManager), this);

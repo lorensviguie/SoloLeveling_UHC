@@ -24,8 +24,10 @@ public class BasicInventoryConfig {
 		this.setConfigData(configData);
 		this.uhcBasicRules = new UHCBasicRules(configData);
 		this.borderConfig = new BorderConfig(configData);
+
 		uhcBasicRules.createInventory();
 		borderConfig.createInventory();
+
 	}
     public void openConfig(Player player) {
         player.openInventory(inventory);
@@ -76,8 +78,10 @@ public class BasicInventoryConfig {
         	System.out.println(inv.getName());
         	player.closeInventory();
     		if(inv.getName().equalsIgnoreCase("§6UHC Basic Rules")){
+
     			uhcBasicRules.UHCRulesClick(event);
     			uhcBasicRules.openConfig(player);
+
     		}
     		if(inv.getName().equalsIgnoreCase("§6Border Config")){
     			borderConfig.BorderConfigClick(event);
@@ -85,7 +89,9 @@ public class BasicInventoryConfig {
     		}
 		switch(current.getType()) {
 		case DIAMOND:
+
 			uhcBasicRules.openConfig(player);
+
 			break;
 		case DARK_OAK_FENCE:
 			borderConfig.openConfig(player);
