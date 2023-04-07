@@ -15,7 +15,7 @@ import fr.farkas.Main.General.Configuration.Config;
 
 public class Game {
 	
-
+	private  boolean GameStart;
 	private Timer timer = new Timer();
 	private TimerManager time = new TimerManager();
 	private Scoreboard scoreboard;
@@ -47,7 +47,7 @@ public class Game {
 		this.task = new GlobalEverySecond(this.scoreboard);
 		this.timer.schedule(this.task, 1000,1000);
 		this.characterManager = new CharacterManager();
-		
+		SetGameStatus(false);
 	}
 	
 	
@@ -55,11 +55,19 @@ public class Game {
 		this.timer.cancel();
 		this.timer.purge();
 	}
+	public boolean DidgameStart() {
+		return this.GameStart;
+	}
 	
 	
 	
 	public Scoreboard getScoreboard() {
 		return this.scoreboard;
+	}
+	public void SetGameStatus(Boolean status) {
+		
+		GameStart = status;
+		System.out.println(status);
 	}
 	
 	public Config getConfig() {

@@ -20,7 +20,9 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import fr.farkas.Main.Characters.CharacterListeners;
 import fr.farkas.Main.Characters.CharacterManager;
+import fr.farkas.Main.Characters.Fragments.GoGunHee.GoGunHee;
 import fr.farkas.Main.Characters.SungJinWoo.SungJinWoo;
 import fr.farkas.Main.Characters.Monarques.Legia.Legia;
 import fr.farkas.Main.General.Game;
@@ -33,6 +35,7 @@ public class UHCListeners implements Listener {
     private BasicInventoryConfig basicinventoryconfig;
     private MapManager mapManager;
     private Game game;
+    private CharacterListeners characterListeners;
 
 
 	public UHCListeners(CharacterManager characterManager, BasicInventoryConfig basicInventory,MapManager mapManager, Game game) {
@@ -40,6 +43,7 @@ public class UHCListeners implements Listener {
 		this.characterManager = characterManager;
 		this.mapManager = mapManager;
 		this.game = game;
+		this.characterListeners = new CharacterListeners(game);
 	}
 
 
@@ -73,11 +77,13 @@ public class UHCListeners implements Listener {
 			Inventory inv = Bukkit.createInventory(null, 9, "§7Config");
 						
 			ItemStack characterItem = getItem(Material.OBSIDIAN, "§6Sung Jin Woo");
+			ItemStack characterItem12 = getItem(Material.DAYLIGHT_DETECTOR, "§6Go Gun Hee");
 			inv.setItem(5, characterItem);
 			
 			
 			ItemStack characterItem2 = getItem(Material.BOOKSHELF, "§6Legia");
 			inv.setItem(1, characterItem2);
+			inv.setItem(4, characterItem12);
 			
 			player.openInventory(inv);
 		}
@@ -91,29 +97,39 @@ public class UHCListeners implements Listener {
     }
 	
 	@EventHandler
+	public void onattack(PlayerInteractEvent event) {
+		System.out.println("FEUR");
+		if (game.DidgameStart()){
+			Player player = event.getPlayer();
+			characterListeners.CharacterClick(event, player);
+		}
+	}
+	
+	@EventHandler
 	public void onClick(InventoryClickEvent event) {
 		
 		Inventory inv = event.getInventory();
 		Player player = (Player) event.getWhoClicked();
 		ItemStack current = event.getCurrentItem();
 		if(current == null) return;
-		if(inv.getName().equalsIgnoreCase("§eLocked Inventory")){
-			basicinventoryconfig.BasicInventoryClick(event);
-		}
-		if(inv.getName().equalsIgnoreCase("§6UHC Basic Rules")){
-			basicinventoryconfig.BasicInventoryClick(event);
-		}
-		if(inv.getName().equalsIgnoreCase("§6Border Config")){
-			basicinventoryconfig.BasicInventoryClick(event);
-		}
-		if(inv.getName().equalsIgnoreCase("§7Config")){
+		System.out.println(game.DidgameStart());		
+			if(inv.getName().equalsIgnoreCase("§eLocked Inventory")){
+				basicinventoryconfig.BasicInventoryClick(event);
+			}
+			if(inv.getName().equalsIgnoreCase("§6UHC Basic Rules")){
+				basicinventoryconfig.BasicInventoryClick(event);
+			}
+			if(inv.getName().equalsIgnoreCase("§6Border Config")){
+				basicinventoryconfig.BasicInventoryClick(event);
+			}
+			if(inv.getName().equalsIgnoreCase("§7Config")){
 			
-			event.setCancelled(true);
-			player.closeInventory();
-			switch(current.getType()) {
-			case APPLE:
-				player.setGameMode(GameMode.CREATIVE);
-				Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "give @"+ player.getDisplayName()+"minecraft:diamond 2");
+				event.setCancelled(true);
+				player.closeInventory();
+				switch(current.getType()) {
+				case APPLE:
+					player.setGameMode(GameMode.CREATIVE);
+					Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "give @"+ player.getDisplayName()+"minecraft:diamond 2");
 				
 				break;
 			case BOOKSHELF:
@@ -131,15 +147,22 @@ public class UHCListeners implements Listener {
 				characterManager.chooseCharacter(player, sungJinWoo);
 				System.out.println(characterManager.getCharacter(player));
 
-				player.closeInventory();
-                player.sendMessage(ChatColor.GREEN + "You are now playing as " + SungJinWoo.getDescription());
-                break;
+					player.closeInventory();
+                	player.sendMessage(ChatColor.GREEN + "You are now playing as " + SungJinWoo.getDescription());
+                	break;
+				case DAYLIGHT_DETECTOR:
+					GoGunHee goGunHee = new GoGunHee(player, "GoGunHee");
+					characterManager.chooseCharacter(player, goGunHee);
+					System.out.println(characterManager.getCharacter(player));
 				
-			default:break;
-			}
+					player.closeInventory();
+				 	player.sendMessage(ChatColor.GREEN + "You are now playing as " + GoGunHee.getDescription());
+				 	break;
+				default:break;
+				}
 
 			
-		}
+			}
 		
 	}
     @EventHandler
