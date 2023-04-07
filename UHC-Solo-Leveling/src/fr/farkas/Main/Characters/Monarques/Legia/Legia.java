@@ -14,7 +14,31 @@ public class Legia extends Monarques{
 		super(player,key);
         player.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, Integer.MAX_VALUE, 0));
         player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, Integer.MAX_VALUE, 0));
-		
+        
+
+        // Suppr for real
+        player.sendMessage("Power Locked");
+        
+        try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+        player.sendMessage("Pass to Solo");
+        this.turnToSolo();
+        
+        try {
+			Thread.sleep(4000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        
+        player.sendMessage("Unlocked Power");
+        this.unLockPower();
+        
 	}
 
     public static String getDescription() {
@@ -23,6 +47,12 @@ public class Legia extends Monarques{
     
     public void turnToSolo() {
     	super.getPlayer().removePotionEffect(PotionEffectType.WEAKNESS);
+    }
+    
+    public void unLockPower() {
+    	super.getPlayer().removePotionEffect(PotionEffectType.DAMAGE_RESISTANCE);
+    	super.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, Integer.MAX_VALUE, 0));
+    	super.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, Integer.MAX_VALUE, 1));
     }
 
 }
