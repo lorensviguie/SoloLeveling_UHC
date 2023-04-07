@@ -21,6 +21,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import fr.farkas.Main.Characters.CharacterManager;
+import fr.farkas.Main.Characters.Fragments.GoGunHee.GoGunHee;
 import fr.farkas.Main.Characters.SungJinWoo.SungJinWoo;
 import fr.farkas.Main.General.Game;
 import fr.farkas.Main.General.Configuration.BasicInventoryConfig;
@@ -72,7 +73,9 @@ public class UHCListeners implements Listener {
 			Inventory inv = Bukkit.createInventory(null, 9, "§7Config");
 						
 			ItemStack characterItem = getItem(Material.OBSIDIAN, "§6Sung Jin Woo");
+			ItemStack characterItem12 = getItem(Material.DAYLIGHT_DETECTOR, "§6Go Gun Hee");
 			inv.setItem(5, characterItem);
+			inv.setItem(4, characterItem12);
 			
 			player.openInventory(inv);
 		}
@@ -120,7 +123,13 @@ public class UHCListeners implements Listener {
 				player.closeInventory();
                 player.sendMessage(ChatColor.GREEN + "You are now playing as " + SungJinWoo.getDescription());
                 break;
+			case DAYLIGHT_DETECTOR:
+				GoGunHee goGunHee = new GoGunHee(player, "GoGunHee");
+				characterManager.chooseCharacter(player, goGunHee);
 				
+				player.closeInventory();
+				 player.sendMessage(ChatColor.GREEN + "You are now playing as " + GoGunHee.getDescription());
+				break;
 			default:break;
 			}
 
