@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -31,22 +30,20 @@ public class UHCBasicRules {
 
     private void updateInventory() {
         List<String> rules = ConfigData.get("UHCBasicRules");
-        boolean nightVision = rules.contains("NightVision");
-
-        if (nightVision) {
-            ItemStack greenPane = new ItemStack(Material.GREEN_RECORD);
-            ItemMeta greenMeta = greenPane.getItemMeta();
-            greenMeta.setDisplayName(ChatColor.GREEN + "Night Vision: On");
-            greenPane.setItemMeta(greenMeta);
-        	
-        	inventory.setItem(3, greenPane);
+        if (rules.contains("NightVision")) {    	
+        	inventory.setItem(3, createMat(Material.STAINED_CLAY, "§aNight Vision: ON"));
         } else {
-        	
-            ItemStack redPane = new ItemStack(Material.RED_SANDSTONE);
-            ItemMeta redMeta = redPane.getItemMeta();
-            redMeta.setDisplayName(ChatColor.RED + "Night Vision: Off");
-            redPane.setItemMeta(redMeta);
-        	inventory.setItem(3, redPane);
+        	inventory.setItem(3, createMat(Material.RED_SANDSTONE, "§4Night Vision: OFF"));
+        }
+        if (rules.contains("SafeMiner")) {
+        	inventory.setItem(1, createMat(Material.IRON_PICKAXE, "§aSafe Miner: ON"));
+        }else {
+        	inventory.setItem(1, createMat(Material.WOOD_PICKAXE, "§4Safe Miner: OFF"));
+        }
+        if (rules.contains("StarterKit")) {
+        	inventory.setItem(2, createMat(Material.CHEST, "§aSarter Kit: ON"));
+        }else {
+        	inventory.setItem(2, createMat(Material.ENDER_CHEST, "§4Starter Kit: OFF"));
         }
     }
 
@@ -60,23 +57,49 @@ public class UHCBasicRules {
             event.setCancelled(true);
 
             List<String> rules = ConfigData.get("UHCBasicRules");
-            boolean nightVision = rules.contains("NightVision");
-
+            System.out.println(current.getType());
             switch (current.getType()) {
-                case GREEN_RECORD:
+                case WOOD_PICKAXE:
+                    rules.add("SafeMiner");
+                    updateonClick(rules);
+                    break;       
+                case IRON_PICKAXE:
+                    rules.remove("SafeMiner");
+                    updateonClick(rules);
+                    break;
                 case RED_SANDSTONE:
-                    if (nightVision) {
-                        rules.remove("NightVision");
-                    } else {
-                        rules.add("NightVision");
-                    }
-                    ConfigData.put("UHCBasicRules", rules);
-                    System.out.println(ConfigData);
-                    updateInventory();
+                    rules.add("NightVision");
+                    updateonClick(rules);
+                    break;
+                case STAINED_CLAY:
+                	rules.remove("NightVision");
+                    updateonClick(rules);
+                    break;
+                case CHEST:
+                	rules.remove("StarterKit");
+                    updateonClick(rules);
+                    break;
+                case ENDER_CHEST:
+                	rules.add("StarterKit");
+                    updateonClick(rules);
                     break;
                 default:
                     break;
             }
         }
     }
+    
+    
+    private ItemStack createMat(Material mat,String Display) {
+    	ItemStack crea = new ItemStack(mat);
+    	ItemMeta creaMeta = crea.getItemMeta();
+    	creaMeta.setDisplayName(Display);
+    	crea.setItemMeta(creaMeta);
+    	return crea;
+    }
+   private void updateonClick(List<String> rules) {
+       ConfigData.put("UHCBasicRules", rules);
+       System.out.println(ConfigData);
+       updateInventory();
+   }
 }

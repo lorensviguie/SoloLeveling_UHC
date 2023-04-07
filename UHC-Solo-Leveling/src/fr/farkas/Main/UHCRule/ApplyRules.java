@@ -5,9 +5,14 @@ import java.util.List;
 import java.util.Map;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+
 
 public class ApplyRules {
 	
@@ -27,6 +32,31 @@ public class ApplyRules {
 			for (Player player : players) {
 			    player.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, Integer.MAX_VALUE, 0));
 			}
+		}
+		if (rules.contains("SafeMiner")) {
+			// Récupérer tous les joueurs connectés
+			Collection<? extends Player> players = Bukkit.getOnlinePlayers();
+
+			// Appliquer l'effet Night Vision à tous les joueurs
+			for (Player player : players) {
+				player.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 50 * 60 * 20, 0));
+			}
+		if (rules.contains("StarterKit")) {
+			// Ajouter 64 bûches de bois à l'inventaire de tous les joueurs
+			for (Player player : Bukkit.getOnlinePlayers()) {
+			    player.getInventory().addItem(new ItemStack(Material.WOOD, 64));
+			    player.getInventory().addItem(new ItemStack(Material.APPLE, 16));
+			    player.getInventory().addItem(new ItemStack(Material.BOOK, 8));
+			    player.getInventory().addItem(new ItemStack(Material.GOLDEN_CARROT, 64));
+			    ItemStack pickaxe = new ItemStack(Material.IRON_PICKAXE);
+			    ItemMeta pickaxeMeta = pickaxe.getItemMeta();
+			    pickaxeMeta.addEnchant(Enchantment.DURABILITY, 3, true);
+			    pickaxeMeta.addEnchant(Enchantment.DIG_SPEED, 3, true);
+			    pickaxe.setItemMeta(pickaxeMeta);
+			    player.getInventory().addItem(pickaxe);
+			}
+
+		}
 		}
 	}
 }

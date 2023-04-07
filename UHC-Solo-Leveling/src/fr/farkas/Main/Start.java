@@ -9,9 +9,12 @@ import java.util.TimerTask;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.World;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import fr.farkas.Main.Character.CharacterManager;
+import fr.farkas.Main.WorldManager.GenerateRoof;
+import fr.farkas.Main.WorldManager.MapManager;
 import fr.farkas.Main.commands.CommandSpawn;
 import fr.farkas.Main.commands.SlDarkCommands;
 import fr.farkas.Main.configuration.BasicInventoryConfig;
@@ -42,9 +45,11 @@ public class Start extends JavaPlugin {
 	BasicInventoryConfig BasicInventory =  new BasicInventoryConfig(ConfigData);
 	TimerManager time = new TimerManager();
 	Scoreboard scoreboard = new Scoreboard(time);
+	World world = getServer().getWorld("world");
+	MapManager mapManager = new MapManager(world,ConfigData);
 	public void onEnable() {
 		System.out.println("Plugin Start");
-		
+		world.getPopulators().add(new GenerateRoof());
 		
 		TimerTask task = new GlobalEverySecond(scoreboard);
 		timer.schedule(task, 1000,1000);
@@ -53,11 +58,13 @@ public class Start extends JavaPlugin {
 		
 		BasicInventory.createInventory();
 		ConfigData.put("UHCBasicRules", new ArrayList<>());
+		ConfigData.put("Border", new ArrayList<>());
 		BasicInventoryConfig BasicInventory =  new BasicInventoryConfig(ConfigData);
+		mapManager.createSpawn();
 		BasicInventory.createInventory();
-		getServer().getPluginManager().registerEvents(new UHCListeners(characterManager, BasicInventory), this);
+		getServer().getPluginManager().registerEvents(new UHCListeners(characterManager, BasicInventory,mapManager), this);
 		getCommand("sl").setExecutor(new SlDarkCommands(characterManager));
-		getCommand("dh").setExecutor(new CommandSpawn(ConfigData, BasicInventory, scoreboard));		
+		getCommand("dh").setExecutor(new CommandSpawn(ConfigData, BasicInventory, scoreboard,world));		
 
 	}
     public CharacterManager getCharacterManager() {

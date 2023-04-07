@@ -17,12 +17,15 @@ public class BasicInventoryConfig {
 
     private Inventory inventory;
     private UHCBasicRules uhcBasicRules;
+    private BorderConfig borderConfig;
     private Map<String, List<String>> configData;
         
     public BasicInventoryConfig(Map<String, List<String>> configData) {
 		this.setConfigData(configData);
 		this.uhcBasicRules = new UHCBasicRules(configData);
+		this.borderConfig = new BorderConfig(configData);
 		uhcBasicRules.createInventory();
+		borderConfig.createInventory();
 	}
     public void openConfig(Player player) {
         player.openInventory(inventory);
@@ -70,20 +73,28 @@ public class BasicInventoryConfig {
         	Player player = (Player) event.getWhoClicked();
         	ItemStack current = event.getCurrentItem();
         	event.setCancelled(true);
+        	System.out.println(inv.getName());
         	player.closeInventory();
     		if(inv.getName().equalsIgnoreCase("§6UHC Basic Rules")){
     			uhcBasicRules.UHCRulesClick(event);
     			uhcBasicRules.openConfig(player);
     		}
+    		if(inv.getName().equalsIgnoreCase("§6Border Config")){
+    			borderConfig.BorderConfigClick(event);
+    			borderConfig.openConfig(player);
+    		}
 		switch(current.getType()) {
 		case DIAMOND:
-			System.out.println("Canard");
 			uhcBasicRules.openConfig(player);
 			break;
-		case ANVIL:
+		case DARK_OAK_FENCE:
+			borderConfig.openConfig(player);
 			break;
+		case SHEARS:
 			
-		default:break;
+			break;
+		default:
+			break;
 		}
     }
 	public Map<String, List<String>> getConfigData() {
