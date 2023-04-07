@@ -22,6 +22,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import fr.farkas.Main.Characters.CharacterManager;
 import fr.farkas.Main.Characters.SungJinWoo.SungJinWoo;
+import fr.farkas.Main.Characters.Monarques.Legia.Legia;
 import fr.farkas.Main.General.Game;
 import fr.farkas.Main.General.Configuration.BasicInventoryConfig;
 import fr.farkas.Main.General.World.MapManager;
@@ -74,6 +75,10 @@ public class UHCListeners implements Listener {
 			ItemStack characterItem = getItem(Material.OBSIDIAN, "§6Sung Jin Woo");
 			inv.setItem(5, characterItem);
 			
+			
+			ItemStack characterItem2 = getItem(Material.BOOKSHELF, "§6Legia");
+			inv.setItem(1, characterItem2);
+			
 			player.openInventory(inv);
 		}
 	}
@@ -111,6 +116,15 @@ public class UHCListeners implements Listener {
 				Bukkit.dispatchCommand(Bukkit.getConsoleSender(), "give @"+ player.getDisplayName()+"minecraft:diamond 2");
 				
 				break;
+			case BOOKSHELF:
+				// Assuming you have a player object called "player"
+				Legia legia = new Legia(player, "legia");
+				characterManager.chooseCharacter(player, legia);
+				System.out.println(characterManager.getCharacter(player));
+
+				player.closeInventory();
+                player.sendMessage(ChatColor.GREEN + "You are now playing as " + Legia.getDescription());
+                break;
 			case OBSIDIAN:
 				// Assuming you have a player object called "player"
 				SungJinWoo sungJinWoo = new SungJinWoo(player, "sungjinwoo");
