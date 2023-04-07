@@ -92,17 +92,22 @@ public class UHCListeners implements Listener {
     }
 	
 	@EventHandler
+	public void onattack(PlayerInteractEvent event) {
+		System.out.println("FEUR");
+		if (game.DidgameStart()){
+			Player player = event.getPlayer();
+			characterListeners.CharacterClick(event, player);
+		}
+	}
+	
+	@EventHandler
 	public void onClick(InventoryClickEvent event) {
 		
 		Inventory inv = event.getInventory();
 		Player player = (Player) event.getWhoClicked();
 		ItemStack current = event.getCurrentItem();
 		if(current == null) return;
-		System.out.println(game.DidgameStart());
-		if(game.DidgameStart()) {
-			characterListeners.CharacterClick(event,player);
-		}else {
-		
+		System.out.println(game.DidgameStart());		
 			if(inv.getName().equalsIgnoreCase("§eLocked Inventory")){
 				basicinventoryconfig.BasicInventoryClick(event);
 			}
@@ -134,6 +139,7 @@ public class UHCListeners implements Listener {
 				case DAYLIGHT_DETECTOR:
 					GoGunHee goGunHee = new GoGunHee(player, "GoGunHee");
 					characterManager.chooseCharacter(player, goGunHee);
+					System.out.println(characterManager.getCharacter(player));
 				
 					player.closeInventory();
 				 	player.sendMessage(ChatColor.GREEN + "You are now playing as " + GoGunHee.getDescription());
@@ -143,7 +149,6 @@ public class UHCListeners implements Listener {
 
 			
 			}
-		}
 		
 	}
     @EventHandler

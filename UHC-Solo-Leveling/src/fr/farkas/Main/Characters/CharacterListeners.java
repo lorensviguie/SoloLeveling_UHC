@@ -1,7 +1,7 @@
 package fr.farkas.Main.Characters;
 
 import org.bukkit.entity.Player;
-import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerInteractEvent;
 
 import fr.farkas.Main.General.Game;
 
@@ -13,7 +13,7 @@ public class CharacterListeners {
 		this.game = game;
 	}
 	
-	public void CharacterClick(InventoryClickEvent event,Player player) {
+	public void CharacterClick(PlayerInteractEvent event,Player player) {
 		if (!(game.getCharacterManager().getCharacterName(player).equals("GoGunHee"))) {
 			System.out.println("COUCOU");
 		}

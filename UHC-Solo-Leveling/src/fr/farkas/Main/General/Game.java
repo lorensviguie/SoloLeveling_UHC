@@ -65,8 +65,9 @@ public class Game {
 		return this.scoreboard;
 	}
 	public void SetGameStatus(Boolean status) {
+		
+		GameStart = status;
 		System.out.println(status);
-		GameStart = false;
 	}
 	
 	public Config getConfig() {
