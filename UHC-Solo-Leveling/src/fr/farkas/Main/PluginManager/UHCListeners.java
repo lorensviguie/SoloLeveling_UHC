@@ -25,6 +25,7 @@ import fr.farkas.Main.Characters.CharacterManager;
 import fr.farkas.Main.Characters.Fragments.GoGunHee.GoGunHee;
 import fr.farkas.Main.Characters.SungJinWoo.SungJinWoo;
 import fr.farkas.Main.Characters.Monarques.Legia.Legia;
+import fr.farkas.Main.Characters.Monarques.MonarqueBetes.MonarqueBetes;
 import fr.farkas.Main.General.Game;
 import fr.farkas.Main.General.Configuration.BasicInventoryConfig;
 import fr.farkas.Main.General.World.MapManager;
@@ -74,16 +75,19 @@ public class UHCListeners implements Listener {
 		
 		
 		if(it.getType() == Material.COMPASS && it.hasItemMeta() && it.getItemMeta().hasDisplayName() && it.getItemMeta().getDisplayName().equalsIgnoreCase("§dConfigurations")) {
-			Inventory inv = Bukkit.createInventory(null, 9, "§7Config");
+			Inventory inv = Bukkit.createInventory(null, 36, "§7Config");
 						
 			ItemStack characterItem = getItem(Material.OBSIDIAN, "§6Sung Jin Woo");
 			ItemStack characterItem12 = getItem(Material.DAYLIGHT_DETECTOR, "§6Go Gun Hee");
-			inv.setItem(5, characterItem);
-			
-			
 			ItemStack characterItem2 = getItem(Material.BOOKSHELF, "§6Legia");
-			inv.setItem(1, characterItem2);
-			inv.setItem(4, characterItem12);
+			ItemStack characterItem3 = getItem(Material.ANVIL, "§6Monarque des Betes");
+			
+			inv.setItem(0, characterItem);
+			
+			inv.setItem(9, characterItem2);
+			inv.setItem(10, characterItem3);
+			
+			inv.setItem(18, characterItem12);
 			
 			player.openInventory(inv);
 		}
@@ -121,6 +125,11 @@ public class UHCListeners implements Listener {
 			if(inv.getName().equalsIgnoreCase("§6Border Config")){
 				basicinventoryconfig.BasicInventoryClick(event);
 			}
+			if(inv.getName().equalsIgnoreCase("§6Forme Inventory")){
+				System.out.print("Hey");
+				MonarqueBetes monarqueBetes = (MonarqueBetes) game.getCharacterManager().getCharacter((Player) event.getWhoClicked());
+				monarqueBetes.getFormeInventory().FormeInventoryClick(event);
+			}
 			if(inv.getName().equalsIgnoreCase("§7Config")){
 			
 				event.setCancelled(true);
@@ -157,6 +166,15 @@ public class UHCListeners implements Listener {
 					player.closeInventory();
 				 	player.sendMessage(ChatColor.GREEN + "You are now playing as " + GoGunHee.getDescription());
 				 	break;
+				case ANVIL:
+					MonarqueBetes monarqueBetes = new MonarqueBetes(player, "GoGunHee");
+					characterManager.chooseCharacter(player, monarqueBetes);
+					System.out.println(characterManager.getCharacter(player));
+				
+					player.closeInventory();
+				 	player.sendMessage(ChatColor.GREEN + "You are now playing as " + MonarqueBetes.getDescription());
+				 	break;
+				 	
 				default:break;
 				}
 

@@ -9,6 +9,7 @@ import fr.farkas.Main.Characters.Monarques.Monarques;
 public class Legia extends Monarques{
 
     private static final String DESCRIPTION = "Legia";
+    private String name = "Legia";
 	
 	public Legia(Player player, String key) {
 		super(player,key);
@@ -40,6 +41,11 @@ public class Legia extends Monarques{
         this.unLockPower();
         
 	}
+	
+    @Override
+    public String getName() { // Add a getter method for the name field
+        return name;
+    }
 
     public static String getDescription() {
         return DESCRIPTION;

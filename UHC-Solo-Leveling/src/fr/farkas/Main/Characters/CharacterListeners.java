@@ -4,6 +4,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 import fr.farkas.Main.Characters.Fragments.GoGunHee.GoGunHee;
+import fr.farkas.Main.Characters.Monarques.MonarqueBetes.MonarqueBetes;
 import fr.farkas.Main.General.Game;
 
 public class CharacterListeners {
@@ -27,6 +28,12 @@ public class CharacterListeners {
 		}
 		if ((game.getCharacterManager().getCharacterName(player).equals("SungJinWoo"))) {
 			System.out.println("CANARD");
+		}
+		if ((game.getCharacterManager().getCharacterName(player).equals("MonarqueBetes"))) {
+			if (event.getItem() != null &&event.getItem().getItemMeta().getDisplayName() == "§6Formes") {
+				MonarqueBetes monarquesBetes = (MonarqueBetes) characterManager.getCharacter(player);
+				monarquesBetes.getFormeInventory().openFormInventory();
+			}
 		}
 		
 	}
