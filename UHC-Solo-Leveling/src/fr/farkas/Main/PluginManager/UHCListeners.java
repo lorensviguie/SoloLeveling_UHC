@@ -98,7 +98,6 @@ public class UHCListeners implements Listener {
 	
 	@EventHandler
 	public void onattack(PlayerInteractEvent event) {
-		System.out.println("FEUR");
 		if (game.DidgameStart()){
 			Player player = event.getPlayer();
 			characterListeners.CharacterClick(event, player);

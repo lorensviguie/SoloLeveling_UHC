@@ -7,11 +7,12 @@ import java.util.TimerTask;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 
-import fr.farkas.Main.General.Scoreboard.Scoreboard;
-import fr.farkas.Main.General.Timer.TimerManager;
 import fr.farkas.Main.Characters.CharacterManager;
 import fr.farkas.Main.General.Configuration.Config;
+import fr.farkas.Main.General.Scoreboard.Scoreboard;
+import fr.farkas.Main.General.Timer.TimerManager;
 
 public class Game {
 	
@@ -22,6 +23,7 @@ public class Game {
 	private Config config;
 	private TimerTask task;
 	private CharacterManager characterManager;
+	private Plugin plugin;
 	
 	
 	// Gère le systeme de seconde
@@ -41,12 +43,13 @@ public class Game {
 		}
 	}
 	
-	public Game() {
+	public Game(Plugin plugin) {
 		this.scoreboard = new Scoreboard(this.time);
 		this.config = new Config(this);
 		this.task = new GlobalEverySecond(this.scoreboard);
 		this.timer.schedule(this.task, 1000,1000);
 		this.characterManager = new CharacterManager();
+		this.plugin = plugin;
 		SetGameStatus(false);
 	}
 	
@@ -59,7 +62,9 @@ public class Game {
 		return this.GameStart;
 	}
 	
-	
+	public Plugin getPlugin() {
+		return this.plugin;
+	}
 	
 	public Scoreboard getScoreboard() {
 		return this.scoreboard;
