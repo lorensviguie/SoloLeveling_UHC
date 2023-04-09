@@ -23,9 +23,10 @@ import org.bukkit.inventory.meta.ItemMeta;
 import fr.farkas.Main.Characters.CharacterListeners;
 import fr.farkas.Main.Characters.CharacterManager;
 import fr.farkas.Main.Characters.Fragments.GoGunHee.GoGunHee;
-import fr.farkas.Main.Characters.SungJinWoo.SungJinWoo;
+import fr.farkas.Main.Characters.Fragments.ThomasAndre.ThomasAndre;
 import fr.farkas.Main.Characters.Monarques.Legia.Legia;
 import fr.farkas.Main.Characters.Monarques.MonarqueBetes.MonarqueBetes;
+import fr.farkas.Main.Characters.SungJinWoo.SungJinWoo;
 import fr.farkas.Main.General.Game;
 import fr.farkas.Main.General.Configuration.BasicInventoryConfig;
 import fr.farkas.Main.General.World.MapManager;
@@ -81,11 +82,13 @@ public class UHCListeners implements Listener {
 			ItemStack characterItem12 = getItem(Material.DAYLIGHT_DETECTOR, "§6Go Gun Hee");
 			ItemStack characterItem2 = getItem(Material.BOOKSHELF, "§6Legia");
 			ItemStack characterItem3 = getItem(Material.ANVIL, "§6Monarque des Betes");
+			ItemStack characterItem4 = getItem(Material.IRON_SWORD, "§6Thomas Andre");
 			
 			inv.setItem(0, characterItem);
 			
 			inv.setItem(9, characterItem2);
 			inv.setItem(10, characterItem3);
+			inv.setItem(19, characterItem4);
 			
 			inv.setItem(18, characterItem12);
 			
@@ -103,8 +106,8 @@ public class UHCListeners implements Listener {
 	@EventHandler
 	public void onattack(PlayerInteractEvent event) {
 		if (game.DidgameStart()){
-			Player player = event.getPlayer();
-			characterListeners.CharacterClick(event, player);
+				Player player = event.getPlayer();
+				characterListeners.CharacterClick(event, player);
 		}
 	}
 	
@@ -166,6 +169,13 @@ public class UHCListeners implements Listener {
 					player.closeInventory();
 				 	player.sendMessage(ChatColor.GREEN + "You are now playing as " + GoGunHee.getDescription());
 				 	break;
+				case IRON_SWORD:
+					ThomasAndre thomasAndre = new ThomasAndre(player,"ThomasAndre");
+					characterManager.chooseCharacter(player, thomasAndre);
+					System.out.println(characterManager.getCharacter(player));
+					player.closeInventory();
+                	player.sendMessage(ChatColor.GREEN + "You are now playing as " + ThomasAndre.getDescription());
+					break;
 				case ANVIL:
 					MonarqueBetes monarqueBetes = new MonarqueBetes(player, "GoGunHee");
 					characterManager.chooseCharacter(player, monarqueBetes);

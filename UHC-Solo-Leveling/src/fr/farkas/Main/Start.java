@@ -22,6 +22,7 @@ public class Start extends JavaPlugin {
 		//this.world.getPopulators().add(new GenerateRoof());
 		
 		this.game = new Game(plugin);
+		
 
 		this.mapManager = new MapManager(this.world,this.game.getConfig().getConfigData());
 		this.mapManager.createSpawn();
