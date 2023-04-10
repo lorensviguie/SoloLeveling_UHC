@@ -6,7 +6,9 @@ import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
+import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.BlockFace;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -15,6 +17,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -188,6 +191,17 @@ public class UHCListeners implements Listener {
         player.setMaxHealth(20);
         player.getInventory().clear();
         characterManager.removeCharacter(player);
+    }
+    
+    @EventHandler
+    public void onPlayerMoveEvent(PlayerMoveEvent event) {
+        Player player = event.getPlayer();
+        // Teleportation si rentre dans le portail (Material Block a changer par un block perso
+        if(player.getLocation().getBlock().getRelative(BlockFace.DOWN).getType() == Material.GOLD_BLOCK) {
+        	player.sendMessage("You are teleported in a portal");
+        	Location loc = new Location(Bukkit.getWorld("world_nether"), 0, 100, 0);
+        	player.teleport(loc);
+        }
     }
 
 public ItemStack getItem(Material material, String customDisplayName) {

@@ -40,7 +40,8 @@ public class SlDarkCommands implements CommandExecutor {
         if (args.length < 1) {
             player.sendMessage(ChatColor.RED + "Usage: /sl <ability>");
             return true;
-        }
+        }       
+        
         if (args[0].equalsIgnoreCase("dark")) {
             if (!(characterManager.getCharacterName(player).equals("SungJinWoo"))) {
             	player.sendMessage(ChatColor.RED + "You must be playing as SungJinWoo to use this command.");
