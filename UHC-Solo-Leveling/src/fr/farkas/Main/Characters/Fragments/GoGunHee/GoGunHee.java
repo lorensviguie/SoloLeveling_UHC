@@ -24,7 +24,7 @@ public class GoGunHee extends Fragments {
         super(player, key);
         this.name = "GoGunHee";
         this.transformation = false;
-        player.getInventory().addItem(createMat(Material.NETHER_STAR, "§6Transformation"));
+        player.getInventory().addItem(Fragments.createMat(Material.NETHER_STAR, "§6Transformation"));
     }
 
     public String getName() { // Add a getter method for the name field
@@ -34,13 +34,7 @@ public class GoGunHee extends Fragments {
     public static String getDescription() {
         return DESCRIPTION;
     }
-    private ItemStack createMat(Material mat,String Display) {
-    	ItemStack crea = new ItemStack(mat);
-    	ItemMeta creaMeta = crea.getItemMeta();
-    	creaMeta.setDisplayName(Display);
-    	crea.setItemMeta(creaMeta);
-    	return crea;
-    }
+
     
     public void useability(Plugin plugin) {
     	Player player = getPlayer();

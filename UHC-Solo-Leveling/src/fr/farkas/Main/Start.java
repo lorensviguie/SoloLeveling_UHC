@@ -18,10 +18,11 @@ public class Start extends JavaPlugin {
 
 	public void onEnable() {
 		System.out.println("Plugin Start");
-		
+		world.setGameRuleValue("Do_MOB_SPAWNING", "false");
 		//this.world.getPopulators().add(new GenerateRoof());
 		
 		this.game = new Game(plugin);
+		
 
 		this.mapManager = new MapManager(this.world,this.game.getConfig().getConfigData());
 		this.mapManager.createSpawn();

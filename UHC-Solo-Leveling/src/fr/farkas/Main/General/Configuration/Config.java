@@ -15,7 +15,8 @@ public class Config {
 	
 	public Config(Game game) {
 		this.ConfigData.put("UHCBasicRules", new ArrayList<>());
-		this.ConfigData.put("Border", new ArrayList<>());	
+		this.ConfigData.put("Border", new ArrayList<>());
+		this.ConfigData.put("CharacterList", new ArrayList<>());
 		
 		this.BasicInventory = new BasicInventoryConfig(this.ConfigData);
 		this.BasicInventory.createInventory();

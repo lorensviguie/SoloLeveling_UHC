@@ -20,13 +20,16 @@ public class BasicInventoryConfig {
     private Inventory inventory;
     private UHCBasicRules uhcBasicRules;
     private BorderConfig borderConfig;
+    private CharacterSelection characterSelection;
     private Map<String, List<String>> configData;
         
     public BasicInventoryConfig(Map<String, List<String>> configData) {
 		this.setConfigData(configData);
 		this.uhcBasicRules = new UHCBasicRules(configData);
 		this.borderConfig = new BorderConfig(configData);
-
+		this.characterSelection = new CharacterSelection(configData);
+		
+		characterSelection.createinventory();
 		uhcBasicRules.createInventory();
 		borderConfig.createInventory();
 
@@ -77,17 +80,19 @@ public class BasicInventoryConfig {
         	Player player = (Player) event.getWhoClicked();
         	ItemStack current = event.getCurrentItem();
         	event.setCancelled(true);
-        	System.out.println(inv.getName());
         	player.closeInventory();
     		if(inv.getName().equalsIgnoreCase("§6UHC Basic Rules")){
-
     			uhcBasicRules.UHCRulesClick(event);
     			uhcBasicRules.openConfig(player);
-
     		}
     		if(inv.getName().equalsIgnoreCase("§6Border Config")){
     			borderConfig.BorderConfigClick(event);
     			borderConfig.openConfig(player);
+    		}
+    		if(inv.getName().equalsIgnoreCase("§6Character Liste")) {
+    			System.out.println("coucou");
+    			characterSelection.CharacterListclick(event);
+    			characterSelection.openConfig(player);
     		}
 		switch(current.getType()) {
 		case DIAMOND:
@@ -98,8 +103,8 @@ public class BasicInventoryConfig {
 		case DARK_OAK_FENCE:
 			borderConfig.openConfig(player);
 			break;
-		case SHEARS:
-			
+		case IRON_SWORD:
+			characterSelection.openConfig(player);
 			break;
 		default:
 			break;
