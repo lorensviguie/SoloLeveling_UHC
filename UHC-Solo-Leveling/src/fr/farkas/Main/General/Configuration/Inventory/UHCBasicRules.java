@@ -51,7 +51,6 @@ public class UHCBasicRules {
 
     public void UHCRulesClick(InventoryClickEvent event) {
     	Inventory inv = event.getInventory();
-    	System.out.println(inv.getName());
     	if(inv.getName().equalsIgnoreCase("§6UHC Basic Rules")){
             ItemStack current = event.getCurrentItem();
             if (current == null) return;

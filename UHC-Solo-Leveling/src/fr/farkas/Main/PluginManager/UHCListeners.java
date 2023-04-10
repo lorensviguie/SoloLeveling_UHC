@@ -119,7 +119,7 @@ public class UHCListeners implements Listener {
 		Player player = (Player) event.getWhoClicked();
 		ItemStack current = event.getCurrentItem();
 		if(current == null) return;
-		System.out.println(game.DidgameStart());		
+		System.out.println(game.DidgameStart());
 			if(inv.getName().equalsIgnoreCase("§eLocked Inventory")){
 				basicinventoryconfig.BasicInventoryClick(event);
 			}
@@ -127,6 +127,9 @@ public class UHCListeners implements Listener {
 				basicinventoryconfig.BasicInventoryClick(event);
 			}
 			if(inv.getName().equalsIgnoreCase("§6Border Config")){
+				basicinventoryconfig.BasicInventoryClick(event);
+			}
+			if(inv.getName().equalsIgnoreCase("§6Character Liste")) {
 				basicinventoryconfig.BasicInventoryClick(event);
 			}
 			if(inv.getName().equalsIgnoreCase("§6Forme Inventory")){

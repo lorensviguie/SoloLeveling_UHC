@@ -1,5 +1,7 @@
 package fr.farkas.Main.Characters.Solos.Architecte;
 
+import java.util.List;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -54,5 +56,18 @@ public class Architecte extends Solos {
     	player.teleport(location);
     	this.dreamornot = true;
     	}
+    }
+    public void tpalltodream(Player playere) {
+    	World world = Bukkit.getWorld("world");
+    	List<Player> players = world.getPlayers();
+    	world = Bukkit.getWorld("world_the_end");
+        for (Player player : players) {
+            Location playerLocation = player.getLocation();
+            double distance = playere.getLocation().distance(playerLocation);
+            if (distance <= 20) {
+            	Location location = new Location(world, 0, 63, 0);
+                player.teleport(location);
+            }
+        }
     }
 }
