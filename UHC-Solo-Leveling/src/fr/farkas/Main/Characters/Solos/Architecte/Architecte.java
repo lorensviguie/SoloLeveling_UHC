@@ -22,7 +22,7 @@ public class Architecte extends Solos {
     private Boolean dreamornot;
 	public Architecte(Player player, String key) {
 		super(player, "Architect");
-        player.sendMessage(ChatColor.GREEN + "You are now playing as " + this.getDescription());
+        player.sendMessage(ChatColor.GREEN + "You are now playing as " + Architecte.getDescription());
 		this.name = "Architect";
 		player.setMaxHealth(24);
 		player.setHealth(24);
@@ -48,7 +48,7 @@ public class Architecte extends Solos {
     	int z = (int)(Math.random() * 1000) - 500;
     	Location loc = new Location(world, x, 150, z);
     	player.teleport(loc);
-    	player.setNoDamageTicks(200);
+    	player.setNoDamageTicks(300);
     	this.dreamornot = false;
     	}else {
     		player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, Integer.MAX_VALUE, 0));
