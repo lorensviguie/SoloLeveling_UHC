@@ -16,6 +16,7 @@ import fr.farkas.Main.General.Configuration.ApplyRules;
 import fr.farkas.Main.General.Configuration.BasicInventoryConfig;
 import fr.farkas.Main.General.Scoreboard.Scoreboard;
 import fr.farkas.Main.General.World.BorderManager;
+import fr.farkas.Main.General.World.Portal;
 import fr.farkas.Main.PluginManager.UHCListeners;
 
 public class CommandSpawn implements CommandExecutor {
@@ -25,7 +26,11 @@ public class CommandSpawn implements CommandExecutor {
 	private Map<String, List<String>> configdata;
 	private World world;
 	private Game game;
+<<<<<<< HEAD
 	private World Lobby;
+=======
+	private Portal portal;
+>>>>>>> 074fa6c7cdd9f551df3bfab3d41e22e984d96c3e
 	
 	public CommandSpawn(Map<String, List<String>> configData, BasicInventoryConfig basicInventory, Scoreboard scoreboard, World world,Game game,World Lobby) {
 		this.basicInventory = basicInventory;
@@ -41,14 +46,17 @@ public class CommandSpawn implements CommandExecutor {
 
 		if (sender.isOp()) {
 			if (args[0].equalsIgnoreCase("start")) {
-				game.SetGameStatus(true);
+				this.game.StartGame();
 				BorderManager.createBorder(world, configdata);
+<<<<<<< HEAD
 				this.scoreboard.GetTimer().Start();
 				    for(Player player : Lobby.getPlayers()) { // get all players in the first loaded world
 				        player.teleport(new Location(world, 0, 120, 0)); // teleport each player to the specified location
 				        player.setNoDamageTicks(20000);
 				    }
 
+=======
+>>>>>>> 074fa6c7cdd9f551df3bfab3d41e22e984d96c3e
 				UHCListeners.onstart();
 				ApplyRules uhcrule = new ApplyRules(configdata);
 				uhcrule.Applyallrules();
@@ -70,6 +78,18 @@ public class CommandSpawn implements CommandExecutor {
 					player.getInventory().clear();
 				    player.setHealth(20);
 				}
+				return true;
+			}
+			
+
+			if (args[0].equalsIgnoreCase("portal")) {
+				this.portal = new Portal();
+				sender.sendMessage(portal.getPos());
+				return true;
+			}
+
+			if (args[0].equalsIgnoreCase("dportal")) {
+				this.portal.removePortal();
 				return true;
 			}
 		}

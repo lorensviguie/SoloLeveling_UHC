@@ -122,6 +122,17 @@ public class UHCListeners implements Listener {
 		}
 	}
 	
+    @EventHandler
+    public void onPlayerMoveEvent(PlayerMoveEvent event) {
+        Player player = event.getPlayer();
+        // Teleportation si rentre dans le portail (Material Block a changer par un block perso
+        if(player.getLocation().getBlock().getRelative(BlockFace.DOWN).getType() == Material.GOLD_BLOCK) {
+        	player.sendMessage("You are teleported in a portal");
+        	Location loc = new Location(Bukkit.getWorld("world_nether"), 0, 100, 0);
+        	player.teleport(loc);
+        }
+    }
+	
 	@EventHandler
 	public void ondestroy(BlockBreakEvent blockBreak) {
 		Player player = blockBreak.getPlayer();
@@ -167,7 +178,6 @@ public class UHCListeners implements Listener {
 				basicinventoryconfig.BasicInventoryClick(event);
 			}
 			if(inv.getName().equalsIgnoreCase("§6Forme Inventory")){
-				System.out.print("Hey");
 				MonarqueBetes monarqueBetes = (MonarqueBetes) game.getCharacterManager().getCharacter((Player) event.getWhoClicked());
 				monarqueBetes.getFormeInventory().FormeInventoryClick(event);
 			}
@@ -242,17 +252,6 @@ public class UHCListeners implements Listener {
         player.setMaxHealth(20);
         player.getInventory().clear();
         characterManager.removeCharacter(player);
-    }
-    
-    @EventHandler
-    public void onPlayerMoveEvent(PlayerMoveEvent event) {
-        Player player = event.getPlayer();
-        // Teleportation si rentre dans le portail (Material Block a changer par un block perso
-        if(player.getLocation().getBlock().getRelative(BlockFace.DOWN).getType() == Material.GOLD_BLOCK) {
-        	player.sendMessage("You are teleported in a portal");
-        	Location loc = new Location(Bukkit.getWorld("world_nether"), 0, 100, 0);
-        	player.teleport(loc);
-        }
     }
 
 public ItemStack getItem(Material material, String customDisplayName) {
