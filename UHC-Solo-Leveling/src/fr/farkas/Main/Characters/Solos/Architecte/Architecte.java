@@ -3,6 +3,7 @@ package fr.farkas.Main.Characters.Solos.Architecte;
 import java.util.List;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -20,8 +21,9 @@ public class Architecte extends Solos {
     private String name;
     private Boolean dreamornot;
 	public Architecte(Player player, String key) {
-		super(player, key);
-		this.name = "Architecte";
+		super(player, "Architect");
+        player.sendMessage(ChatColor.GREEN + "You are now playing as " + this.getDescription());
+		this.name = "Architect";
 		player.setMaxHealth(24);
 		player.setHealth(24);
 		this.dreamornot = false;

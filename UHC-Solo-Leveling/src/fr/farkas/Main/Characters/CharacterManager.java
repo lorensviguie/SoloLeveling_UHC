@@ -12,6 +12,7 @@ import fr.farkas.Main.Characters.SungJinWoo.DarkPower;
 public class CharacterManager {
     private Map<Player, Character> playerCharacters;
     private DarkPower darkPower;
+    
     public void SungJinWoo(Start plugin) {
         this.darkPower = new DarkPower(plugin);
     }

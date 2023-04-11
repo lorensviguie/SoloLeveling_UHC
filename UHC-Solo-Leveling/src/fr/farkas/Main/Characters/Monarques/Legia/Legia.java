@@ -1,5 +1,6 @@
 package fr.farkas.Main.Characters.Monarques.Legia;
 
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -12,7 +13,8 @@ public class Legia extends Monarques{
     private String name = "Legia";
 	
 	public Legia(Player player, String key) {
-		super(player,key);
+		super(player,"Legia");
+        player.sendMessage(ChatColor.GREEN + "You are now playing as " + this.getDescription());
         player.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, Integer.MAX_VALUE, 0));
         player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, Integer.MAX_VALUE, 0));
         

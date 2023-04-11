@@ -8,8 +8,10 @@ import java.util.TimerTask;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.farkas.Main.Characters.CharacterManager;
+import fr.farkas.Main.Characters.DistribRole;
 import fr.farkas.Main.General.Configuration.Config;
 import fr.farkas.Main.General.Scoreboard.Scoreboard;
 import fr.farkas.Main.General.Timer.TimerManager;
@@ -56,10 +58,16 @@ public class Game {
 	
 	
 	public void StartGame() {
+		int min = 1;
 		SetGameStatus(true);
 		System.out.print("Game start");
-		System.out.print(this.config.getConfigData().get("CharacterList"));
 		this.scoreboard.GetTimer().Start();
+		new BukkitRunnable() {
+        	@Override
+        	public void run() {
+        		DistribRole.giveRole(config.getConfigData().get("CharacterList"), characterManager);
+        	}
+    	}.runTaskLater(plugin, 20*10*min); // after min minutes  pass 10 to 60 pour minute
 		
 	}
 	

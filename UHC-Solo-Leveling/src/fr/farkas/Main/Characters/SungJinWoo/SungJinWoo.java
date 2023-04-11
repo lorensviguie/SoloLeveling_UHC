@@ -4,6 +4,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 import fr.farkas.Main.Characters.Character;
+import fr.farkas.Main.Characters.Monarques.Legia.Legia;
 
 public class SungJinWoo extends Character {
 
@@ -11,7 +12,8 @@ public class SungJinWoo extends Character {
     private String name;
 
     public SungJinWoo(Player player, String key) {
-        super(player, key);
+        super(player, "SungJinWoo");
+        player.sendMessage(ChatColor.GREEN + "You are now playing as " + this.getDescription());
         player.setMaxHealth(30.0);
         player.setHealth(player.getMaxHealth());
         this.name = "SungJinWoo";

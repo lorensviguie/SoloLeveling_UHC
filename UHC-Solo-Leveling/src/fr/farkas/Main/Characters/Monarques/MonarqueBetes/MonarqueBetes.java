@@ -1,5 +1,6 @@
 package fr.farkas.Main.Characters.Monarques.MonarqueBetes;
 
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -18,7 +19,8 @@ public class MonarqueBetes extends Monarques{
     private static final String DESCRIPTION = "Monarque des Bêtes";
 	
 	public MonarqueBetes(Player player, String key) {
-		super(player,key);
+		super(player,"MonarqueBetes");
+        player.sendMessage(ChatColor.GREEN + "You are now playing as " + this.getDescription());
 		super.getPlayer().getInventory().addItem(createMat(Material.NETHER_STAR, "§6Formes"));
 		this.currentForme = "humain";
 		this.formeInventory = new FormeInventory(this);
