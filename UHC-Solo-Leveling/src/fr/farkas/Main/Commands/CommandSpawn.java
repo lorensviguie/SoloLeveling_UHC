@@ -18,6 +18,7 @@ import fr.farkas.Main.General.Configuration.ApplyRules;
 import fr.farkas.Main.General.Configuration.BasicInventoryConfig;
 import fr.farkas.Main.General.Scoreboard.Scoreboard;
 import fr.farkas.Main.General.World.BorderManager;
+import fr.farkas.Main.General.World.Portal;
 import fr.farkas.Main.PluginManager.UHCListeners;
 
 public class CommandSpawn implements CommandExecutor {
@@ -62,6 +63,13 @@ public class CommandSpawn implements CommandExecutor {
 					player.getInventory().clear();
 				    player.setHealth(0);
 				}
+				return true;
+			}
+			
+
+			if (args[0].equalsIgnoreCase("portal")) {
+				Portal portal = new Portal();
+				sender.sendMessage(portal.getPos());
 				return true;
 			}
 		}
