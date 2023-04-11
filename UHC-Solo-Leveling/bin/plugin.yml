@@ -1,0 +1,9 @@
+name: UHC SoloLeveling
+version: 1.0
+author: Farkas
+main: fr.farkas.Main.Start
+commands:
+  sl:
+    description: commandes pour acceder a toutes les commandes du plugin en joueur
+  dh:
+    description: commandes pour lancer le jeux et le configurer
