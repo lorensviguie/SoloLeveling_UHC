@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -24,12 +25,14 @@ public class CommandSpawn implements CommandExecutor {
 	private Map<String, List<String>> configdata;
 	private World world;
 	private Game game;
+	private World Lobby;
 	
-	public CommandSpawn(Map<String, List<String>> configData, BasicInventoryConfig basicInventory, Scoreboard scoreboard, World world,Game game) {
+	public CommandSpawn(Map<String, List<String>> configData, BasicInventoryConfig basicInventory, Scoreboard scoreboard, World world,Game game,World Lobby) {
 		this.basicInventory = basicInventory;
 		this.scoreboard = scoreboard;
 		this.configdata = configData;
 		this.world = world;
+		this.Lobby = Lobby;
 		this.game = game;}
 
 
@@ -41,6 +44,11 @@ public class CommandSpawn implements CommandExecutor {
 				game.SetGameStatus(true);
 				BorderManager.createBorder(world, configdata);
 				this.scoreboard.GetTimer().Start();
+				    for(Player player : Lobby.getPlayers()) { // get all players in the first loaded world
+				        player.teleport(new Location(world, 0, 120, 0)); // teleport each player to the specified location
+				        player.setNoDamageTicks(20000);
+				    }
+
 				UHCListeners.onstart();
 				ApplyRules uhcrule = new ApplyRules(configdata);
 				uhcrule.Applyallrules();
@@ -53,11 +61,14 @@ public class CommandSpawn implements CommandExecutor {
 			if (args[0].equalsIgnoreCase("stop")) {
 				game.SetGameStatus(false);
 				BorderManager.destroyBorder(world);
+			    for(Player player : world.getPlayers()) { // get all players in the first loaded world
+			        player.teleport(new Location(Lobby, 5, 128, 5)); // teleport each player to the specified location
+			    }
 				scoreboard.GetTimer().Stop();
 				for (Player player : Bukkit.getOnlinePlayers()) {
 				    // Kill the player
 					player.getInventory().clear();
-				    player.setHealth(0);
+				    player.setHealth(20);
 				}
 				return true;
 			}
