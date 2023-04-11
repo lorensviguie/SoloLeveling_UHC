@@ -47,9 +47,9 @@ public class CommandSpawn implements CommandExecutor {
 				BorderManager.createBorder(world, configdata);
 				this.scoreboard.GetTimer().Start();
 				    for(Player player : Lobby.getPlayers()) { // get all players in the first loaded world
-				    	player.setNoDamageTicks(20*60*1);
+				    	player.setNoDamageTicks(4000);
 				        player.teleport(new Location(world, 0, 120, 0)); // teleport each player to the specified location
-				        player.setNoDamageTicks(20*60*1);
+				        player.setNoDamageTicks(4000);
 				    }
 
 				UHCListeners.onstart();

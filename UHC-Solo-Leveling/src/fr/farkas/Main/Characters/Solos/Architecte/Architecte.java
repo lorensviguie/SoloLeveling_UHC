@@ -49,7 +49,7 @@ public class Architecte extends Solos {
     	int z = (int)(Math.random() * 1000) - 500;
     	Location loc = new Location(world, x, 150, z);
     	player.teleport(loc);
-    	player.setNoDamageTicks(300);
+    	player.setNoDamageTicks(400);
     	this.dreamornot = false;
     	}else {
     		player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, Integer.MAX_VALUE, 0));
