@@ -40,6 +40,7 @@ public class Architecte extends Solos {
         return DESCRIPTION;
     }
     public void tptodreamWorld(Player player) {
+    	System.out.println("FEUR");
     	if (dreamornot) {
     	player.removePotionEffect(PotionEffectType.INCREASE_DAMAGE);
     	player.removePotionEffect(PotionEffectType.SPEED);

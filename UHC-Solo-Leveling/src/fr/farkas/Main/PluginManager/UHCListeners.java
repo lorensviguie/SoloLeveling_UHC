@@ -21,6 +21,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -37,6 +38,7 @@ import fr.farkas.Main.Characters.SungJinWoo.SungJinWoo;
 import fr.farkas.Main.General.Game;
 import fr.farkas.Main.General.Configuration.BasicInventoryConfig;
 import fr.farkas.Main.General.World.MapManager;
+import fr.farkas.Main.General.World.SpawnManager;
 
 public class UHCListeners implements Listener {
 		
@@ -253,7 +255,11 @@ public class UHCListeners implements Listener {
         player.getInventory().clear();
         characterManager.removeCharacter(player);
     }
-
+    @EventHandler
+    public void OnRespawn(PlayerRespawnEvent event) {
+    	Player player = event.getPlayer();
+        SpawnManager.tptoSpawn(player, mapManager.takeLobby());
+    }
 public ItemStack getItem(Material material, String customDisplayName) {
 	ItemStack it = new ItemStack(material, 1);
 	ItemMeta itM = it.getItemMeta();

@@ -27,4 +27,7 @@ public class MapManager {
 	public void createRoof() {
 		
 	}
+	public World takeLobby() {
+		return Lobby;
+	}
 }
