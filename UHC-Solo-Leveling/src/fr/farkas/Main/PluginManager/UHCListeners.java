@@ -8,12 +8,15 @@ import org.bukkit.ChatColor;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
+import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
@@ -42,6 +45,7 @@ public class UHCListeners implements Listener {
     private MapManager mapManager;
     private Game game;
     private CharacterListeners characterListeners;
+    private DiamondLimit diamondCheck;
 
 
 	public UHCListeners(CharacterManager characterManager, BasicInventoryConfig basicInventory,MapManager mapManager, Game game) {
@@ -50,6 +54,7 @@ public class UHCListeners implements Listener {
 		this.mapManager = mapManager;
 		this.game = game;
 		this.characterListeners = new CharacterListeners(game);
+		this.diamondCheck = new DiamondLimit();
 	}
 
 
@@ -109,7 +114,9 @@ public class UHCListeners implements Listener {
 	
 	@EventHandler
 	public void onattack(PlayerInteractEvent event) {
-		if (game.DidgameStart()){
+		if (characterManager.getCharacter(event.getPlayer()) == null ) {
+			
+		}else if (game.DidgameStart()){
 				Player player = event.getPlayer();
 				characterListeners.CharacterClick(event, player);
 		}
@@ -125,6 +132,30 @@ public class UHCListeners implements Listener {
         	player.teleport(loc);
         }
     }
+	
+	@EventHandler
+	public void ondestroy(BlockBreakEvent blockBreak) {
+		Player player = blockBreak.getPlayer();
+	    Block block = blockBreak.getBlock();
+	    if (block.getType() == Material.DIAMOND_ORE) {
+	    	diamondCheck.checkdiamondlimit(blockBreak, player ,block);
+	    }else  if (block.getType() == Material.IRON_ORE) {
+	    	autoFurnace.Iron(blockBreak, player, block);
+	    }else if (block.getType() == Material.GOLD_ORE) {
+	    	autoFurnace.Gold(blockBreak, player ,block);
+	    }
+	    
+	}
+	@EventHandler
+	public void onCraftItem(CraftItemEvent event) {
+	    ItemStack item = event.getRecipe().getResult();
+	    if (item.getType() == Material.DIAMOND_PICKAXE || item.getType() == Material.IRON_PICKAXE) {
+	        item.addEnchantment(Enchantment.DIG_SPEED, 3);
+	        item.addEnchantment(Enchantment.DURABILITY, 3);
+	        event.setCurrentItem(item);
+	    }
+	}
+
 	
 	@EventHandler
 	public void onClick(InventoryClickEvent event) {

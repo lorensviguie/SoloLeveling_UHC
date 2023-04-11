@@ -16,8 +16,8 @@ public class GenerateRoof extends BlockPopulator {
         int cz = chunk.getZ() * 16;
 
         // Center of the region
-        int center_x = 0;
-        int center_z = 0;
+        int center_x = -250;
+        int center_z = -250;
 
         // Calculate the distance from the center of the region
         double distance = Math.sqrt(Math.pow(cx - center_x, 2) + Math.pow(cz - center_z, 2));
