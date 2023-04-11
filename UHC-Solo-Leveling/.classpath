@@ -6,6 +6,10 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="src" path="src"/>
+<<<<<<< HEAD
 	<classpathentry kind="lib" path="C:/Mes Dossiers/Programmation/Plugin Minecraft/SoloLeveling_UHC/spigot.jar"/>
+=======
+	<classpathentry kind="lib" path="C:/Users/33603/Desktop/SoloLeveling_UHC/spigot.jar"/>
+>>>>>>> 68e025d18ef7e2c6208c4fb14cb597392ed11153
 	<classpathentry kind="output" path="bin"/>
 </classpath>

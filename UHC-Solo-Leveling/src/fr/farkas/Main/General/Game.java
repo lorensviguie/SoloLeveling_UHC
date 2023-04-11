@@ -40,7 +40,9 @@ public class Game {
 				this.scoreboard.Update();
 				this.scoreboard.Display(player);
 			}
+			System.out.println("coucou");
 		}
+		
 	}
 	
 	public Game(Plugin plugin) {
