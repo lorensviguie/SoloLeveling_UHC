@@ -35,7 +35,9 @@ public class Start extends JavaPlugin {
 	
 	public void onDisable() {
 		System.out.println("Plugin Stop");
-		this.game.StopGame();
+		if(this.game != null) {
+			this.game.StopGame();	
+		}
 	}
 	
 }

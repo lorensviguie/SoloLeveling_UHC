@@ -25,6 +25,7 @@ public class CommandSpawn implements CommandExecutor {
 	private Map<String, List<String>> configdata;
 	private World world;
 	private Game game;
+	private Portal portal;
 	
 	public CommandSpawn(Map<String, List<String>> configData, BasicInventoryConfig basicInventory, Scoreboard scoreboard, World world,Game game) {
 		this.basicInventory = basicInventory;
@@ -39,9 +40,8 @@ public class CommandSpawn implements CommandExecutor {
 
 		if (sender.isOp()) {
 			if (args[0].equalsIgnoreCase("start")) {
-				game.SetGameStatus(true);
+				this.game.StartGame();
 				BorderManager.createBorder(world, configdata);
-				this.scoreboard.GetTimer().Start();
 				UHCListeners.onstart();
 				ApplyRules uhcrule = new ApplyRules(configdata);
 				uhcrule.Applyallrules();
@@ -65,8 +65,13 @@ public class CommandSpawn implements CommandExecutor {
 			
 
 			if (args[0].equalsIgnoreCase("portal")) {
-				Portal portal = new Portal();
+				this.portal = new Portal();
 				sender.sendMessage(portal.getPos());
+				return true;
+			}
+
+			if (args[0].equalsIgnoreCase("dportal")) {
+				this.portal.removePortal();
 				return true;
 			}
 		}

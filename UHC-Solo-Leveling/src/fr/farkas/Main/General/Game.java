@@ -40,7 +40,6 @@ public class Game {
 				this.scoreboard.Update();
 				this.scoreboard.Display(player);
 			}
-			System.out.println("coucou");
 		}
 		
 	}
@@ -55,6 +54,14 @@ public class Game {
 		SetGameStatus(false);
 	}
 	
+	
+	public void StartGame() {
+		SetGameStatus(true);
+		System.out.print("Game start");
+		System.out.print(this.config.getConfigData().get("CharacterList"));
+		this.scoreboard.GetTimer().Start();
+		
+	}
 	
 	public void StopGame() {
 		this.timer.cancel();
