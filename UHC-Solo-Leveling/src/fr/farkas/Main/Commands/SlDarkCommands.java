@@ -8,7 +8,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import fr.farkas.Main.Start;
+import fr.farkas.Main.Characters.Character;
 import fr.farkas.Main.Characters.CharacterManager;
+import fr.farkas.Main.Characters.Chasseurs.ChaHaeIn.ChaHaeIn;
 import fr.farkas.Main.Characters.SungJinWoo.DarkPower;
 import fr.farkas.Main.Characters.SungJinWoo.ShadowPower;
 import fr.farkas.Main.Characters.SungJinWoo.ShadowTpPower;
@@ -40,7 +42,19 @@ public class SlDarkCommands implements CommandExecutor {
         if (args.length < 1) {
             player.sendMessage(ChatColor.RED + "Usage: /sl <ability>");
             return true;
-        }       
+        }
+        if (args[0].equalsIgnoreCase("sentir")) {
+            if (!(characterManager.getCharacterName(player).equals("ChaHaeIn"))) {
+            	player.sendMessage(ChatColor.RED + "You must be playing as Cha Hae In to use this command.");
+            	return true;
+            }else {
+            	
+            	Start plugin = (Start) Bukkit.getServer().getPluginManager().getPlugin("UHC SoloLeveling");
+            	ChaHaeIn chaHaeIn = (ChaHaeIn) characterManager.getCharacter(player);
+            	chaHaeIn.sentir(player, plugin);
+            	return true;
+            }     
+        }
         
         if (args[0].equalsIgnoreCase("dark")) {
             if (!(characterManager.getCharacterName(player).equals("SungJinWoo"))) {

@@ -66,7 +66,9 @@ public class CommandSpawn implements CommandExecutor {
 				BorderManager.destroyBorder(world);
 				scoreboard.GetTimer().Stop();
 				for (Player player : Bukkit.getOnlinePlayers()) {
-				    // Kill the player
+					player.getActivePotionEffects().forEach(potionEffect -> player.removePotionEffect(potionEffect.getType()));
+					game.getCharacterManager().removeCharacter(player);
+					player.setHealth(20);
 					player.getInventory().clear();
 				}
 			    for(Player player : world.getPlayers()) { // get all players in the first loaded world

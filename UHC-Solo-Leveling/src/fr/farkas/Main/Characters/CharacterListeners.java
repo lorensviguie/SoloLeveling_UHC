@@ -54,4 +54,8 @@ public class CharacterListeners {
 		}
 		
 	}
+	
+	public void CommandAbility() {
+		
+	}
 }

@@ -29,6 +29,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import fr.farkas.Main.Characters.CharacterListeners;
 import fr.farkas.Main.Characters.CharacterManager;
+import fr.farkas.Main.Characters.Chasseurs.ChaHaeIn.ChaHaeIn;
 import fr.farkas.Main.Characters.Fragments.GoGunHee.GoGunHee;
 import fr.farkas.Main.Characters.Fragments.ThomasAndre.ThomasAndre;
 import fr.farkas.Main.Characters.Monarques.Legia.Legia;
@@ -95,6 +96,7 @@ public class UHCListeners implements Listener {
 			ItemStack characterItem3 = getItem(Material.ANVIL, "§6Monarque des Betes");
 			ItemStack characterItem4 = getItem(Material.IRON_SWORD, "§6Thomas Andre");
 			ItemStack characterItem666 = getItem(Material.BLAZE_ROD, "§0Architecte");
+			ItemStack characterItem29 = getItem(Material.GOLD_SWORD, "§2Cha Hae In");
 			inv.setItem(0, characterItem);
 			
 			inv.setItem(9, characterItem2);
@@ -102,6 +104,7 @@ public class UHCListeners implements Listener {
 			inv.setItem(19, characterItem4);
 			inv.setItem(22, characterItem666);
 			inv.setItem(18, characterItem12);
+			inv.setItem(2, characterItem29);
 			
 			player.openInventory(inv);
 		}
@@ -240,6 +243,12 @@ public class UHCListeners implements Listener {
 					player.closeInventory();
 					player.sendMessage(ChatColor.GREEN + "You are now playing as " + Architecte.getDescription());
 					
+					break;
+				case GOLD_SWORD:
+					ChaHaeIn chaHaeIn = new ChaHaeIn(player, "ChaHaeIn");
+					characterManager.chooseCharacter(player, chaHaeIn);
+					player.closeInventory();
+					player.sendMessage(ChatColor.GREEN + "You are now playing as " + ChaHaeIn.getDescription());
 					break;
 				default:break;
 				}
