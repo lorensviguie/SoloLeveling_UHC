@@ -47,8 +47,9 @@ public class CommandSpawn implements CommandExecutor {
 				BorderManager.createBorder(world, configdata);
 				this.scoreboard.GetTimer().Start();
 				    for(Player player : Lobby.getPlayers()) { // get all players in the first loaded world
+				    	player.setNoDamageTicks(4000);
 				        player.teleport(new Location(world, 0, 120, 0)); // teleport each player to the specified location
-				        player.setNoDamageTicks(20000);
+				        player.setNoDamageTicks(4000);
 				    }
 
 				UHCListeners.onstart();
@@ -63,15 +64,16 @@ public class CommandSpawn implements CommandExecutor {
 			if (args[0].equalsIgnoreCase("stop")) {
 				game.SetGameStatus(false);
 				BorderManager.destroyBorder(world);
+				scoreboard.GetTimer().Stop();
+				for (Player player : Bukkit.getOnlinePlayers()) {
+					player.getActivePotionEffects().forEach(potionEffect -> player.removePotionEffect(potionEffect.getType()));
+					game.getCharacterManager().removeCharacter(player);
+					player.setHealth(20);
+					player.getInventory().clear();
+				}
 			    for(Player player : world.getPlayers()) { // get all players in the first loaded world
 			        player.teleport(new Location(Lobby, 5, 128, 5)); // teleport each player to the specified location
 			    }
-				scoreboard.GetTimer().Stop();
-				for (Player player : Bukkit.getOnlinePlayers()) {
-				    // Kill the player
-					player.getInventory().clear();
-				    player.setHealth(20);
-				}
 				return true;
 			}
 			

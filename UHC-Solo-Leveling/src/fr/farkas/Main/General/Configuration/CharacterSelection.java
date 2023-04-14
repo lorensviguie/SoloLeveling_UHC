@@ -73,6 +73,11 @@ public class CharacterSelection {
 		}else {
 			inventory.setItem(26, createMat(Material.IRON_BLOCK, "Architecte"));
 		}
+		if (CharacterList.contains("ChaHaeIn")) {
+			inventory.setItem(7, createMat(Material.GOLD_BLOCK, "ChaHaeIn"));
+		}else {
+			inventory.setItem(7, createMat(Material.IRON_BLOCK, "ChaHaeIn"));
+		}
 	}
     public void CharacterListclick(InventoryClickEvent event) {
     	Inventory inv = event.getInventory();

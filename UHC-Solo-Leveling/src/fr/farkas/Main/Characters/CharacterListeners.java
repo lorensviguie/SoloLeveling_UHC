@@ -36,7 +36,7 @@ public class CharacterListeners {
 			}else {
 			}
 		}
-		if ((game.getCharacterManager().getCharacterName(player).equals("Architecte"))) {
+		if ((game.getCharacterManager().getCharacterName(player).equals("Architect"))) {
 			if (event.getItem() != null &&event.getItem().getItemMeta().getDisplayName() == "§0TP Yourself to DreamWorld") {
 				Architecte architecte = (Architecte) characterManager.getCharacter(player);
 				architecte.tptodreamWorld(player);
@@ -52,6 +52,10 @@ public class CharacterListeners {
 				monarquesBetes.getFormeInventory().openFormInventory();
 			}
 		}
+		
+	}
+	
+	public void CommandAbility() {
 		
 	}
 }

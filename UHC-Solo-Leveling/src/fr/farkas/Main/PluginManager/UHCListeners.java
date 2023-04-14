@@ -21,6 +21,7 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
@@ -28,6 +29,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import fr.farkas.Main.Characters.CharacterListeners;
 import fr.farkas.Main.Characters.CharacterManager;
+import fr.farkas.Main.Characters.Chasseurs.ChaHaeIn.ChaHaeIn;
 import fr.farkas.Main.Characters.Fragments.GoGunHee.GoGunHee;
 import fr.farkas.Main.Characters.Fragments.ThomasAndre.ThomasAndre;
 import fr.farkas.Main.Characters.Monarques.Legia.Legia;
@@ -37,6 +39,7 @@ import fr.farkas.Main.Characters.SungJinWoo.SungJinWoo;
 import fr.farkas.Main.General.Game;
 import fr.farkas.Main.General.Configuration.BasicInventoryConfig;
 import fr.farkas.Main.General.World.MapManager;
+import fr.farkas.Main.General.World.SpawnManager;
 
 public class UHCListeners implements Listener {
 		
@@ -93,6 +96,7 @@ public class UHCListeners implements Listener {
 			ItemStack characterItem3 = getItem(Material.ANVIL, "§6Monarque des Betes");
 			ItemStack characterItem4 = getItem(Material.IRON_SWORD, "§6Thomas Andre");
 			ItemStack characterItem666 = getItem(Material.BLAZE_ROD, "§0Architecte");
+			ItemStack characterItem29 = getItem(Material.GOLD_SWORD, "§2Cha Hae In");
 			inv.setItem(0, characterItem);
 			
 			inv.setItem(9, characterItem2);
@@ -100,6 +104,7 @@ public class UHCListeners implements Listener {
 			inv.setItem(19, characterItem4);
 			inv.setItem(22, characterItem666);
 			inv.setItem(18, characterItem12);
+			inv.setItem(2, characterItem29);
 			
 			player.openInventory(inv);
 		}
@@ -239,6 +244,12 @@ public class UHCListeners implements Listener {
 					player.sendMessage(ChatColor.GREEN + "You are now playing as " + Architecte.getDescription());
 					
 					break;
+				case GOLD_SWORD:
+					ChaHaeIn chaHaeIn = new ChaHaeIn(player, "ChaHaeIn");
+					characterManager.chooseCharacter(player, chaHaeIn);
+					player.closeInventory();
+					player.sendMessage(ChatColor.GREEN + "You are now playing as " + ChaHaeIn.getDescription());
+					break;
 				default:break;
 				}
 
@@ -253,7 +264,11 @@ public class UHCListeners implements Listener {
         player.getInventory().clear();
         characterManager.removeCharacter(player);
     }
-
+    @EventHandler
+    public void OnRespawn(PlayerRespawnEvent event) {
+    	Player player = event.getPlayer();
+        SpawnManager.tptoSpawn(player, mapManager.takeLobby());
+    }
 public ItemStack getItem(Material material, String customDisplayName) {
 	ItemStack it = new ItemStack(material, 1);
 	ItemMeta itM = it.getItemMeta();

@@ -15,14 +15,16 @@ import fr.farkas.Main.PluginManager.UHCListeners;
 public class Start extends JavaPlugin {
 	private Game game;
 	private World world = getServer().getWorld("world");
-	private World Lobby = getServer().getWorld("Lobby");
+	private World Lobby;
 	private MapManager mapManager;
 	Plugin plugin = this;
 
 	public void onEnable() {
 		System.out.println("Plugin Start");
 		world.setGameRuleValue("Do_MOB_SPAWNING", "false");
+		//MapManager.checkOcean();
 		SpawnManager.GeneretaLobby();
+		this.Lobby = getServer().getWorld("Lobby");
 		this.world.getPopulators().add(new GenerateRoof());
 		
 		this.game = new Game(plugin);
