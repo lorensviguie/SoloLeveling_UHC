@@ -8,18 +8,20 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import fr.farkas.Main.Start;
-import fr.farkas.Main.Characters.Character;
 import fr.farkas.Main.Characters.CharacterManager;
 import fr.farkas.Main.Characters.Chasseurs.ChaHaeIn.ChaHaeIn;
 import fr.farkas.Main.Characters.SungJinWoo.DarkPower;
 import fr.farkas.Main.Characters.SungJinWoo.ShadowPower;
 import fr.farkas.Main.Characters.SungJinWoo.ShadowTpPower;
+import fr.farkas.Main.General.Game;
 
 public class SlDarkCommands implements CommandExecutor {
 	private CharacterManager characterManager;
+	private Game game;
     
-    public SlDarkCommands(CharacterManager characterManager) {
+    public SlDarkCommands(CharacterManager characterManager,Game game) {
         this.characterManager = characterManager;
+        this.game = game;
     }
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -43,15 +45,26 @@ public class SlDarkCommands implements CommandExecutor {
             player.sendMessage(ChatColor.RED + "Usage: /sl <ability>");
             return true;
         }
+        if (args[0].equalsIgnoreCase("special")) {
+        	characterManager.getCharacter(player).getAbility(player);
+        	return true;
+        }
+        
         if (args[0].equalsIgnoreCase("sentir")) {
+        	
             if (!(characterManager.getCharacterName(player).equals("ChaHaeIn"))) {
             	player.sendMessage(ChatColor.RED + "You must be playing as Cha Hae In to use this command.");
             	return true;
             }else {
-            	
+            	boolean eveil = false;
+            	int day = game.getScoreboard().GetTimer().getDay();
             	Start plugin = (Start) Bukkit.getServer().getPluginManager().getPlugin("UHC SoloLeveling");
             	ChaHaeIn chaHaeIn = (ChaHaeIn) characterManager.getCharacter(player);
-            	chaHaeIn.sentir(player, plugin);
+                Player test =	Bukkit.getServer().getPlayer(args[1]);
+                if (characterManager.getCharacterName(test) == "SungJinWoo") {
+                eveil =true;
+                }
+            	chaHaeIn.sentir(player, plugin,day,eveil);
             	return true;
             }     
         }
@@ -102,9 +115,6 @@ public class SlDarkCommands implements CommandExecutor {
         }
         
         switch (args[0].toLowerCase()) {
-        case "special":
-        	player.sendMessage(characterManager.specialAbility(player));
-            break;
         case "help":
             player.sendMessage(ChatColor.GOLD + "-------- SLDark's Commands --------");
             player.sendMessage(ChatColor.GREEN + "/sl special - Use your character's special ability");

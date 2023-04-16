@@ -59,9 +59,7 @@ public class CharacterManager {
         player.getInventory().setArmorContents(null);
     }
 
-	public String specialAbility(Player player) {
-		return playerCharacters.get(player).getAbility();
-		
+	public void specialAbility(Player player) {		
 	}
     public void useAbility(Player player) {
         if (darkPower.canUseAbility(player)) {

@@ -61,5 +61,16 @@ public class ThomasAndre extends Fragments {
         	}
     	}.runTaskLater(plugin, 20*60*15); // after 15 minutes
     }
+    
+    public void getAbility(Player player) {
+    	player.sendMessage("§2Tu joue Thomas Andre Tu gagne avec les Fragments\n"
+    			+ "§6-------------------------\n"
+    			+ "§1Tu possede la liste des fragments\n"
+    			+ "§9Tu possede l'effet Force Permanent\n"
+    			+ "§5tu a un unique pouvoir:\n"
+    			+ "§2Quand tu l'active tu te heal de 5Coeur et tu gagne resistance 2 pendant 5 Minutes tu a 15 Min de cooldown sur ta transformation\n"
+    			+ "§6-------------------------");
+    
+    }
 
 }

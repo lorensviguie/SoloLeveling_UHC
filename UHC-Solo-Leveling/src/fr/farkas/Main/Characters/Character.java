@@ -42,6 +42,6 @@ public abstract class Character {
         this.key = key;
     }
 
-    public abstract String getAbility();
+    public abstract void getAbility(Player player);
 
 }

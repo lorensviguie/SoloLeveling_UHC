@@ -18,8 +18,6 @@ public abstract class Monarques extends Character{
 	}
 
 	@Override
-	public String getAbility() {
-		// TODO Auto-generated method stub
-		return null;
+	public void getAbility(Player player) {
 	}
 }

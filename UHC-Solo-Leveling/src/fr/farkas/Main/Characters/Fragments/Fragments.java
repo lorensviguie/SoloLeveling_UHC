@@ -21,9 +21,7 @@ public class Fragments extends Character{
 	}
 
 	@Override
-	public String getAbility() {
-		// TODO Auto-generated method stub
-		return null;
+	public void getAbility(Player player) {
 	}
     public static ItemStack createMat(Material mat,String Display) {
     	ItemStack crea = new ItemStack(mat);

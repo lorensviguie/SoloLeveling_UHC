@@ -120,7 +120,11 @@ public class UHCListeners implements Listener {
 	@EventHandler
 	public void onattack(PlayerInteractEvent event) {
 		if (characterManager.getCharacter(event.getPlayer()) == null ) {
-			
+			if (!game.DidgameStart()){
+				Player player = event.getPlayer();
+				mapManager.worldaction(player,event);
+				
+		}
 		}else if (game.DidgameStart()){
 				Player player = event.getPlayer();
 				characterListeners.CharacterClick(event, player);
@@ -171,16 +175,16 @@ public class UHCListeners implements Listener {
 		if(current == null) return;
 		System.out.println(game.DidgameStart());
 			if(inv.getName().equalsIgnoreCase("§eLocked Inventory")){
-				basicinventoryconfig.BasicInventoryClick(event);
+				basicinventoryconfig.BasicInventoryClick(event, mapManager);
 			}
 			if(inv.getName().equalsIgnoreCase("§6UHC Basic Rules")){
-				basicinventoryconfig.BasicInventoryClick(event);
+				basicinventoryconfig.BasicInventoryClick(event, null);
 			}
 			if(inv.getName().equalsIgnoreCase("§6Border Config")){
-				basicinventoryconfig.BasicInventoryClick(event);
+				basicinventoryconfig.BasicInventoryClick(event, null);
 			}
 			if(inv.getName().equalsIgnoreCase("§6Character Liste")) {
-				basicinventoryconfig.BasicInventoryClick(event);
+				basicinventoryconfig.BasicInventoryClick(event, null);
 			}
 			if(inv.getName().equalsIgnoreCase("§6Forme Inventory")){
 				MonarqueBetes monarqueBetes = (MonarqueBetes) game.getCharacterManager().getCharacter((Player) event.getWhoClicked());

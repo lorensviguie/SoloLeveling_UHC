@@ -25,6 +25,7 @@ public class ChaHaeIn extends Chasseurs {
     private String name;
     private Boolean transformation;
     private Boolean Eveil;
+    private int day;
 	
 	public ChaHaeIn(Player player, String key) {
 		super(player, "ChaHaeIn");
@@ -32,6 +33,7 @@ public class ChaHaeIn extends Chasseurs {
         this.name = "ChaHaeIn";
         this.transformation = false;
         this.Eveil =false;
+        this.day = 0;
         player.getInventory().addItem(Fragments.createMat(Material.NETHER_STAR, "§6Light Power"));
 	}
     public String getName() { // Add a getter method for the name field
@@ -42,7 +44,11 @@ public class ChaHaeIn extends Chasseurs {
         return DESCRIPTION;
     }
     
-    public void sentir(Player playeres,Start plugin) {
+    public void sentir(Player playeres,Start plugin,int days,Boolean good) {
+    	if (day == days) {
+    		playeres.sendMessage("§2 you have already use your power this day");
+    	}else {
+    		day = days;
     	Map<String, Integer> effectMap = new HashMap<>();
     	effectMap.put("E", 0);
     	effectMap.put("A", 0);
@@ -76,6 +82,13 @@ public class ChaHaeIn extends Chasseurs {
     	for(String key : effectMap.keySet()) {
     	    playeres.sendMessage(key + ": " + effectMap.get(key));
     	}
+    	playeres.sendMessage("§6-------------------------");
+    }
+    if (good) {
+    	playeres.sendMessage("§6You Found SungJinWoo You Unlock Your power GG");
+    	Eveil = true;
+    }
+
     }
     
     public void useability(Plugin plugin) {
@@ -86,6 +99,17 @@ public class ChaHaeIn extends Chasseurs {
     	}else {
     		player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20*60*2, 0)); // speed  for 120 seconds
     	}
+    }
+    public void getAbility(Player player) {
+    	player.sendMessage("§2Tu joue ChaHaeIn Tu gagne avec les Chasseurs\n"
+    			+ "§6-------------------------\n"
+    			+ "§5Tu possède 2 pouvoir :\n"
+    			+ "-§2 tu a ta transformation qui te donne speed 1 plus force 1 si tu es eveiller\n"
+    			+ "-§2 tu possède la commande sl sentir joueur qui te donnerra des information sur la puissances des gens autour de toi\n"
+    			+ "§4si tu trouve SungJinWoo avec sentir tu debloquera ton eveil\n"
+    			+ "§6-------------------------");
+    
+    
     }
 
 }

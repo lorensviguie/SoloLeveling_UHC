@@ -14,6 +14,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import fr.farkas.Main.General.Configuration.Inventory.UHCBasicRules;
+import fr.farkas.Main.General.World.MapManager;
 
 public class BasicInventoryConfig {
 
@@ -66,8 +67,8 @@ public class BasicInventoryConfig {
 
         ItemStack playerHead = new ItemStack(Material.SHEARS);
         ItemMeta playerHeadMeta = playerHead.getItemMeta();
-        playerHeadMeta.setDisplayName(ChatColor.GOLD + "FarkasGL's Head");
-        playerHeadMeta.setLore(Arrays.asList(ChatColor.GRAY + "Get the head of FarkasGL!"));
+        playerHeadMeta.setDisplayName(ChatColor.GOLD + "check world");
+        playerHeadMeta.setLore(Arrays.asList(ChatColor.GRAY + "Tp to world"));
         playerHead.setItemMeta(playerHeadMeta);
         inventory.setItem(3, playerHead);
     }
@@ -75,7 +76,7 @@ public class BasicInventoryConfig {
         openConfig(player);
     }
 
-    public void BasicInventoryClick(InventoryClickEvent event) {
+    public void BasicInventoryClick(InventoryClickEvent event,MapManager mapManager) {
     		Inventory inv = event.getInventory();
         	Player player = (Player) event.getWhoClicked();
         	ItemStack current = event.getCurrentItem();
@@ -105,6 +106,9 @@ public class BasicInventoryConfig {
 			break;
 		case IRON_SWORD:
 			characterSelection.openConfig(player);
+			break;
+		case SHEARS:
+			mapManager.tpplayertoWorld(player);
 			break;
 		default:
 			break;

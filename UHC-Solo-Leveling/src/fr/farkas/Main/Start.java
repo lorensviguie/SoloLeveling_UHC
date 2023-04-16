@@ -21,11 +21,9 @@ public class Start extends JavaPlugin {
 
 	public void onEnable() {
 		System.out.println("Plugin Start");
-		world.setGameRuleValue("Do_MOB_SPAWNING", "false");
-		//MapManager.checkOcean();
 		SpawnManager.GeneretaLobby();
 		this.Lobby = getServer().getWorld("Lobby");
-		this.world.getPopulators().add(new GenerateRoof());
+		//this.world.getPopulators().add(new GenerateRoof());
 		
 		this.game = new Game(plugin);
 		
@@ -34,7 +32,7 @@ public class Start extends JavaPlugin {
 		this.mapManager.createSpawn();
 		
 		getServer().getPluginManager().registerEvents(new UHCListeners(game.getCharacterManager(), game.getConfig().getBasicInventoryConfig(),mapManager, game), this);
-		getCommand("sl").setExecutor(new SlDarkCommands(game.getCharacterManager()));
+		getCommand("sl").setExecutor(new SlDarkCommands(game.getCharacterManager(),game));
 		getCommand("dh").setExecutor(new CommandSpawn(game.getConfig().getConfigData(), game.getConfig().getBasicInventoryConfig(), game.getScoreboard(),world,game,Lobby));		
 
 	}

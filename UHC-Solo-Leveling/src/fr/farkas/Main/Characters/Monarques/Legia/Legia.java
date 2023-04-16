@@ -62,5 +62,14 @@ public class Legia extends Monarques{
     	super.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, Integer.MAX_VALUE, 0));
     	super.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, Integer.MAX_VALUE, 1));
     }
+    public void getAbility(Player player) {
+    	player.sendMessage("§2Tu Legia Tu gagne avec les Monarques\n"
+    			+ "§6-------------------------\n"
+    			+ "§9 tu possede Resistance et Faiblaisse Permanent"
+    			+ "§9Tu perd Faiblesse si tu passe solo\n"
+    			+ "§5tu a un unique pouvoir:\n"
+    			+ "§6-------------------------");
+    
+    }
 
 }

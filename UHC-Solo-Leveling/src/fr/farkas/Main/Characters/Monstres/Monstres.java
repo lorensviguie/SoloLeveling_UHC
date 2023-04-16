@@ -18,8 +18,6 @@ public class Monstres extends Character{
 	}
 
 	@Override
-	public String getAbility() {
-		// TODO Auto-generated method stub
-		return null;
+	public void getAbility(Player player) {
 	}
 }

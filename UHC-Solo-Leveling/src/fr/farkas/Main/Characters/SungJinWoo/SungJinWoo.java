@@ -28,10 +28,8 @@ public class SungJinWoo extends Character {
     public static String getDescription() {
         return DESCRIPTION;
     }
-    public String getAbility() {
-    	return ChatColor.GREEN + "SungJinWoo has many powers:\n" +
-    		       ChatColor.DARK_PURPLE + "- The Dark: " + ChatColor.WHITE + "This ability grants SungJinWoo Speed I and Strength I for 2 minutes.";
-
-    }
+	@Override
+	public void getAbility(Player player) {
+	}
 
 }

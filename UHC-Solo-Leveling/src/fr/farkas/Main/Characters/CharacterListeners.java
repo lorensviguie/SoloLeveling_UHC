@@ -3,6 +3,8 @@ package fr.farkas.Main.Characters;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
 
+import fr.farkas.Main.Characters.Chasseurs.Chasseurs;
+import fr.farkas.Main.Characters.Chasseurs.ChaHaeIn.ChaHaeIn;
 import fr.farkas.Main.Characters.Fragments.GoGunHee.GoGunHee;
 import fr.farkas.Main.Characters.Fragments.ThomasAndre.ThomasAndre;
 import fr.farkas.Main.Characters.Monarques.MonarqueBetes.MonarqueBetes;
@@ -50,6 +52,12 @@ public class CharacterListeners {
 			if (event.getItem() != null &&event.getItem().getItemMeta().getDisplayName() == "§6Formes") {
 				MonarqueBetes monarquesBetes = (MonarqueBetes) characterManager.getCharacter(player);
 				monarquesBetes.getFormeInventory().openFormInventory();
+			}
+		}
+		if ((game.getCharacterManager().getCharacterName(player).equals("ChaHaeIn"))) {
+			if (event.getItem() != null &&event.getItem().getItemMeta().getDisplayName() == "§6Light Power") {
+				ChaHaeIn chaHaeIn = (ChaHaeIn) characterManager.getCharacter(player);
+				chaHaeIn.useability(game.getPlugin());
 			}
 		}
 		

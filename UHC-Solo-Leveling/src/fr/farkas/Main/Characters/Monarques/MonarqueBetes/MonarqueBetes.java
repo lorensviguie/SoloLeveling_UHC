@@ -34,6 +34,7 @@ public class MonarqueBetes extends Monarques{
     public static String getDescription() {
         return DESCRIPTION;
     }
+
     
     public void turnToHumain() {
     	switch (this.currentForme){
@@ -72,6 +73,7 @@ public class MonarqueBetes extends Monarques{
     	super.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, Integer.MAX_VALUE, 0));
     }
     
+    
     public void turnToOurs() {
     	switch (this.currentForme){
 	    	case "loup":
@@ -97,5 +99,16 @@ public class MonarqueBetes extends Monarques{
     	creaMeta.setDisplayName(Display);
     	crea.setItemMeta(creaMeta);
     	return crea;
+    }
+    public void getAbility(Player player) {
+    	player.sendMessage("§2Tu joue Le monarques des bêtes Tu gagne avec les Monarques\n"
+    			+ "§6-------------------------\n"
+    			+ "§9Tu possede 3 formes :\n"
+    			+ "§2 Huamin -aucun effet\n"
+    			+ "§2 Loup -force 1 speed 1\n"
+    			+ "§2 ours -3coeur en plus et resistance\n"
+    			+ "§6si tu passe solo tu debloque la forme ultime qui te donne tout les effet mais tu ne peux lactiver que pendant 5 min par jour"
+    			+ "§6-------------------------");
+    
     }
 }

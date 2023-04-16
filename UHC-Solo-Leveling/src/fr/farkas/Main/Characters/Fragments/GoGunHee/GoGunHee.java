@@ -37,6 +37,7 @@ public class GoGunHee extends Fragments {
         return DESCRIPTION;
     }
 
+
     
     public void useability(Plugin plugin) {
     	Player player = getPlayer();
@@ -71,4 +72,14 @@ public class GoGunHee extends Fragments {
     	}
     	}
     	}
+    public void getAbility(Player player) {
+    	player.sendMessage("§2Tu joue GoGunHee Tu gagne avec les Fragments\n"
+    			+ "§6-------------------------\n"
+    			+ "§1Tu possede la liste des fragments\n"
+    			+ "§5tu a un unique pouvoir:\n"
+    			+ "§2Quand tu l'active tu perd 1Coeur et un de plus tout les 1m30 en revanche tu obtient "
+    			+ "speed 1 force 1 resistance 2 tant que ton pouvoir est actif quand tu desactive ta transformation tu obtient faiblesse pendant 5min\n"
+    			+ "§6-------------------------");
+    
+    }
 }
