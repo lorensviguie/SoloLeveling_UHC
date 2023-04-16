@@ -37,6 +37,10 @@ public class Scoreboard {
 	}
 	
 	public void Update() { 
+
+		for(String entry : board.getEntries()) {
+			objective.getScoreboard().resetScores(entry);
+		};
 		
 		Server server = Bukkit.getServer();
 	    long time = server.getWorld("world").getTime();
@@ -44,7 +48,7 @@ public class Scoreboard {
         Score space2 = objective.getScore(Bukkit.getOfflinePlayer("§8. "));
         space2.setScore(5);
         
-        Score dayNb = objective.getScore(Bukkit.getOfflinePlayer(String.format("§bJour %d", 1)));
+        Score dayNb = objective.getScore(Bukkit.getOfflinePlayer(String.format("§bJour %d", this.timer.getDay())));
         dayNb.setScore(4);
 
         if(Bukkit.getOnlinePlayers().size() != 0) {

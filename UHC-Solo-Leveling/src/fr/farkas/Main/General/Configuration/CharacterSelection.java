@@ -43,10 +43,10 @@ public class CharacterSelection {
 		}else {
 			inventory.setItem(10, createMat(Material.IRON_BLOCK, "Legia"));
 		}
-		if (CharacterList.contains("MonarquesBetes")) {
-			inventory.setItem(11, createMat(Material.GOLD_BLOCK, "MonarquesBetes"));
+		if (CharacterList.contains("MonarqueBetes")) {
+			inventory.setItem(11, createMat(Material.GOLD_BLOCK, "MonarqueBetes"));
 		}else {
-			inventory.setItem(11, createMat(Material.IRON_BLOCK, "MonarquesBetes"));
+			inventory.setItem(11, createMat(Material.IRON_BLOCK, "MonarqueBetes"));
 		}
 		if (CharacterList.contains("Selner")) {
 			inventory.setItem(19, createMat(Material.GOLD_BLOCK, "Selner"));
