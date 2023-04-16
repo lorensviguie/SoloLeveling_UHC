@@ -11,6 +11,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.farkas.Main.Characters.CharacterManager;
+import fr.farkas.Main.Characters.DistribRole;
 import fr.farkas.Main.General.Configuration.Config;
 import fr.farkas.Main.General.Scoreboard.Scoreboard;
 import fr.farkas.Main.General.Timer.TimerManager;
@@ -64,16 +65,25 @@ public class Game {
 		new BukkitRunnable() {
         	@Override
         	public void run() {
-        		//DistribRole.giveRole(config.getConfigData().get("CharacterList"), characterManager);
+        		DistribRole.giveRole(config.getConfigData().get("CharacterList"), characterManager);
         	}
     	}.runTaskLater(plugin, 20*10*min); // after min minutes  pass 10 to 60 pour minute
 		
 	}
 	
 	public void StopGame() {
+		this.SetGameStatus(false);
+		this.scoreboard.GetTimer().Stop();
+		this.scoreboard.GetTimer().ResetTimer();
+	}
+	
+	public void DestroyGame() {
+		this.StopGame();
 		this.timer.cancel();
 		this.timer.purge();
 	}
+	
+	
 	public boolean DidgameStart() {
 		return this.GameStart;
 	}

@@ -6,6 +6,7 @@ import java.util.Random;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+import fr.farkas.Main.Characters.Chasseurs.ChaHaeIn.ChaHaeIn;
 import fr.farkas.Main.Characters.Fragments.GoGunHee.GoGunHee;
 import fr.farkas.Main.Characters.Fragments.ThomasAndre.ThomasAndre;
 import fr.farkas.Main.Characters.Monarques.Legia.Legia;
@@ -29,6 +30,10 @@ public class DistribRole {
 	public static Character convertNameToRole(String name, Player player) {
 		System.out.print(name + " " + player.getName());
 		switch (name){
+		// Chasseur
+		case "ChaHaeIn":
+			return new ChaHaeIn(player, name);
+		
 		// Fragment
 		case "ThomasAndre":
 			return new ThomasAndre(player, name);
@@ -38,7 +43,7 @@ public class DistribRole {
 		// Mornaques
 		case "Legia":
 			return new Legia(player, name);
-		case "MonarquesBetes":
+		case "MonarqueBetes":
 			return new MonarqueBetes(player, name);
 
 		// Solo
@@ -46,7 +51,6 @@ public class DistribRole {
 			return new Architecte(player, name);
 		case "SungJinWoo":
 			return new SungJinWoo(player, name);
-
 
 		default:
 			return null;

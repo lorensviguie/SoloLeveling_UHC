@@ -62,9 +62,8 @@ public class CommandSpawn implements CommandExecutor {
 				return true;
 			}
 			if (args[0].equalsIgnoreCase("stop")) {
-				game.SetGameStatus(false);
+				game.StopGame();
 				BorderManager.destroyBorder(world);
-				scoreboard.GetTimer().Stop();
 				for (Player player : Bukkit.getOnlinePlayers()) {
 					player.getActivePotionEffects().forEach(potionEffect -> player.removePotionEffect(potionEffect.getType()));
 					game.getCharacterManager().removeCharacter(player);
