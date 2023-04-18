@@ -18,6 +18,7 @@ public class Scoreboard {
     private String cycle;
     private TimerManager timer;
     private String last_timer;
+    private int last_day;
 	
 	private int onlinePlayerNumber;
 	
@@ -28,7 +29,7 @@ public class Scoreboard {
 		this.timer = timer;
         objective.setDisplaySlot(DisplaySlot.SIDEBAR);
         objective.setDisplayName("§6§l    SoloLeveling UHC    ");
-		this.Update();
+		this.Creation();
 
     }
 	
@@ -36,39 +37,85 @@ public class Scoreboard {
 		return this.timer;
 	}
 	
-	public void Update() { 
+	public void Creation() {
+        this.last_timer = this.timer.GetTimeString();
+        this.last_day = 0;
+		
+        System.out.print(last_timer);
+		Server server = Bukkit.getServer();
+	    long time = server.getWorld("world").getTime();
+        Score space = objective.getScore(Bukkit.getOfflinePlayer("§8."));
+        space.setScore(2);
+        Score space2 = objective.getScore(Bukkit.getOfflinePlayer("§8. "));
+        space2.setScore(5);
+        Score timerS = objective.getScore(Bukkit.getOfflinePlayer(String.format("§6Timer : §e%s", last_timer)));
+        timerS.setScore(1);
+        
+        Score dayNb = objective.getScore(Bukkit.getOfflinePlayer(String.format("§bJour %d", this.last_day)));
+        dayNb.setScore(4);
 
-		for(String entry : board.getEntries()) {
-			objective.getScoreboard().resetScores(entry);
-		};
+        this.onlinePlayerNumber = Bukkit.getOnlinePlayers().size();
+        
+        Score playerNb = objective.getScore(Bukkit.getOfflinePlayer(String.format("§c%d §4Joueurs ", this.onlinePlayerNumber)));
+        playerNb.setScore(3);
+        
+	    if (time < 12300 || time > 23850) {
+	    	if(cycle == "Nuit") {
+	    		objective.getScoreboard().resetScores(String.format("§6Cycle : §e%s", cycle));
+	    	}
+	    	cycle = "Jour";
+	    }else {
+	    	if(cycle == "Jour") {
+	    		objective.getScoreboard().resetScores(String.format("§6Cycle : §e%s", cycle));
+	    	}
+	    	cycle = "Nuit";
+	    }
+        Score dayStatus = objective.getScore(Bukkit.getOfflinePlayer(String.format("§6Cycle : §e%s", cycle)));
+        dayStatus.setScore(0);
+        
+        this.timer.GetTimeString();
+		
+	}
+	
+	public void Update() { 
 		
 		Server server = Bukkit.getServer();
 	    long time = server.getWorld("world").getTime();
-		
-        Score space2 = objective.getScore(Bukkit.getOfflinePlayer("§8. "));
-        space2.setScore(5);
-        
-        Score dayNb = objective.getScore(Bukkit.getOfflinePlayer(String.format("§bJour %d", this.timer.getDay())));
-        dayNb.setScore(4);
-
-        if(Bukkit.getOnlinePlayers().size() != 0) {
-            if(this.onlinePlayerNumber != Bukkit.getOnlinePlayers().size()) {
-            	objective.getScoreboard().resetScores(String.format("§cPlayers: §f%d", this.onlinePlayerNumber));
-            	this.onlinePlayerNumber = Bukkit.getOnlinePlayers().size();
-            }
-            Score playerNb = objective.getScore(Bukkit.getOfflinePlayer(String.format("§c%d §4Joueurs ", this.onlinePlayerNumber)));
-            playerNb.setScore(3);
-        }
-        
-        Score space = objective.getScore(Bukkit.getOfflinePlayer("§8."));
-        space.setScore(2);
-
-        if(this.last_timer != this.timer.GetTimeString()) {
-        	objective.getScoreboard().resetScores(String.format("§6Timer : §e%s", last_timer));
-        	this.last_timer = this.timer.GetTimeString();
-        }
-        Score timerS = objective.getScore(Bukkit.getOfflinePlayer(String.format("§6Timer : §e%s", last_timer)));
-        timerS.setScore(1);
+	    
+		for(String entry : board.getEntries()) {
+			if(entry != "§8.") {
+				// --------- Change every second
+		        if(entry.contains("Timer")) {
+		            if(this.last_timer != this.timer.GetTimeString()) {
+		            	this.last_timer = this.timer.GetTimeString();
+						objective.getScoreboard().resetScores(entry);
+				        Score timerS = objective.getScore(Bukkit.getOfflinePlayer(String.format("§6Timer : §e%s", last_timer)));
+				        timerS.setScore(1);
+		            }
+		        }
+		        // -----------------------------
+		        
+		        if(entry.contains(String.format("§bJour %d", this.last_day))) {
+		        	if(this.last_day != this.timer.getDay()) {
+		        		this.last_day = this.timer.getDay();
+						objective.getScoreboard().resetScores(entry);
+			            Score dayNb = objective.getScore(Bukkit.getOfflinePlayer(String.format("§bJour %d", this.last_day)));
+			            dayNb.setScore(4);
+		        	}
+		        }
+		        
+		        if(entry.contains(String.format("§c%d §4Joueurs ", this.onlinePlayerNumber))) {
+	                if(this.onlinePlayerNumber != Bukkit.getOnlinePlayers().size()) {
+						objective.getScoreboard().resetScores(entry);
+	                	this.onlinePlayerNumber = Bukkit.getOnlinePlayers().size();
+		                Score playerNb = objective.getScore(Bukkit.getOfflinePlayer(String.format("§c%d §4Joueurs ", this.onlinePlayerNumber)));
+		                playerNb.setScore(3);
+	                }
+		        }
+		        
+		        
+			}
+		};
         
 	    if (time < 12300 || time > 23850) {
 	    	if(cycle == "Nuit") {
