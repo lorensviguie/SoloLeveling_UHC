@@ -58,7 +58,6 @@ public class Game {
 	
 	
 	public void StartGame() {
-		int min = 1;
 		SetGameStatus(true);
 		System.out.print("Game start");
 		this.scoreboard.GetTimer().Start();
@@ -67,7 +66,7 @@ public class Game {
         	public void run() {
         		DistribRole.giveRole(config.getConfigData().get("CharacterList"), characterManager);
         	}
-    	}.runTaskLater(plugin, 20*10*min); // after min minutes  pass 10 to 60 pour minute
+    	}.runTaskLater(plugin, (int) GeneralVariable.roleAttribution);
 		
 	}
 	

@@ -1,5 +1,7 @@
 package fr.farkas.Main.General.Timer;
 
+import fr.farkas.Main.General.GeneralVariable;
+
 public class TimerManager {
 	
 	private int timer;
@@ -29,7 +31,7 @@ public class TimerManager {
 	}
 	
 	public int getDay() {
-		return ((this.timer/1)/20) + 1;  // 1 for 20 sec 60 for 20min
+		return (int) ((this.timer/GeneralVariable.dayDuration) + 1);  // 1 for 20 sec 60 for 20min
 	}
 	
 	public String GetTimeString() {
