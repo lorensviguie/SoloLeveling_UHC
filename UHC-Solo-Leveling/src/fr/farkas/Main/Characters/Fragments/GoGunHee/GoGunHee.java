@@ -13,6 +13,7 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.farkas.Main.Characters.Fragments.Fragments;
+import fr.farkas.Main.General.GeneralVariable;
 
 public class GoGunHee extends Fragments {
 
@@ -61,7 +62,7 @@ public class GoGunHee extends Fragments {
                 		useability(plugin);
                 	}
             	}
-        	}.runTaskLater(plugin, 20*30*3); // after 1 minutes 30
+        	}.runTaskLater(plugin, GeneralVariable.cooldownTransformation_GoGunHee);
     	}else {
     		player.sendMessage("§6 You Disabled Your Transformation");
     		this.transformation = false;

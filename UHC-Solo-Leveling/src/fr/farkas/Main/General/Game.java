@@ -66,7 +66,7 @@ public class Game {
         	public void run() {
         		DistribRole.giveRole(config.getConfigData().get("CharacterList"), characterManager);
         	}
-    	}.runTaskLater(plugin, (int) GeneralVariable.roleAttribution);
+    	}.runTaskLater(plugin, GeneralVariable.roleAttribution);
 		
 	}
 	

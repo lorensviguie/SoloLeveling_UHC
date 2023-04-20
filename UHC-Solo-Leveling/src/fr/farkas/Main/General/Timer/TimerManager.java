@@ -31,7 +31,7 @@ public class TimerManager {
 	}
 	
 	public int getDay() {
-		return (int) ((this.timer/GeneralVariable.dayDuration) + 1);  // 1 for 20 sec 60 for 20min
+		return ((this.timer/GeneralVariable.dayDuration) + 1);  // 1 for 20 sec 60 for 20min
 	}
 	
 	public String GetTimeString() {

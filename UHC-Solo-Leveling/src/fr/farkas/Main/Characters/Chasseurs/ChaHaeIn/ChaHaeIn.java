@@ -18,6 +18,7 @@ import org.bukkit.potion.PotionEffectType;
 import fr.farkas.Main.Start;
 import fr.farkas.Main.Characters.Chasseurs.Chasseurs;
 import fr.farkas.Main.Characters.Fragments.Fragments;
+import fr.farkas.Main.General.GeneralVariable;
 
 public class ChaHaeIn extends Chasseurs {
 	
@@ -94,10 +95,10 @@ public class ChaHaeIn extends Chasseurs {
     public void useability(Plugin plugin) {
     	Player player = getPlayer();
     	if (Eveil) {
-    		player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20*30*5, 0)); // speed 1 for 160 seconds
-    		player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 20*30*5, 0));
+    		player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, GeneralVariable.eveilEffect_ChaHaeIn, 0));
+    		player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, GeneralVariable.eveilEffect_ChaHaeIn, 0));
     	}else {
-    		player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20*60*2, 0)); // speed  for 120 seconds
+    		player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, GeneralVariable.noteveilEffect_ChaHaeIn, 0));
     	}
     }
     public void getAbility(Player player) {

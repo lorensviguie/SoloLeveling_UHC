@@ -27,9 +27,16 @@ public class GeneralVariable {
 	public static int h = 360;
 	public static int min = 60;
 	public static int sec = 1;
+	public static int ticToSec = 20;
 	
 	
-	public static double dayDuration = isDebug ? 20*sec :20*min;
-	public static double roleAttribution = isDebug ? 5*sec :20*min;
+	public static int dayDuration = isDebug ? 20*sec : 20*min;
+	public static int roleAttribution = isDebug ? 5*sec : 20*min;
+	
+
+	public static int noteveilEffect_ChaHaeIn = isDebug ? (2*min)*ticToSec : (2*min)*ticToSec;
+	public static int eveilEffect_ChaHaeIn = isDebug ? (2*min+40*sec)*ticToSec : (2*min+40*sec)*ticToSec;
+	
+	public static int cooldownTransformation_GoGunHee = isDebug ? (1*min+30*sec)*ticToSec : (1*min+30*sec)*ticToSec;
 
 }
