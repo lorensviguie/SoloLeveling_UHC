@@ -1,6 +1,8 @@
 package fr.farkas.Main;
 
+import org.bukkit.Bukkit;
 import org.bukkit.World;
+import org.bukkit.WorldCreator;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -14,7 +16,7 @@ import fr.farkas.Main.PluginManager.UHCListeners;
 
 public class Start extends JavaPlugin {
 	private Game game;
-	private World world = getServer().getWorld("world");
+	private World world;
 	private World Lobby;
 	private MapManager mapManager;
 	Plugin plugin = this;
@@ -22,8 +24,9 @@ public class Start extends JavaPlugin {
 	public void onEnable() {
 		System.out.println("Plugin Start");
 		SpawnManager.GeneretaLobby();
+		this.world = getServer().getWorld("world");
 		this.Lobby = getServer().getWorld("Lobby");
-		//this.world.getPopulators().add(new GenerateRoof());
+		this.world.getPopulators().add(new GenerateRoof());
 		
 		this.game = new Game(plugin);
 		

@@ -60,10 +60,13 @@ public class SlDarkCommands implements CommandExecutor {
             	int day = game.getScoreboard().GetTimer().getDay();
             	Start plugin = (Start) Bukkit.getServer().getPluginManager().getPlugin("UHC SoloLeveling");
             	ChaHaeIn chaHaeIn = (ChaHaeIn) characterManager.getCharacter(player);
+            	if (args[1] == null) {
+            	}else {
                 Player test =	Bukkit.getServer().getPlayer(args[1]);
                 if (characterManager.getCharacterName(test) == "SungJinWoo") {
                 eveil =true;
                 }
+            	}
             	chaHaeIn.sentir(player, plugin,day,eveil);
             	return true;
             }     

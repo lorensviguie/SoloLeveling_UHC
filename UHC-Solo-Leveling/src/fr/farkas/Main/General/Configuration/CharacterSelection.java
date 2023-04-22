@@ -58,6 +58,11 @@ public class CharacterSelection {
 		}else {
 			inventory.setItem(20, createMat(Material.IRON_BLOCK, "Shae"));
 		}
+		if (CharacterList.contains("Selner")) {
+			inventory.setItem(20, createMat(Material.GOLD_BLOCK, "Selner"));
+		}else {
+			inventory.setItem(20, createMat(Material.IRON_BLOCK, "Selner"));
+		}
 		if (CharacterList.contains("Beru")) {
 			inventory.setItem(22, createMat(Material.GOLD_BLOCK, "Beru"));
 		}else {

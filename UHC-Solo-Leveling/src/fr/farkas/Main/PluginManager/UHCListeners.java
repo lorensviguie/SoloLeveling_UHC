@@ -27,9 +27,11 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import fr.farkas.Main.Characters.Character;
 import fr.farkas.Main.Characters.CharacterListeners;
 import fr.farkas.Main.Characters.CharacterManager;
 import fr.farkas.Main.Characters.Chasseurs.ChaHaeIn.ChaHaeIn;
+import fr.farkas.Main.Characters.Chasseurs.Selner.Selner;
 import fr.farkas.Main.Characters.Fragments.GoGunHee.GoGunHee;
 import fr.farkas.Main.Characters.Fragments.ThomasAndre.ThomasAndre;
 import fr.farkas.Main.Characters.Monarques.Legia.Legia;
@@ -97,6 +99,7 @@ public class UHCListeners implements Listener {
 			ItemStack characterItem4 = getItem(Material.IRON_SWORD, "§6Thomas Andre");
 			ItemStack characterItem666 = getItem(Material.BLAZE_ROD, "§0Architecte");
 			ItemStack characterItem29 = getItem(Material.GOLD_SWORD, "§2Cha Hae In");
+			ItemStack characterItem39 = getItem(Material.BEACON, "§2Selner");
 			inv.setItem(0, characterItem);
 			
 			inv.setItem(9, characterItem2);
@@ -105,6 +108,7 @@ public class UHCListeners implements Listener {
 			inv.setItem(22, characterItem666);
 			inv.setItem(18, characterItem12);
 			inv.setItem(2, characterItem29);
+			inv.setItem(3, characterItem39);
 			
 			player.openInventory(inv);
 		}
@@ -169,11 +173,25 @@ public class UHCListeners implements Listener {
 	@EventHandler
 	public void onClick(InventoryClickEvent event) {
 		
+        Player player = (Player) event.getWhoClicked();
+        ItemStack clickedItem = event.getCurrentItem();
+        ItemStack cursorItem = event.getCursor();
+        if (characterManager.getCharacter(player) != null ) {
+        if (characterManager.getCharacterName(player) == "Selner") {
+        if (clickedItem == null || clickedItem.getType() == Material.AIR) {
+            // The player is removing armor
+            if (cursorItem != null && isArmor(cursorItem.getType())) {
+            	Selner selner = (Selner) characterManager.getCharacter(player);
+            	int day = game.getScoreboard().GetTimer().getDay();
+            	selner.makeInvisibleIfNoArmor(player,day);
+            }
+        }
+        }
+        }
+		
 		Inventory inv = event.getInventory();
-		Player player = (Player) event.getWhoClicked();
 		ItemStack current = event.getCurrentItem();
 		if(current == null) return;
-		System.out.println(game.DidgameStart());
 			if(inv.getName().equalsIgnoreCase("§eLocked Inventory")){
 				basicinventoryconfig.BasicInventoryClick(event, mapManager);
 			}
@@ -254,6 +272,12 @@ public class UHCListeners implements Listener {
 					player.closeInventory();
 					player.sendMessage(ChatColor.GREEN + "You are now playing as " + ChaHaeIn.getDescription());
 					break;
+				case BEACON:
+					Selner selner = new Selner(player, "Selner");
+					characterManager.chooseCharacter(player, selner);
+					player.closeInventory();
+					player.sendMessage(ChatColor.GREEN + "You are now playing as " + Selner.getDescription());
+					break;					
 				default:break;
 				}
 
@@ -279,5 +303,11 @@ public ItemStack getItem(Material material, String customDisplayName) {
 	if(customDisplayName != null) itM.setDisplayName(customDisplayName);
 	it.setItemMeta(itM);
 	return it;
+}
+private boolean isArmor(Material material) {
+    return material.name().endsWith("_HELMET") ||
+           material.name().endsWith("_CHESTPLATE") ||
+           material.name().endsWith("_LEGGINGS") ||
+           material.name().endsWith("_BOOTS");
 }
 }

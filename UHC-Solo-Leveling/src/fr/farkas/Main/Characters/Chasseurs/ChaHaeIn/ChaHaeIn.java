@@ -107,7 +107,7 @@ public class ChaHaeIn extends Chasseurs {
     			+ "§5Tu possède 2 pouvoir :\n"
     			+ "-§2 tu a ta transformation qui te donne speed 1 plus force 1 si tu es eveiller\n"
     			+ "-§2 tu possède la commande sl sentir joueur qui te donnerra des information sur la puissances des gens autour de toi\n"
-    			+ "§4si tu trouve SungJinWoo avec sentir tu debloquera ton eveil\n"
+    			+ "§4si tu trouve SungJinWoo avec sentir tu&ebloquera ton eveil\n"
     			+ "§6-------------------------");
     
     

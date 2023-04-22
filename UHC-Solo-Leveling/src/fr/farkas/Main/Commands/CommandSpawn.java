@@ -67,6 +67,7 @@ public class CommandSpawn implements CommandExecutor {
 				for (Player player : Bukkit.getOnlinePlayers()) {
 					player.getActivePotionEffects().forEach(potionEffect -> player.removePotionEffect(potionEffect.getType()));
 					game.getCharacterManager().removeCharacter(player);
+					player.setMaxHealth(20);
 					player.setHealth(20);
 					player.getInventory().clear();
 				}
