@@ -49,7 +49,7 @@ public class CommandSpawn implements CommandExecutor {
 				    for(Player player : Lobby.getPlayers()) { // get all players in the first loaded world
 				    	player.setNoDamageTicks(4000);
 				        player.teleport(new Location(world, 0, 120, 0)); // teleport each player to the specified location
-				        player.setNoDamageTicks(4000);
+				        player.setNoDamageTicks(0);
 				    }
 
 				UHCListeners.onstart();
@@ -74,6 +74,10 @@ public class CommandSpawn implements CommandExecutor {
 			    for(Player player : world.getPlayers()) { // get all players in the first loaded world
 			        player.teleport(new Location(Lobby, 5, 128, 5)); // teleport each player to the specified location
 			    }
+			    for (Player player : Bukkit.getOnlinePlayers()) {
+			        player.playSound(player.getLocation(), "Sound.Stop.ogg", 1.0f, 1.0f);
+			    }
+
 				return true;
 			}
 			

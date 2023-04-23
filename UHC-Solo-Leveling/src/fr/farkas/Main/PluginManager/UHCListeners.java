@@ -15,6 +15,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -27,7 +28,6 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import fr.farkas.Main.Characters.Character;
 import fr.farkas.Main.Characters.CharacterListeners;
 import fr.farkas.Main.Characters.CharacterManager;
 import fr.farkas.Main.Characters.Chasseurs.ChaHaeIn.ChaHaeIn;
@@ -166,6 +166,21 @@ public class UHCListeners implements Listener {
 	        item.addEnchantment(Enchantment.DIG_SPEED, 3);
 	        item.addEnchantment(Enchantment.DURABILITY, 3);
 	        event.setCurrentItem(item);
+	    }
+	}
+	@EventHandler
+	public void onPlayerAttack(EntityDamageByEntityEvent event) {
+	    if (event.getDamager() instanceof Player && event.getEntity() instanceof Player) {
+	        Player attacker = (Player) event.getDamager();
+	        Player victim = (Player) event.getEntity();
+	        
+	        if ((characterManager.getCharacterName(attacker).equals("Selner"))) {
+	        	Selner selner = (Selner) characterManager.getCharacter(attacker);
+	        	if (selner.getTouch()) {
+	        		selner.touchAbility(attacker, victim.getName(),characterManager.getCharacterName(victim));
+	        	}
+	        }
+	        // Insérez le code à exécuter lorsque le joueur attaque un autre joueur ici
 	    }
 	}
 

@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import fr.farkas.Main.Start;
 import fr.farkas.Main.Characters.CharacterManager;
 import fr.farkas.Main.Characters.Chasseurs.ChaHaeIn.ChaHaeIn;
+import fr.farkas.Main.Characters.Chasseurs.Selner.Selner;
 import fr.farkas.Main.Characters.SungJinWoo.DarkPower;
 import fr.farkas.Main.Characters.SungJinWoo.ShadowPower;
 import fr.farkas.Main.Characters.SungJinWoo.ShadowTpPower;
@@ -70,6 +71,18 @@ public class SlDarkCommands implements CommandExecutor {
             	chaHaeIn.sentir(player, plugin,day,eveil);
             	return true;
             }     
+        }
+        if (args[0].equalsIgnoreCase("touch")) {
+        	if (!(characterManager.getCharacterName(player).equals("Selner"))) {
+            	player.sendMessage(ChatColor.RED + "You must be playing as Selner to use this command.");
+            	return true;
+        	}else {
+        		int day = game.getScoreboard().GetTimer().getDay();
+        		Selner selner = (Selner) characterManager.getCharacter(player);
+        		selner.setPeople(args[1],day,player);
+        		player.sendMessage("tu a choisie "+ args[1]);
+        		return true;
+        	}
         }
         
         if (args[0].equalsIgnoreCase("dark")) {
