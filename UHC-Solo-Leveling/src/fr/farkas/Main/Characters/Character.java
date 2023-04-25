@@ -7,17 +7,24 @@ public abstract class Character {
     
     private Player player;
     private String key;
+    private int camp;
     
     public abstract String getName();
     public Character(Player player, String key) {
         this.setPlayer(player);
         this.setKey(key);
+        this.camp = 0;
     }
 
     public double getHealth() {
         return player.getHealth();
     }
-
+    public int getCamp() {
+    	return camp;
+    }
+    public void setCamp(int Camp) {
+    	this.camp = Camp;
+    }
     public void setHealth(int health) {
         player.setHealth(health);
     }

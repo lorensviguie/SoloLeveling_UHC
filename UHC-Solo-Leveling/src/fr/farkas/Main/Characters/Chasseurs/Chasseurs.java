@@ -8,7 +8,7 @@ public class Chasseurs extends Character{
 	
 	public Chasseurs(Player player, String key) {
 		super(player,key);
-		
+		setCamp(1);
 	}
 
 	@Override

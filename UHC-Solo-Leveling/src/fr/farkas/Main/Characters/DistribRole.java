@@ -24,6 +24,7 @@ public class DistribRole {
 			String role = roles.get(rNum);
 			roles.remove(rNum);
 			characterManager.chooseCharacter(player, convertNameToRole(role, player));
+			player.sendMessage("here the number of youre camp" + characterManager.getCharacter(player).getCamp());
 		}	
 	}
 	

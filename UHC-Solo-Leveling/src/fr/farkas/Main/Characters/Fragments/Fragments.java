@@ -11,7 +11,7 @@ public class Fragments extends Character{
 	
 	public Fragments(Player player, String key) {
 		super(player,key);
-		
+		setCamp(2);
 	}
 
 	@Override

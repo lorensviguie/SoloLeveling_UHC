@@ -8,7 +8,7 @@ public class Solos extends Character{
 	
 	public Solos(Player player, String key) {
 		super(player,key);
-		
+		setCamp(4);
 	}
 
 	@Override

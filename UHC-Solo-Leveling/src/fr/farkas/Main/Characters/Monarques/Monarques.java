@@ -8,7 +8,7 @@ public abstract class Monarques extends Character{
 	
 	public Monarques(Player player, String key) {
 		super(player,key);
-		
+		setCamp(3);
 	}
 
 	@Override

@@ -26,6 +26,10 @@ public class MapManager {
 		this.configdata = configData;
 		this.Lobby = Lobby;
 	}
+	
+	public World getWorld() {
+		return world;
+	}
 	public void createSpawn() {
 		SpawnManager.createSpawn(world);
 	}

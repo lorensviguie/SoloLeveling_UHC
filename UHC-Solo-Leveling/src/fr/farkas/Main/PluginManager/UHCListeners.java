@@ -306,11 +306,13 @@ public class UHCListeners implements Listener {
         player.setMaxHealth(20);
         player.getInventory().clear();
         characterManager.removeCharacter(player);
+        player.setGameMode(GameMode.SPECTATOR);
+        Deathvictory.Victory(player,characterManager,game,characterListeners,mapManager);
     }
     @EventHandler
     public void OnRespawn(PlayerRespawnEvent event) {
-    	Player player = event.getPlayer();
-        SpawnManager.tptoSpawn(player, mapManager.takeLobby());
+    	//Player player = event.getPlayer();
+        //SpawnManager.tptoSpawn(player, mapManager.takeLobby());
     }
 public ItemStack getItem(Material material, String customDisplayName) {
 	ItemStack it = new ItemStack(material, 1);

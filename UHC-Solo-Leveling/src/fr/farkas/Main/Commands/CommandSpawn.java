@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.command.Command;
@@ -43,19 +44,29 @@ public class CommandSpawn implements CommandExecutor {
 
 		if (sender.isOp()) {
 			if (args[0].equalsIgnoreCase("start")) {
+				
+				if((Bukkit.getOnlinePlayers().size() != configdata.get("CharacterList").size())) {
+					sender.sendMessage("§2le nombre de role present dans la partie est different du nombre de joueur present");
+					return false;
+				}else {
 				this.game.StartGame();
 				BorderManager.createBorder(world, configdata);
 				this.scoreboard.GetTimer().Start();
-				    for(Player player : Lobby.getPlayers()) { // get all players in the first loaded world
-				    	player.setNoDamageTicks(4000);
-				        player.teleport(new Location(world, 0, 120, 0)); // teleport each player to the specified location
-				        player.setNoDamageTicks(0);
-				    }
+				for(Player player : Lobby.getPlayers()) {
+				    player.setNoDamageTicks(400);
+				    player.setFallDistance(0);
+				    player.teleport(new Location(world, 0, 120, 0)); // teleport each player to the specified location
+				    player.setNoDamageTicks(400);
+				    Bukkit.getScheduler().runTaskLater(game.getPlugin(), () -> {
+				        player.setFallDistance(3); // set the default fall distance value
+				    }, 200L); // 10 seconds = 200 ticks
+				}
 
 				UHCListeners.onstart();
 				ApplyRules uhcrule = new ApplyRules(configdata);
 				uhcrule.Applyallrules();
 				return true;
+				}
 			}
 			if (args[0].equalsIgnoreCase("config")) {
 				basicInventory.editConfig((Player) sender);
@@ -72,6 +83,7 @@ public class CommandSpawn implements CommandExecutor {
 					player.getInventory().clear();
 				}
 			    for(Player player : world.getPlayers()) { // get all players in the first loaded world
+			    	player.setGameMode(GameMode.SURVIVAL);
 			        player.teleport(new Location(Lobby, 5, 128, 5)); // teleport each player to the specified location
 			    }
 			    for (Player player : Bukkit.getOnlinePlayers()) {
