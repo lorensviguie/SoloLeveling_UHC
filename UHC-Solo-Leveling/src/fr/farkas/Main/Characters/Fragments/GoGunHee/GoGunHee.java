@@ -1,12 +1,8 @@
 package fr.farkas.Main.Characters.Fragments.GoGunHee;
 
-import java.time.temporal.WeekFields;
-
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
@@ -19,12 +15,11 @@ public class GoGunHee extends Fragments {
 
     private static final String DESCRIPTION = "Go Gun Hee";
     private String name;
-    private int timer;
     private Boolean transformation;
 
     public GoGunHee(Player player, String key) {
         super(player, "GoGunHee");
-        player.sendMessage(ChatColor.GREEN + "You are now playing as " + this.getDescription());
+        player.sendMessage(ChatColor.GREEN + "You are now playing as " + GoGunHee.getDescription());
         this.name = "GoGunHee";
         this.transformation = false;
         player.getInventory().addItem(Fragments.createMat(Material.NETHER_STAR, "§6Transformation"));

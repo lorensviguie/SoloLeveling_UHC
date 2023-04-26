@@ -20,7 +20,7 @@ public class Selner extends Chasseurs {
     
 	public Selner(Player player, String key) {
 		super(player, "Selner");
-		player.sendMessage(ChatColor.GREEN + "You are now playing as " + this.getDescription());
+		player.sendMessage(ChatColor.GREEN + "You are now playing as " + Selner.getDescription());
         this.name = "Selner";
 		this.day = 0;
 		this.people = "";

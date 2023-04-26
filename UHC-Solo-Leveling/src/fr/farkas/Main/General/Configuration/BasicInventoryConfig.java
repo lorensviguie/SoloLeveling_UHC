@@ -108,7 +108,6 @@ public class BasicInventoryConfig {
 			characterSelection.openConfig(player);
 			break;
 		case SHEARS:
-			mapManager.tpplayertoWorld(player);
 			break;
 		default:
 			break;

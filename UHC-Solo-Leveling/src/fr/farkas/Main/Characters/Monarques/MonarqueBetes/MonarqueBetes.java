@@ -20,7 +20,7 @@ public class MonarqueBetes extends Monarques{
 	
 	public MonarqueBetes(Player player, String key) {
 		super(player,"MonarqueBetes");
-        player.sendMessage(ChatColor.GREEN + "You are now playing as " + this.getDescription());
+        player.sendMessage(ChatColor.GREEN + "You are now playing as " + MonarqueBetes.getDescription());
 		super.getPlayer().getInventory().addItem(createMat(Material.NETHER_STAR, "§6Formes"));
 		this.currentForme = "humain";
 		this.formeInventory = new FormeInventory(this);

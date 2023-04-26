@@ -53,10 +53,10 @@ public class CharacterSelection {
 		}else {
 			inventory.setItem(19, createMat(Material.IRON_BLOCK, "Selner"));
 		}
-		if (CharacterList.contains("Shae")) {
-			inventory.setItem(20, createMat(Material.GOLD_BLOCK, "SungJinWoo"));
+		if (CharacterList.contains("SungJinWoo")) {
+			inventory.setItem(25, createMat(Material.GOLD_BLOCK, "SungJinWoo"));
 		}else {
-			inventory.setItem(20, createMat(Material.IRON_BLOCK, "SungJinWoo"));
+			inventory.setItem(25, createMat(Material.IRON_BLOCK, "SungJinWoo"));
 		}
 		if (CharacterList.contains("Beru")) {
 			inventory.setItem(22, createMat(Material.GOLD_BLOCK, "Beru"));
@@ -68,15 +68,15 @@ public class CharacterSelection {
 		}else {
 			inventory.setItem(23, createMat(Material.IRON_BLOCK, "Baruka"));
 		}
-		if (CharacterList.contains("Architecte")) {
+		if (CharacterList.contains("Architect")) {
 			inventory.setItem(26, createMat(Material.GOLD_BLOCK, "Architect"));
 		}else {
 			inventory.setItem(26, createMat(Material.IRON_BLOCK, "Architect"));
 		}
 		if (CharacterList.contains("ChaHaeIn")) {
-			inventory.setItem(7, createMat(Material.GOLD_BLOCK, "ChaHaeIn"));
+			inventory.setItem(20, createMat(Material.GOLD_BLOCK, "ChaHaeIn"));
 		}else {
-			inventory.setItem(7, createMat(Material.IRON_BLOCK, "ChaHaeIn"));
+			inventory.setItem(20, createMat(Material.IRON_BLOCK, "ChaHaeIn"));
 		}
 	}
     public void CharacterListclick(InventoryClickEvent event) {

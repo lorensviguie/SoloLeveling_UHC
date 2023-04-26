@@ -24,15 +24,13 @@ public class ChaHaeIn extends Chasseurs {
 	
     private static final String DESCRIPTION = "Cha Hae In";
     private String name;
-    private Boolean transformation;
     private Boolean Eveil;
     private int day;
 	
 	public ChaHaeIn(Player player, String key) {
 		super(player, "ChaHaeIn");
-        player.sendMessage(ChatColor.GREEN + "You are now playing as " + this.getDescription());
+        player.sendMessage(ChatColor.GREEN + "You are now playing as " + ChaHaeIn.getDescription());
         this.name = "ChaHaeIn";
-        this.transformation = false;
         this.Eveil =false;
         this.day = 0;
         player.getInventory().addItem(Fragments.createMat(Material.NETHER_STAR, "§6Light Power"));
@@ -90,6 +88,9 @@ public class ChaHaeIn extends Chasseurs {
     	Eveil = true;
     }
 
+    }
+    public void setEveil(boolean changeeveil) {
+    	this.Eveil = true;
     }
     
     public void useability(Plugin plugin) {

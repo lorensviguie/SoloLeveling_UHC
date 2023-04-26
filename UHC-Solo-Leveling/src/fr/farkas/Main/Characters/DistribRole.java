@@ -11,11 +11,13 @@ import fr.farkas.Main.Characters.Fragments.GoGunHee.GoGunHee;
 import fr.farkas.Main.Characters.Fragments.ThomasAndre.ThomasAndre;
 import fr.farkas.Main.Characters.Monarques.Legia.Legia;
 import fr.farkas.Main.Characters.Monarques.MonarqueBetes.MonarqueBetes;
+import fr.farkas.Main.Characters.Monstres.Beru.Beru;
 import fr.farkas.Main.Characters.Solos.Architecte.Architecte;
 import fr.farkas.Main.Characters.SungJinWoo.SungJinWoo;
 
 public class DistribRole {
 	public static void giveRole(List<String> roles, CharacterManager characterManager) {
+		@SuppressWarnings("unchecked")
 		List<Player> noRolePlayers = (List<Player>) Bukkit.getOnlinePlayers();
 		
 		for(Player player : noRolePlayers) {
@@ -52,7 +54,9 @@ public class DistribRole {
 			return new Architecte(player, name);
 		case "SungJinWoo":
 			return new SungJinWoo(player, name);
-
+		// Monstre
+		case "Beru":
+			return new Beru(player, name);
 		default:
 			return null;
 		}

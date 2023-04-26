@@ -8,7 +8,7 @@ public class Monstres extends Character{
 	
 	public Monstres(Player player, String key) {
 		super(player,key);
-		
+		setCamp(5);
 	}
 
 	@Override

@@ -3,11 +3,11 @@ package fr.farkas.Main.Characters;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-import fr.farkas.Main.Characters.Chasseurs.Chasseurs;
 import fr.farkas.Main.Characters.Chasseurs.ChaHaeIn.ChaHaeIn;
 import fr.farkas.Main.Characters.Fragments.GoGunHee.GoGunHee;
 import fr.farkas.Main.Characters.Fragments.ThomasAndre.ThomasAndre;
 import fr.farkas.Main.Characters.Monarques.MonarqueBetes.MonarqueBetes;
+import fr.farkas.Main.Characters.Monstres.Beru.Beru;
 import fr.farkas.Main.Characters.Solos.Architecte.Architecte;
 import fr.farkas.Main.General.Game;
 
@@ -47,6 +47,12 @@ public class CharacterListeners {
 		}
 		if ((game.getCharacterManager().getCharacterName(player).equals("SungJinWoo"))) {
 			System.out.println("CANARD");
+		}
+		if ((game.getCharacterManager().getCharacterName(player).equals("Beru"))) {
+			if (event.getItem() != null &&event.getItem().getItemMeta().getDisplayName() == "§6Evovle") {
+				Beru beru = (Beru) characterManager.getCharacter(player);
+				beru.useability(game.getPlugin());;
+			}
 		}
 		if ((game.getCharacterManager().getCharacterName(player).equals("MonarqueBetes"))) {
 			if (event.getItem() != null &&event.getItem().getItemMeta().getDisplayName() == "§6Formes") {

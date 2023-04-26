@@ -14,12 +14,11 @@ public class ThomasAndre extends Fragments {
 	
     private static final String DESCRIPTION = "Thomas Andre";
     private String name;
-    private int timer;
     private Boolean transformation;
 
 	public ThomasAndre(Player player, String key) {
         super(player, "ThomasAndre");
-        player.sendMessage(ChatColor.GREEN + "You are now playing as " + this.getDescription());
+        player.sendMessage(ChatColor.GREEN + "You are now playing as " + ThomasAndre.getDescription());
         this.name = "ThomasAndre";
         this.transformation = false;
         player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, Integer.MAX_VALUE, 0)); // strength 1 for 30 seconds

@@ -14,7 +14,7 @@ public class Legia extends Monarques{
 	
 	public Legia(Player player, String key) {
 		super(player,"Legia");
-        player.sendMessage(ChatColor.GREEN + "You are now playing as " + this.getDescription());
+        player.sendMessage(ChatColor.GREEN + "You are now playing as " + Legia.getDescription());
         player.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, Integer.MAX_VALUE, 0));
         player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, Integer.MAX_VALUE, 0));
         

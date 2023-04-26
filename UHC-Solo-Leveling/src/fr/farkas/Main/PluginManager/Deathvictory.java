@@ -30,7 +30,7 @@ public  class Deathvictory {
 		System.out.println(campCount);
 		int numCampsAlive = 0;
 		int winningCamp = -1;
-		for (int i = 1; i < 5; i++) {
+		for (int i = 1; i <= 5; i++) {
 		    if (campCount.get(i) > 0) {
 		        numCampsAlive++;
 		        winningCamp = i;
@@ -44,6 +44,8 @@ public  class Deathvictory {
 		        message = "§6The fragments have won!";
 		    } else if (winningCamp == 3) {
 		        message = "§4The monarchs have won!";
+		    } else if (winningCamp == 5) {
+		    	message = "§cThe Monster player has won!";
 		    } else if(campCount.get(4) == 1){
 		        message = "§1The solo player has won!";
 		    }

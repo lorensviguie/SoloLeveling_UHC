@@ -11,6 +11,7 @@ import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -27,6 +28,8 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import fr.farkas.Main.Characters.CharacterListeners;
 import fr.farkas.Main.Characters.CharacterManager;
@@ -41,7 +44,6 @@ import fr.farkas.Main.Characters.SungJinWoo.SungJinWoo;
 import fr.farkas.Main.General.Game;
 import fr.farkas.Main.General.Configuration.BasicInventoryConfig;
 import fr.farkas.Main.General.World.MapManager;
-import fr.farkas.Main.General.World.SpawnManager;
 
 public class UHCListeners implements Listener {
 		
@@ -124,11 +126,6 @@ public class UHCListeners implements Listener {
 	@EventHandler
 	public void onattack(PlayerInteractEvent event) {
 		if (characterManager.getCharacter(event.getPlayer()) == null ) {
-			if (!game.DidgameStart()){
-				Player player = event.getPlayer();
-				mapManager.worldaction(player,event);
-				
-		}
 		}else if (game.DidgameStart()){
 				Player player = event.getPlayer();
 				characterListeners.CharacterClick(event, player);
@@ -179,6 +176,12 @@ public class UHCListeners implements Listener {
 	        	if (selner.getTouch()) {
 	        		selner.touchAbility(attacker, victim.getName(),characterManager.getCharacterName(victim));
 	        	}
+	        }
+	        if ((characterManager.getCharacterName(attacker).equals("Beru"))) {
+	            if (Math.random() < 0.1) { // 10% chance
+	                PotionEffect poisonEffect = new PotionEffect(PotionEffectType.POISON, 2 * 40, 0);
+	                victim.addPotionEffect(poisonEffect);
+	            }
 	        }
 	        // Insérez le code à exécuter lorsque le joueur attaque un autre joueur ici
 	    }
@@ -303,10 +306,17 @@ public class UHCListeners implements Listener {
     @EventHandler
     public void onDeath(PlayerDeathEvent event) {
         Player player = event.getEntity();
+        Entity killer = player.getKiller();
         player.setMaxHealth(20);
         player.getInventory().clear();
         characterManager.removeCharacter(player);
+        player.spigot().respawn();
         player.setGameMode(GameMode.SPECTATOR);
+        if (killer instanceof Player) {
+        	Player attacker = (Player) killer;
+        	player.teleport(attacker.getLocation());
+        }
+        
         Deathvictory.Victory(player,characterManager,game,characterListeners,mapManager);
     }
     @EventHandler
