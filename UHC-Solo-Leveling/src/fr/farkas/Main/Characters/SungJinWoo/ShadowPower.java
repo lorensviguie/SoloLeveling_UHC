@@ -10,7 +10,8 @@ import fr.farkas.Main.Start;
 public class ShadowPower {
 
     private ArrayList<Player> shadows = new ArrayList<>();
-    private Start plugin;
+    @SuppressWarnings("unused")
+	private Start plugin;
 
     public ShadowPower(Start plugin) {
         this.plugin = plugin;

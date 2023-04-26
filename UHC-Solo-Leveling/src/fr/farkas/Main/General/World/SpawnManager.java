@@ -1,10 +1,8 @@
 package fr.farkas.Main.General.World;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.WorldCreator;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 
@@ -41,27 +39,4 @@ public class SpawnManager {
 	        Location location = new Location(world, x, y, z);
 	        player.teleport(location);
 		}
-		
-		public static void GeneretaLobby() {
-
-		    World lobby = Bukkit.createWorld(new WorldCreator("Lobby"));
-	        // Get the coordinates of the starting point for the cube
-	        int startX = 0;
-	        int startY = 127;
-	        int startZ = 0;
-
-	        // Create the cube using barrier blocks
-	        for (int x = startX; x < startX + 20; x++) {
-	            for (int y = startY; y < startY + 5; y++) {
-	                for (int z = startZ; z < startZ + 20; z++) {
-	                    // Only place barrier blocks on the edges of the cube
-	                    if (x == startX || x == startX + 9 || y == startY || y == startY + 4 || z == startZ || z == startZ + 9) {
-	                        Location location = new Location(lobby, x, y, z);
-	                        Block block = lobby.getBlockAt(location);
-	                        block.setType(Material.BARRIER);
-	                    }
-	                }
-	            }
-	        }
-}
 }

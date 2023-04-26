@@ -37,6 +37,7 @@ public class Scoreboard {
 		return this.timer;
 	}
 	
+	@SuppressWarnings("deprecation")
 	public void Creation() {
         this.last_timer = this.timer.GetTimeString();
         this.last_day = 0;
@@ -89,7 +90,8 @@ public class Scoreboard {
 		            if(this.last_timer != this.timer.GetTimeString()) {
 		            	this.last_timer = this.timer.GetTimeString();
 						objective.getScoreboard().resetScores(entry);
-				        Score timerS = objective.getScore(Bukkit.getOfflinePlayer(String.format("§6Timer : §e%s", last_timer)));
+				        @SuppressWarnings("deprecation")
+						Score timerS = objective.getScore(Bukkit.getOfflinePlayer(String.format("§6Timer : §e%s", last_timer)));
 				        timerS.setScore(1);
 		            }
 		        }
@@ -99,7 +101,8 @@ public class Scoreboard {
 		        	if(this.last_day != this.timer.getDay()) {
 		        		this.last_day = this.timer.getDay();
 						objective.getScoreboard().resetScores(entry);
-			            Score dayNb = objective.getScore(Bukkit.getOfflinePlayer(String.format("§bJour %d", this.last_day)));
+			            @SuppressWarnings("deprecation")
+						Score dayNb = objective.getScore(Bukkit.getOfflinePlayer(String.format("§bJour %d", this.last_day)));
 			            dayNb.setScore(4);
 		        	}
 		        }
@@ -108,7 +111,8 @@ public class Scoreboard {
 	                if(this.onlinePlayerNumber != Bukkit.getOnlinePlayers().size()) {
 						objective.getScoreboard().resetScores(entry);
 	                	this.onlinePlayerNumber = Bukkit.getOnlinePlayers().size();
-		                Score playerNb = objective.getScore(Bukkit.getOfflinePlayer(String.format("§c%d §4Joueurs ", this.onlinePlayerNumber)));
+		                @SuppressWarnings("deprecation")
+						Score playerNb = objective.getScore(Bukkit.getOfflinePlayer(String.format("§c%d §4Joueurs ", this.onlinePlayerNumber)));
 		                playerNb.setScore(3);
 	                }
 		        }
@@ -128,7 +132,8 @@ public class Scoreboard {
 	    	}
 	    	cycle = "Nuit";
 	    }
-        Score dayStatus = objective.getScore(Bukkit.getOfflinePlayer(String.format("§6Cycle : §e%s", cycle)));
+        @SuppressWarnings("deprecation")
+		Score dayStatus = objective.getScore(Bukkit.getOfflinePlayer(String.format("§6Cycle : §e%s", cycle)));
         dayStatus.setScore(0);
         
         this.timer.GetTimeString();        

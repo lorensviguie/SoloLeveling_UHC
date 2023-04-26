@@ -108,6 +108,7 @@ public class BasicInventoryConfig {
 			characterSelection.openConfig(player);
 			break;
 		case SHEARS:
+			mapManager.RegenArea();
 			break;
 		default:
 			break;

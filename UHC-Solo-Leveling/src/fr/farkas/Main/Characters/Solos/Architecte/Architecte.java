@@ -42,26 +42,26 @@ public class Architecte extends Solos {
     public void tptodreamWorld(Player player) {
     	System.out.println("FEUR");
     	if (dreamornot) {
-    	player.removePotionEffect(PotionEffectType.INCREASE_DAMAGE);
-    	player.removePotionEffect(PotionEffectType.SPEED);
-    	World world = Bukkit.getWorld("world");
-    	int x = (int)(Math.random() * 1000) - 500;
-    	int z = (int)(Math.random() * 1000) - 500;
-    	Location loc = new Location(world, x, 150, z);
-    	player.teleport(loc);
-    	player.setNoDamageTicks(400);
-    	this.dreamornot = false;
+    		this.dreamornot = false;
+    		player.removePotionEffect(PotionEffectType.INCREASE_DAMAGE);
+    		player.removePotionEffect(PotionEffectType.SPEED);
+    		World world = Bukkit.getWorld("Game");
+    		int x = (int)(Math.random() * 1000) - 500;
+    		int z = (int)(Math.random() * 1000) - 500;
+    		Location loc = new Location(world, x, 150, z);
+    		player.teleport(loc);
+    		player.setNoDamageTicks(20*5);
     	}else {
+    		this.dreamornot = true;
     		player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, Integer.MAX_VALUE, 0));
     		player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 0));
-    	World dreamWorld = Bukkit.getWorld("world_the_end");
-    	Location location = new Location(dreamWorld, 0, 63, 0);
-    	player.teleport(location);
-    	this.dreamornot = true;
+    		World dreamWorld = Bukkit.getWorld("world_the_end");
+    		Location location = new Location(dreamWorld, 0, 63, 0);
+    		player.teleport(location);
     	}
     }
     public void tpalltodream(Player playere) {
-    	World world = Bukkit.getWorld("world");
+    	World world = Bukkit.getWorld("Area");
     	List<Player> players = world.getPlayers();
     	world = Bukkit.getWorld("world_the_end");
         for (Player player : players) {

@@ -26,40 +26,35 @@ public class CommandSpawn implements CommandExecutor {
 	private Scoreboard scoreboard;
 	private Map<String, List<String>> configdata;
 	private World world;
-	private World Lobby;
 	private Game game;
 	private Portal portal;
 	
-	public CommandSpawn(Map<String, List<String>> configData, BasicInventoryConfig basicInventory, Scoreboard scoreboard, World world,Game game,World Lobby) {
+	public CommandSpawn(Map<String, List<String>> configData, BasicInventoryConfig basicInventory, Scoreboard scoreboard, World world ,Game game) {
 		this.basicInventory = basicInventory;
 		this.scoreboard = scoreboard;
 		this.configdata = configData;
 		this.world = world;
-		this.Lobby = Lobby;
-		this.game = game;}
+		this.game = game;
+		}
 
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-
 		if (sender.isOp()) {
 			if (args[0].equalsIgnoreCase("start")) {
+				World Area = Bukkit.getWorld("Game");
 				
 				if((Bukkit.getOnlinePlayers().size() != configdata.get("CharacterList").size())) {
 					sender.sendMessage("§2le nombre de role present dans la partie est different du nombre de joueur present");
 					return false;
 				}else {
 				this.game.StartGame();
-				BorderManager.createBorder(world, configdata);
+				BorderManager.createBorder(Area, configdata);
 				this.scoreboard.GetTimer().Start();
-				for(Player player : Lobby.getPlayers()) {
-				    player.setNoDamageTicks(400);
-				    player.setFallDistance(0);
-				    player.teleport(new Location(world, 0, 120, 0)); // teleport each player to the specified location
-				    player.setNoDamageTicks(400);
-				    Bukkit.getScheduler().runTaskLater(game.getPlugin(), () -> {
-				        player.setFallDistance(3); // set the default fall distance value
-				    }, 200L); // 10 seconds = 200 ticks
+				for(Player player : world.getPlayers()) {
+				    player.setNoDamageTicks(20*10);
+				    player.teleport(new Location(Area, 0, 120, 0)); // teleport each player to the specified location
+				    player.setNoDamageTicks(20*10);
 				}
 
 				UHCListeners.onstart();
@@ -73,8 +68,9 @@ public class CommandSpawn implements CommandExecutor {
 				return true;
 			}
 			if (args[0].equalsIgnoreCase("stop")) {
+				World Area = Bukkit.getWorld("Game");
 				game.StopGame();
-				BorderManager.destroyBorder(world);
+				BorderManager.destroyBorder(Area);
 				for (Player player : Bukkit.getOnlinePlayers()) {
 					player.getActivePotionEffects().forEach(potionEffect -> player.removePotionEffect(potionEffect.getType()));
 					game.getCharacterManager().removeCharacter(player);
@@ -82,9 +78,9 @@ public class CommandSpawn implements CommandExecutor {
 					player.setHealth(20);
 					player.getInventory().clear();
 				}
-			    for(Player player : world.getPlayers()) { // get all players in the first loaded world
+			    for(Player player : Area.getPlayers()) { // get all players in the first loaded world
 			    	player.setGameMode(GameMode.SURVIVAL);
-			        player.teleport(new Location(Lobby, 5, 128, 5)); // teleport each player to the specified location
+			        player.teleport(new Location(world, 5, 128, 5)); // teleport each player to the specified location
 			    }
 			    for (Player player : Bukkit.getOnlinePlayers()) {
 			        player.playSound(player.getLocation(), "Sound.Stop.ogg", 1.0f, 1.0f);

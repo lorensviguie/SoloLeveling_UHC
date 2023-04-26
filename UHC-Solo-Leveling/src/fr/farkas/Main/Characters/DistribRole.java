@@ -7,6 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import fr.farkas.Main.Characters.Chasseurs.ChaHaeIn.ChaHaeIn;
+import fr.farkas.Main.Characters.Chasseurs.Selner.Selner;
 import fr.farkas.Main.Characters.Fragments.GoGunHee.GoGunHee;
 import fr.farkas.Main.Characters.Fragments.ThomasAndre.ThomasAndre;
 import fr.farkas.Main.Characters.Monarques.Legia.Legia;
@@ -36,6 +37,8 @@ public class DistribRole {
 		// Chasseur
 		case "ChaHaeIn":
 			return new ChaHaeIn(player, name);
+		case "Selner":
+			return new Selner(player, name);
 		
 		// Fragment
 		case "ThomasAndre":
@@ -54,6 +57,7 @@ public class DistribRole {
 			return new Architecte(player, name);
 		case "SungJinWoo":
 			return new SungJinWoo(player, name);
+			
 		// Monstre
 		case "Beru":
 			return new Beru(player, name);

@@ -178,7 +178,7 @@ public class UHCListeners implements Listener {
 	        	}
 	        }
 	        if ((characterManager.getCharacterName(attacker).equals("Beru"))) {
-	            if (Math.random() < 0.1) { // 10% chance
+	            if (Math.random() < 0.2) { // 10% chance
 	                PotionEffect poisonEffect = new PotionEffect(PotionEffectType.POISON, 2 * 40, 0);
 	                victim.addPotionEffect(poisonEffect);
 	            }
@@ -315,6 +315,8 @@ public class UHCListeners implements Listener {
         if (killer instanceof Player) {
         	Player attacker = (Player) killer;
         	player.teleport(attacker.getLocation());
+        }else {
+        	player.teleport(Bukkit.getWorld("Game").getSpawnLocation());
         }
         
         Deathvictory.Victory(player,characterManager,game,characterListeners,mapManager);

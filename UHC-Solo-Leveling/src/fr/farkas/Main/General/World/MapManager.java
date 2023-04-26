@@ -6,43 +6,65 @@ import java.util.Map;
 import java.util.Random;
 
 import org.bukkit.Bukkit;
-import org.bukkit.Chunk;
-import org.bukkit.GameMode;
-import org.bukkit.Location;
-import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.WorldCreator;
+import org.bukkit.WorldType;
 import org.bukkit.entity.Player;
-import org.bukkit.event.player.PlayerInteractEvent;
-
-import fr.farkas.Main.Characters.Fragments.Fragments;
 
 public class MapManager {
 	private World world;
-	private World Lobby;
 	private Map<String, List<String>> configdata;
-	public MapManager(World world, Map<String, List<String>> configData,World Lobby) {
+	public MapManager(World world, Map<String, List<String>> configData) {
 		this.world = world;
 		this.configdata = configData;
-		this.Lobby = Lobby;
 	}
 	
 	public World getWorld() {
-		return world;
+		World Area = Bukkit.getWorld("Game");
+		return Area;
 	}
 	public void createSpawn() {
 		SpawnManager.createSpawn(world);
 	}
 	public void tptoSpawn(Player player) {
-		SpawnManager.tptoSpawn(player,Lobby);
+		SpawnManager.tptoSpawn(player,world);
 	}
 	public void createborder() {
-		BorderManager.createBorder(world,configdata);
+		World Area = Bukkit.getWorld("Area");
+		BorderManager.createBorder(Area,configdata);
 	}
 	public void createRoof() {
 		
 	}
 	public World takeLobby() {
-		return Lobby;
+		return world;
 	}
+	public void RegenArea() {
+		World Area = Bukkit.getWorld("Game");
+		Bukkit.unloadWorld(Area, false);
+		File worldFolder = Area.getWorldFolder();
+		deleteFolder(worldFolder);
+		WorldCreator creator = new WorldCreator("Game");
+		creator.type(WorldType.NORMAL);
+		creator.generateStructures(true);
+		creator.seed(new Random().nextLong());
+		World newWorld = Bukkit.createWorld(creator);
+		newWorld.getPopulators().add(new GenerateRoof());
+	}
+
+	
+	private void deleteFolder(File folder) {
+	    File[] files = folder.listFiles();
+	    if (files != null) {
+	        for (File file : files) {
+	            if (file.isDirectory()) {
+	                deleteFolder(file);
+	            } else {
+	                file.delete();
+	            }
+	        }
+	    }
+	    folder.delete();
+	}
+
 }
