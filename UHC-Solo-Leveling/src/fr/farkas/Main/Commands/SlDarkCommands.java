@@ -11,6 +11,7 @@ import fr.farkas.Main.Start;
 import fr.farkas.Main.Characters.CharacterManager;
 import fr.farkas.Main.Characters.Chasseurs.ChaHaeIn.ChaHaeIn;
 import fr.farkas.Main.Characters.Chasseurs.Selner.Selner;
+import fr.farkas.Main.Characters.Monarques.ListMonarques;
 import fr.farkas.Main.Characters.SungJinWoo.DarkPower;
 import fr.farkas.Main.Characters.SungJinWoo.ShadowPower;
 import fr.farkas.Main.Characters.SungJinWoo.ShadowTpPower;
@@ -83,6 +84,14 @@ public class SlDarkCommands implements CommandExecutor {
         		player.sendMessage("tu a choisie "+ args[1]);
         		return true;
         	}
+        }
+        if (args[0].equalsIgnoreCase("Liste")) {
+        	if (characterManager.getCharacter(player) != null) {
+        		if (characterManager.getCharacterName(player) == "Anthares") {
+        			ListMonarques.SetupList(characterManager,player);
+        		}
+        	}
+        	return true;
         }
         
         if (args[0].equalsIgnoreCase("dark")) {
