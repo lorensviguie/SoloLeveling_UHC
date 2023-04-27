@@ -20,7 +20,7 @@ public class DistribRole {
 	public static void giveRole(List<String> roles, CharacterManager characterManager) {
 		@SuppressWarnings("unchecked")
 		List<Player> noRolePlayers = (List<Player>) Bukkit.getOnlinePlayers();
-		
+		System.out.print("distrib");
 		for(Player player : noRolePlayers) {
 			Random r = new Random();
 			int rNum = r.nextInt(roles.size());

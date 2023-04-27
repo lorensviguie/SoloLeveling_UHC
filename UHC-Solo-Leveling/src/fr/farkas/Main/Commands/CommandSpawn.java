@@ -45,7 +45,7 @@ public class CommandSpawn implements CommandExecutor {
 				World Area = Bukkit.getWorld("Game");
 				
 				if((Bukkit.getOnlinePlayers().size() != configdata.get("CharacterList").size())) {
-					sender.sendMessage("§2le nombre de role present dans la partie est different du nombre de joueur present");
+					sender.sendMessage("§2Le nombre de role present dans la partie est different du nombre de joueur present");
 					return false;
 				}else {
 				this.game.StartGame();
@@ -55,6 +55,7 @@ public class CommandSpawn implements CommandExecutor {
 				    player.setNoDamageTicks(20*10);
 				    player.teleport(new Location(Area, 0, 120, 0)); // teleport each player to the specified location
 				    player.setNoDamageTicks(20*10);
+				    Area.setTime(0);
 				}
 
 				UHCListeners.onstart();
@@ -91,7 +92,7 @@ public class CommandSpawn implements CommandExecutor {
 			
 
 			if (args[0].equalsIgnoreCase("portal")) {
-				this.portal = new Portal();
+				this.portal = new Portal(this.game.getPlugin());
 				sender.sendMessage(portal.getPos());
 				return true;
 			}

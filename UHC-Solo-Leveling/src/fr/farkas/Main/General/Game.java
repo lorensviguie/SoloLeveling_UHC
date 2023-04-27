@@ -15,6 +15,7 @@ import fr.farkas.Main.Characters.DistribRole;
 import fr.farkas.Main.General.Configuration.Config;
 import fr.farkas.Main.General.Scoreboard.Scoreboard;
 import fr.farkas.Main.General.Timer.TimerManager;
+import fr.farkas.Main.General.World.Portal;
 
 public class Game {
 	
@@ -65,6 +66,12 @@ public class Game {
         	@Override
         	public void run() {
         		DistribRole.giveRole(config.getConfigData().get("CharacterList"), characterManager);
+        		new BukkitRunnable() {
+        			@Override
+        			public void run() {
+        				new Portal(plugin);
+        			}
+        		}.runTaskLater(plugin, GeneralVariable.portalCooldown);
         	}
     	}.runTaskLater(plugin, GeneralVariable.roleAttribution);
 		
@@ -94,10 +101,9 @@ public class Game {
 	public Scoreboard getScoreboard() {
 		return this.scoreboard;
 	}
+	
 	public void SetGameStatus(Boolean status) {
-		
 		GameStart = status;
-		System.out.println(status);
 	}
 	
 	public Config getConfig() {
