@@ -4,8 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.entity.Player;
+import org.bukkit.potion.PotionEffectType;
 
 import fr.farkas.Main.Characters.Character;
+import fr.farkas.Main.Characters.CharacterManager;
 import fr.farkas.Main.Characters.Monstres.Monstres;
 import fr.farkas.Main.Characters.Solos.Solos;
 
@@ -35,12 +37,16 @@ public class Monarques extends Character{
 		System.out.print("Les Monarques sont : " + members);
 		return Monarques.members;
 	}
+    
+    public void turnToSolo() {
+    }
 	
 	public static void campToSolo() {
 		areSolo = true;
 		for(Player player : members) {
 			player.sendMessage("§8Anthares §4 is dead, now you have to win alone !");
     		Solos.addMember(player);
+    		((Monarques) CharacterManager.getPlayerCharacters().get(player)).turnToSolo();
 		}
     	members.clear();
 	}

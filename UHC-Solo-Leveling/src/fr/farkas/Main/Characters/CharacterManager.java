@@ -10,7 +10,7 @@ import fr.farkas.Main.Start;
 import fr.farkas.Main.Characters.SungJinWoo.DarkPower;
 
 public class CharacterManager {
-    private Map<Player, Character> playerCharacters;
+    private static Map<Player, Character> playerCharacters;
     private DarkPower darkPower;
     
     public void SungJinWoo(Start plugin) {
@@ -18,6 +18,10 @@ public class CharacterManager {
     }
     public CharacterManager() {
         playerCharacters = new HashMap<>();
+    }
+    
+    public static Map<Player,Character> getPlayerCharacters(){
+    	return playerCharacters;
     }
 
     public void chooseCharacter(Player player, Character character) {
@@ -61,6 +65,7 @@ public class CharacterManager {
 
 	public void specialAbility(Player player) {		
 	}
+	
     public void useAbility(Player player) {
         if (darkPower.canUseAbility(player)) {
             darkPower.useAbility(player);

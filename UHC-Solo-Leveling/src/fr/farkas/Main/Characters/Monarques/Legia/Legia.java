@@ -16,32 +16,7 @@ public class Legia extends Monarques{
 		super(player,"Legia");
         player.sendMessage(ChatColor.GREEN + "You are now playing as " + Legia.getDescription());
         player.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, Integer.MAX_VALUE, 0, false, false));
-        player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, Integer.MAX_VALUE, 0, false, false));
-        
-
-        // Suppr for real
-        player.sendMessage("Power Locked");
-        
-        try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        
-        player.sendMessage("Pass to Solo");
-        this.turnToSolo();
-        
-        try {
-			Thread.sleep(4000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        
-        player.sendMessage("Unlocked Power");
-        this.unLockPower();
-        
+        player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, Integer.MAX_VALUE, 0, false, false));        
 	}
 	
     @Override
@@ -53,6 +28,7 @@ public class Legia extends Monarques{
         return DESCRIPTION;
     }
     
+    @Override
     public void turnToSolo() {
     	super.getPlayer().removePotionEffect(PotionEffectType.WEAKNESS);
     }
