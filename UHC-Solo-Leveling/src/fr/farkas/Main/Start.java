@@ -16,11 +16,12 @@ public class Start extends JavaPlugin {
 	private Game game;
 	private World world;
 	private MapManager mapManager;
-	Plugin plugin = this;
+	static Plugin plugin;
 
 	public void onEnable() {
 		System.out.println("Plugin Start");
 	    Bukkit.createWorld(new WorldCreator("Game"));
+	    plugin = this;
 	    
 		this.world = getServer().getWorld("world");
 		
@@ -41,5 +42,9 @@ public class Start extends JavaPlugin {
 		if(this.game != null) {
 			this.game.DestroyGame();	
 		}
-	}	
+	}
+	
+	public static Plugin getPlugin() {
+		return plugin;
+	}
 }

@@ -12,6 +12,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import fr.farkas.Main.Characters.Monarques.Monarques;
 import fr.farkas.Main.General.Game;
 import fr.farkas.Main.General.Configuration.ApplyRules;
 import fr.farkas.Main.General.Configuration.BasicInventoryConfig;
@@ -27,7 +28,6 @@ public class CommandSpawn implements CommandExecutor {
 	private Map<String, List<String>> configdata;
 	private World world;
 	private Game game;
-	private Portal portal;
 	
 	public CommandSpawn(Map<String, List<String>> configData, BasicInventoryConfig basicInventory, Scoreboard scoreboard, World world ,Game game) {
 		this.basicInventory = basicInventory;
@@ -90,17 +90,10 @@ public class CommandSpawn implements CommandExecutor {
 				return true;
 			}
 			
-
-			if (args[0].equalsIgnoreCase("portal")) {
-				this.portal = new Portal(this.game.getPlugin());
-				sender.sendMessage(portal.getPos());
-				return true;
+			if(args[0].equalsIgnoreCase("anthD")) {
+				Monarques.campToSolo();
 			}
-
-			if (args[0].equalsIgnoreCase("dportal")) {
-				this.portal.removePortal();
-				return true;
-			}
+			
 		}
 		return false;
 	}

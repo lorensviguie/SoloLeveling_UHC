@@ -11,6 +11,7 @@ import fr.farkas.Main.Characters.Monstres.Monstres;
 public abstract class Monarques extends Character{
 	
 	private static List<Player> members = new ArrayList<Player>();
+	public static boolean areSolo = false;
 	
 	public Monarques(Player player, String key) {
 		super(player,key);
@@ -32,6 +33,13 @@ public abstract class Monarques extends Character{
 	public static List<Player> getMembers(){
 		System.out.print("Les Monarques sont : " + members);
 		return Monarques.members;
+	}
+	
+	public static void campToSolo() {
+		areSolo = true;
+		for(Player player : members) {
+			player.sendMessage("§8Anthares §4 is dead, now you have to win alone !");
+		}
 	}
 
 	@Override

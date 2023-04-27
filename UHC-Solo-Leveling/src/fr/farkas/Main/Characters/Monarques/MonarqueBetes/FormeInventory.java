@@ -8,6 +8,8 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import fr.farkas.Main.Characters.Monarques.Monarques;
+
 public class FormeInventory {
 	
 	private Inventory inventory;
@@ -15,11 +17,11 @@ public class FormeInventory {
 	
 	public FormeInventory(MonarqueBetes monarqueBetes) {
 		this.monarqueBetes = monarqueBetes;
-		this.createInventory();
 		
 	}
 	
     public void openFormInventory() {
+    	this.createInventory();
         this.monarqueBetes.getPlayer().openInventory(inventory);
     }
 	
@@ -29,13 +31,18 @@ public class FormeInventory {
         
 
 		ItemStack humainForme = getItem(Material.ACACIA_DOOR_ITEM, "§6Humain");
-		this.inventory.setItem(2, humainForme);
+		this.inventory.setItem(Monarques.areSolo && !monarqueBetes.isInUltimeCooldown() ? 1:2, humainForme);
 
         ItemStack loupForme = getItem(Material.BIRCH_DOOR_ITEM, "§6Loup");
-        this.inventory.setItem(4, loupForme);
+        this.inventory.setItem(Monarques.areSolo && !monarqueBetes.isInUltimeCooldown() ? 3:4, loupForme);
 
         ItemStack oursForme = getItem(Material.DARK_OAK_DOOR_ITEM, "§6Ours");
-        this.inventory.setItem(6, oursForme);
+        this.inventory.setItem(Monarques.areSolo && !monarqueBetes.isInUltimeCooldown() ? 5:6, oursForme);
+
+        if(Monarques.areSolo && !monarqueBetes.isInUltimeCooldown()) {
+            ItemStack ultimeForme = getItem(Material.IRON_DOOR, "§6Ultime");
+            this.inventory.setItem(7, ultimeForme);
+        }
     }
 	
 
@@ -47,24 +54,32 @@ public class FormeInventory {
 	    	event.setCancelled(true);
 	    	System.out.println(inv.getName());
 	    	player.closeInventory();
-
-			switch(current.getType()) {
-			case ACACIA_DOOR_ITEM:
-				System.out.print("humain");
-				this.monarqueBetes.turnToHumain();
-				break;
-			case BIRCH_DOOR_ITEM:
-				System.out.print("loup");
-				this.monarqueBetes.turnToLoup();
-				break;
-			case DARK_OAK_DOOR_ITEM:
-				System.out.print("ours");
-				this.monarqueBetes.turnToOurs();
-				break;
-			default:
-				System.out.print(current.getType());
-				break;
-			}
+	    	
+	    	if(monarqueBetes.getForme() != "ultime") {
+				switch(current.getType()) {
+				case ACACIA_DOOR_ITEM:
+					System.out.print("humain");
+					this.monarqueBetes.turnToHumain();
+					break;
+				case BIRCH_DOOR_ITEM:
+					System.out.print("loup");
+					this.monarqueBetes.turnToLoup();
+					break;
+				case DARK_OAK_DOOR_ITEM:
+					System.out.print("ours");
+					this.monarqueBetes.turnToOurs();
+					break;
+				case IRON_DOOR:
+					System.out.print("ultime");
+					this.monarqueBetes.turnToUltime();
+					break;
+				default:
+					System.out.print(current.getType());
+					break;
+				}
+	    	}else {
+	    		player.sendMessage("§cYou are in your ultime forme, you can't change form now");
+	    	}
 
     }
     

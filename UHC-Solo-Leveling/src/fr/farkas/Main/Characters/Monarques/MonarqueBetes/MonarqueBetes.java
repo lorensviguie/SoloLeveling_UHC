@@ -7,14 +7,20 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+import org.bukkit.scheduler.BukkitRunnable;
 
+import fr.farkas.Main.Start;
+import fr.farkas.Main.Characters.DistribRole;
 import fr.farkas.Main.Characters.Monarques.Monarques;
+import fr.farkas.Main.General.GeneralVariable;
+import fr.farkas.Main.General.World.Portal;
 
 public class MonarqueBetes extends Monarques{
 	
 	private String currentForme;
 	private FormeInventory formeInventory;
     private String name = "MonarqueBetes";
+    private boolean inUltimeCoolDown = false; 
 
     private static final String DESCRIPTION = "Monarque des Bêtes";
 	
@@ -46,11 +52,17 @@ public class MonarqueBetes extends Monarques{
 	        	super.getPlayer().removePotionEffect(PotionEffectType.DAMAGE_RESISTANCE);
 	        	super.getPlayer().setMaxHealth(20);
 	    		break;
+	    	case "utlime":
+	        	super.getPlayer().removePotionEffect(PotionEffectType.SPEED);
+	        	super.getPlayer().removePotionEffect(PotionEffectType.INCREASE_DAMAGE);
+	        	super.getPlayer().removePotionEffect(PotionEffectType.DAMAGE_RESISTANCE);
+	        	super.getPlayer().setMaxHealth(20);
+	    		break;
 			default:
 				break;	
     	}
     	this.currentForme = "humain";
-		super.getPlayer().sendMessage("You tooked Human forme");
+		super.getPlayer().sendMessage("§6You tooked Human forme");
     }
     
     public FormeInventory getFormeInventory() {
@@ -60,7 +72,7 @@ public class MonarqueBetes extends Monarques{
     public void turnToLoup() {
     	switch (this.currentForme){
 	    	case "ours":
-	    		super.getPlayer().sendMessage("You tooked Wolf forme");
+	    		super.getPlayer().sendMessage("§6You tooked Wolf forme");
 	        	super.getPlayer().removePotionEffect(PotionEffectType.DAMAGE_RESISTANCE);
 	        	super.getPlayer().setMaxHealth(20);
 	    		break;
@@ -68,7 +80,7 @@ public class MonarqueBetes extends Monarques{
 				break;	
     	}
     	this.currentForme = "loup";
-		super.getPlayer().sendMessage("You tooked Wolf forme");
+		super.getPlayer().sendMessage("§6You tooked Wolf forme");
     	super.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 0));
     	super.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, Integer.MAX_VALUE, 0));
     }
@@ -84,12 +96,68 @@ public class MonarqueBetes extends Monarques{
 				break;	
     	}
     	this.currentForme = "ours";
-		super.getPlayer().sendMessage("You tooked Bear forme");
+		super.getPlayer().sendMessage("§6You tooked Bear forme");
     	super.getPlayer().setMaxHealth(26);
     	super.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, Integer.MAX_VALUE, 0));
     	if(super.getPlayer().getHealth() == 20) {
-        	super.getPlayer().setHealth(20);
+        	super.getPlayer().setHealth(26);
     	}
+    }
+    
+    public void turnToUltime() {
+    	if(Monarques.areSolo && !this.inUltimeCoolDown) {
+    		switch (this.currentForme){
+	    	case "loup":
+	        	super.getPlayer().removePotionEffect(PotionEffectType.SPEED);
+	        	super.getPlayer().removePotionEffect(PotionEffectType.INCREASE_DAMAGE);
+	    		break;
+	    	case "ours":
+	        	super.getPlayer().removePotionEffect(PotionEffectType.DAMAGE_RESISTANCE);
+	        	super.getPlayer().setMaxHealth(20);
+	    		break;
+			default:
+				break;	
+    		}
+
+        	this.currentForme = "ultime";
+    		super.getPlayer().sendMessage("§6You tooked Ultime forme");
+        	super.getPlayer().setMaxHealth(26);
+        	if(super.getPlayer().getHealth() == 20) {
+            	super.getPlayer().setHealth(26);
+        	}
+        	super.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, GeneralVariable.ultimeEffect_MonarqueBetes, 0));
+        	super.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, GeneralVariable.ultimeEffect_MonarqueBetes, 0));
+        	super.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, GeneralVariable.ultimeEffect_MonarqueBetes, 0));
+        	
+        	Player player = super.getPlayer();
+        	
+        	new BukkitRunnable() {
+            	@Override
+            	public void run() {
+            		player.sendMessage("§6Your strength leaves you, you return to your human form.");
+            		turnToHumain();
+            		inUltimeCoolDown = true;
+            		
+            		new BukkitRunnable() {
+            			@Override
+            			public void run() {
+            				inUltimeCoolDown = false;
+                    		player.sendMessage("§6You can reuse your ultime form.");
+            			}
+            		}.runTaskLater(Start.getPlugin(), GeneralVariable.ultimeCooldown_MonarqueBetes);
+            		
+            	}
+        	}.runTaskLater(Start.getPlugin(), GeneralVariable.ultimeEffect_MonarqueBetes);
+    		
+    	}
+    }
+    
+    public String getForme() {
+    	return this.currentForme;
+    }
+    
+    public boolean isInUltimeCooldown() {
+    	return this.inUltimeCoolDown;
     }
     
 
