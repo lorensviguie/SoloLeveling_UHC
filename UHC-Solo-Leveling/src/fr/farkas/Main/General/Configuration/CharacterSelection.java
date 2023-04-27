@@ -38,6 +38,11 @@ public class CharacterSelection {
 		}else {
 			inventory.setItem(2, createMat(Material.IRON_BLOCK, "ThomasAndre"));
 		}
+		if (CharacterList.contains("Anthares")) {
+			inventory.setItem(9, createMat(Material.GOLD_BLOCK, "Anthares"));
+		}else {
+			inventory.setItem(9, createMat(Material.IRON_BLOCK, "Anthares"));
+		}
 		if (CharacterList.contains("Legia")) {
 			inventory.setItem(10, createMat(Material.GOLD_BLOCK, "Legia"));
 		}else {

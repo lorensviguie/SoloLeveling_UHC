@@ -10,6 +10,7 @@ import fr.farkas.Main.Characters.Chasseurs.ChaHaeIn.ChaHaeIn;
 import fr.farkas.Main.Characters.Chasseurs.Selner.Selner;
 import fr.farkas.Main.Characters.Fragments.GoGunHee.GoGunHee;
 import fr.farkas.Main.Characters.Fragments.ThomasAndre.ThomasAndre;
+import fr.farkas.Main.Characters.Monarques.Anthares.Anthares;
 import fr.farkas.Main.Characters.Monarques.Legia.Legia;
 import fr.farkas.Main.Characters.Monarques.MonarqueBetes.MonarqueBetes;
 import fr.farkas.Main.Characters.Monstres.Beru.Beru;
@@ -47,6 +48,8 @@ public class DistribRole {
 			return new GoGunHee(player, name);
 
 		// Mornaques
+		case "Anthares":
+			return new Anthares(player, name);
 		case "Legia":
 			return new Legia(player, name);
 		case "MonarqueBetes":
