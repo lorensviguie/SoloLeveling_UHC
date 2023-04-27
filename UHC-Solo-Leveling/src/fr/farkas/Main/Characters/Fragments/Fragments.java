@@ -47,4 +47,10 @@ public class Fragments extends Character{
     	crea.setItemMeta(creaMeta);
     	return crea;
     }
+
+	@Override
+	public void isDying() {
+		// TODO Auto-generated method stub
+		
+	}
 }

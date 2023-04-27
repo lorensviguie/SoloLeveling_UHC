@@ -36,4 +36,10 @@ public class Monstres extends Character{
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	@Override
+	public void isDying() {
+		// TODO Auto-generated method stub
+		
+	}
 }

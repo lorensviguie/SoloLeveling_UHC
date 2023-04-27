@@ -23,7 +23,7 @@ public class Solos extends Character{
 		return null;
 	}
 	
-	public void addMember(Player player) {
+	public static void addMember(Player player) {
 		System.out.print(player.getName() + " est ajouté au camp des Solos");
 		members.add(player);
 	}
@@ -35,5 +35,11 @@ public class Solos extends Character{
 
 	@Override
 	public void getAbility(Player player) {
+	}
+
+	@Override
+	public void isDying() {
+		// TODO Auto-generated method stub
+		
 	}
 }

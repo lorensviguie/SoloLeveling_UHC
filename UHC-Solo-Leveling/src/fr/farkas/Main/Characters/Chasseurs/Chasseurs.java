@@ -37,4 +37,10 @@ public class Chasseurs extends Character{
 	public void getAbility(Player player) {
 	}
 
+	@Override
+	public void isDying() {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

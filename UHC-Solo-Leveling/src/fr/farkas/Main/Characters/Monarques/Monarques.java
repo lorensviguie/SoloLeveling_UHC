@@ -7,8 +7,9 @@ import org.bukkit.entity.Player;
 
 import fr.farkas.Main.Characters.Character;
 import fr.farkas.Main.Characters.Monstres.Monstres;
+import fr.farkas.Main.Characters.Solos.Solos;
 
-public abstract class Monarques extends Character{
+public class Monarques extends Character{
 	
 	private static List<Player> members = new ArrayList<Player>();
 	public static boolean areSolo = false;
@@ -39,10 +40,18 @@ public abstract class Monarques extends Character{
 		areSolo = true;
 		for(Player player : members) {
 			player.sendMessage("§8Anthares §4 is dead, now you have to win alone !");
+    		Solos.addMember(player);
 		}
+    	members.clear();
 	}
 
 	@Override
 	public void getAbility(Player player) {
+	}
+
+	@Override
+	public void isDying() {
+		// TODO Auto-generated method stub
+		
 	}
 }

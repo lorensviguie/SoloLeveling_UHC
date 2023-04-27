@@ -309,7 +309,6 @@ public class UHCListeners implements Listener {
         Entity killer = player.getKiller();
         player.setMaxHealth(20);
         player.getInventory().clear();
-        characterManager.removeCharacter(player);
         player.spigot().respawn();
         player.setGameMode(GameMode.SPECTATOR);
         if (killer instanceof Player) {
@@ -318,6 +317,12 @@ public class UHCListeners implements Listener {
         }else {
         	player.teleport(Bukkit.getWorld("Game").getSpawnLocation());
         }
+
+        String Newligne = System.getProperty("line.separator");
+        event.setDeathMessage("§4> ----------------- Warning ----------------- <" + Newligne + "§2  " + player.getName() + " is role was " + characterManager.getCharacter(player).getName() + Newligne + "§4> ------------------------------------------- <");
+
+        characterManager.getCharacter(player).isDying();
+        characterManager.removeCharacter(player);
         
         Deathvictory.Victory(player,characterManager,game,characterListeners,mapManager);
     }

@@ -45,9 +45,9 @@ public class Scoreboard {
         System.out.print(last_timer);
 		Server server = Bukkit.getServer();
 	    long time = server.getWorld("world").getTime();
-        Score space = objective.getScore(Bukkit.getOfflinePlayer("§8."));
+        Score space = objective.getScore(Bukkit.getOfflinePlayer("§§§2"));
         space.setScore(2);
-        Score space2 = objective.getScore(Bukkit.getOfflinePlayer("§8. "));
+        Score space2 = objective.getScore(Bukkit.getOfflinePlayer("§§§2 "));
         space2.setScore(5);
         Score timerS = objective.getScore(Bukkit.getOfflinePlayer(String.format("§6Timer : §e%s", last_timer)));
         timerS.setScore(1);

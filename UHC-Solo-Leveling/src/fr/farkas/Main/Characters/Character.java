@@ -49,6 +49,8 @@ public abstract class Character {
         this.key = key;
     }
 
+    public abstract void isDying();
+
     public abstract void getAbility(Player player);
 
 }
