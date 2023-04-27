@@ -36,6 +36,7 @@ public class GeneralVariable {
 	public static int portalDuration = isDebug ? (30*sec)*ticToSec : (10*min)*ticToSec;
 	public static int portalCooldown = isDebug ? (5*sec)*ticToSec : (30*min)*ticToSec;
 	public static int portalDefender = isDebug ? 1:5;
+	public static int portalFirstApparition = isDebug ? (5*sec)*ticToSec : (40*min)*ticToSec;
 	
 
 	

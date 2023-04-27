@@ -8,6 +8,11 @@ import org.bukkit.entity.Player;
 
 import fr.farkas.Main.Characters.CharacterListeners;
 import fr.farkas.Main.Characters.CharacterManager;
+import fr.farkas.Main.Characters.Chasseurs.Chasseurs;
+import fr.farkas.Main.Characters.Fragments.Fragments;
+import fr.farkas.Main.Characters.Monarques.Monarques;
+import fr.farkas.Main.Characters.Monstres.Monstres;
+import fr.farkas.Main.Characters.Solos.Solos;
 import fr.farkas.Main.General.Game;
 import fr.farkas.Main.General.World.MapManager;
 
@@ -49,14 +54,61 @@ public  class Deathvictory {
 		    } else if(campCount.get(4) == 1){
 		        message = "§1The solo player has won!";
 		    }
-		    if (message == "") {
-		    	
-		    }else {
+		    if (message != "") {
+			    for (Player playeres : Bukkit.getOnlinePlayers()) {
+			    	playeres.sendTitle("§6VICTORY", message);
+			    }
+		    }
+		}
+	}
+	
+	
+	// -------------------------- Victory but with list système
+	
+	@SuppressWarnings("deprecation")
+	public static void checkVictory() {
+		String message = "";
+		boolean otherCampAlive = false;
+		if(Monstres.getMembers().size() > 0) {
+			if(otherCampAlive) {
+				return;
+			}
+			otherCampAlive = true;
+			message = "§cThe Monster player has won!";
+		}
+		if(Chasseurs.getMembers().size() > 0) {
+			if(otherCampAlive) {
+				return;
+			}
+			message = "§2The hunters have won!";
+			otherCampAlive = true;
+		}
+		if(Fragments.getMembers().size() > 0) {
+			if(otherCampAlive) {
+				return;
+			}
+	        message = "§6The fragments have won!";
+			otherCampAlive = true;
+		}
+		if(Monarques.getMembers().size() > 0) {
+			if(otherCampAlive) {
+				return;
+			}
+	        message = "§6The fragments have won!";
+			otherCampAlive = true;
+		}
+		if(Solos.getMembers().size() > 0) {
+			if(otherCampAlive || Solos.getMembers().size() != 1) {
+				return;
+			}
+	        message = "§1The solo player has won!";
+			otherCampAlive = true;
+		}
+	    if (message != "") {
 		    for (Player playeres : Bukkit.getOnlinePlayers()) {
 		    	playeres.sendTitle("§6VICTORY", message);
 		    }
-		    }
-		}
+	    }
 	}
 }
 

@@ -71,7 +71,7 @@ public class Game {
         			public void run() {
         				new Portal(plugin);
         			}
-        		}.runTaskLater(plugin, GeneralVariable.portalCooldown);
+        		}.runTaskLater(plugin, GeneralVariable.portalFirstApparition);
         	}
     	}.runTaskLater(plugin, GeneralVariable.roleAttribution);
 		
