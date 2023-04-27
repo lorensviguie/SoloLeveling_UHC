@@ -49,8 +49,8 @@ public class DarkPower {
 
         // Apply effects
         player.playSound(player.getLocation(), Sound.ENDERDRAGON_GROWL, 1.0f, 1.0f);
-        player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 2400, 0));
-        player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 2400, 0));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 2400, 0, false, false));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 2400, 0, false, false));
 
         // Schedule the effects to expire
         new BukkitRunnable() {

@@ -96,10 +96,10 @@ public class ChaHaeIn extends Chasseurs {
     public void useability(Plugin plugin) {
     	Player player = getPlayer();
     	if (Eveil) {
-    		player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, GeneralVariable.eveilEffect_ChaHaeIn, 0));
-    		player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, GeneralVariable.eveilEffect_ChaHaeIn, 0));
+    		player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, GeneralVariable.eveilEffect_ChaHaeIn, 0, false, false));
+    		player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, GeneralVariable.eveilEffect_ChaHaeIn, 0, false, false));
     	}else {
-    		player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, GeneralVariable.noteveilEffect_ChaHaeIn, 0));
+    		player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, GeneralVariable.noteveilEffect_ChaHaeIn, 0, false, false));
     	}
     }
     public void getAbility(Player player) {

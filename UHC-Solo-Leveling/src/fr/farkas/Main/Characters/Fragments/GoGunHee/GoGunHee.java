@@ -42,9 +42,9 @@ public class GoGunHee extends Fragments {
     	}else {
     	if (!this.transformation) {
     		player.sendMessage("§6 You Activate Your Transformation");
-        	player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 20*30*3, 0)); // strength 1 for 30 seconds
-        	player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 20*30*3, 0)); // resistance 2 for 60 seconds
-        	player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20*30*3, 0)); // speed 1 for 30 seconds
+        	player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, 20*30*3, 0, false, false)); // strength 1 for 30 seconds
+        	player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 20*30*3, 0, false, false)); // resistance 2 for 60 seconds
+        	player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, 20*30*3, 0, false, false)); // speed 1 for 30 seconds
         	this.transformation = true;
         	player.setMaxHealth(player.getMaxHealth() - 2); // decreases maximum health by 2 hearts
         	player.setHealth(player.getMaxHealth()); // set current health to the new maximum health
@@ -64,7 +64,7 @@ public class GoGunHee extends Fragments {
     		player.removePotionEffect(PotionEffectType.DAMAGE_RESISTANCE);
     		player.removePotionEffect(PotionEffectType.INCREASE_DAMAGE);
     		player.removePotionEffect(PotionEffectType.SPEED);
-    		player.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 20*60*5, 0));
+    		player.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, 20*60*5, 0, false, false));
     	}
     	}
     	}

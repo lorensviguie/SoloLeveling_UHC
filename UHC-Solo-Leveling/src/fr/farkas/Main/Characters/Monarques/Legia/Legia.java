@@ -15,8 +15,8 @@ public class Legia extends Monarques{
 	public Legia(Player player, String key) {
 		super(player,"Legia");
         player.sendMessage(ChatColor.GREEN + "You are now playing as " + Legia.getDescription());
-        player.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, Integer.MAX_VALUE, 0));
-        player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, Integer.MAX_VALUE, 0));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, Integer.MAX_VALUE, 0, false, false));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, Integer.MAX_VALUE, 0, false, false));
         
 
         // Suppr for real
@@ -59,8 +59,8 @@ public class Legia extends Monarques{
     
     public void unLockPower() {
     	super.getPlayer().removePotionEffect(PotionEffectType.DAMAGE_RESISTANCE);
-    	super.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, Integer.MAX_VALUE, 0));
-    	super.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, Integer.MAX_VALUE, 1));
+    	super.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, Integer.MAX_VALUE, 0, false, false));
+    	super.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, Integer.MAX_VALUE, 1, false, false));
     }
     public void getAbility(Player player) {
     	player.sendMessage("§2Tu Legia Tu gagne avec les Monarques\n"

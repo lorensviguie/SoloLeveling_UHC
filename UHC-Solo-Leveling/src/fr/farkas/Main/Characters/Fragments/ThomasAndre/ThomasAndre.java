@@ -21,7 +21,7 @@ public class ThomasAndre extends Fragments {
         player.sendMessage(ChatColor.GREEN + "You are now playing as " + ThomasAndre.getDescription());
         this.name = "ThomasAndre";
         this.transformation = false;
-        player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, Integer.MAX_VALUE, 0)); // strength 1 for 30 seconds
+        player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, Integer.MAX_VALUE, 0, false, false)); // strength 1 for 30 seconds
         player.getInventory().addItem(Fragments.createMat(Material.NETHER_STAR, "§6Transformation"));
         transformation = false;
 	}
@@ -43,7 +43,7 @@ public class ThomasAndre extends Fragments {
     		player.setHealth(player.getHealth()+10);
     	}
     	this.transformation = true;
-    	player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 20*60*5, 0)); // resistance 2 for 60 seconds
+    	player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, 20*60*5, 0, false, false)); // resistance 2 for 60 seconds
     	new BukkitRunnable() {
         	@Override
         	public void run() {

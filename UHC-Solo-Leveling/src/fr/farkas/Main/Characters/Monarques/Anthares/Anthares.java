@@ -19,8 +19,8 @@ public class Anthares extends Monarques {
 	public Anthares(Player player, String key) {
 		super(player, "Anthares");
 		player.sendMessage(ChatColor.GREEN + "You are now playing as " + Anthares.getDescription());
-		player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, Integer.MAX_VALUE, 0));
-        player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, Integer.MAX_VALUE, 0));
+		player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, Integer.MAX_VALUE, 0, false, false));
+        player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, Integer.MAX_VALUE, 0, false, false));
         
 		// TODO Auto-generated constructor stub
 	}

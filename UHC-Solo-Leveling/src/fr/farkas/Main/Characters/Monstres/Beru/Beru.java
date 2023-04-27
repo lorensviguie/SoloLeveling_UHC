@@ -34,14 +34,14 @@ public class Beru extends Monstres{
     	if (power == 3) {//3 = force
     		power = 1;
     		player.removePotionEffect(PotionEffectType.INCREASE_DAMAGE);
-    		player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE,Integer.MAX_VALUE, 0));
+    		player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE,Integer.MAX_VALUE, 0, false, false));
     	}else if (power == 2) {//2 = speed
     		player.removePotionEffect(PotionEffectType.SPEED);
-    		player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE,Integer.MAX_VALUE, 0));
+    		player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE,Integer.MAX_VALUE, 0, false, false));
     		power = 3;
     	}else if (power == 1) {//1 = resistance
     		player.removePotionEffect(PotionEffectType.DAMAGE_RESISTANCE);
-    		player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED,Integer.MAX_VALUE, 0));
+    		player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED,Integer.MAX_VALUE, 0, false, false));
     		power = 2;
     	}
     }

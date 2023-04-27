@@ -28,7 +28,7 @@ public class Architecte extends Solos {
 		player.setHealth(24);
 		this.dreamornot = false;
 		player.getInventory().addItem(Fragments.createMat(Material.NETHER_STAR, "§0TP Yourself to DreamWorld"));
-		player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, Integer.MAX_VALUE, 0));
+		player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, Integer.MAX_VALUE, 0, false, false));
 		// TODO Auto-generated constructor stub
 	}
 	
@@ -53,8 +53,8 @@ public class Architecte extends Solos {
     		player.setNoDamageTicks(20*5);
     	}else {
     		this.dreamornot = true;
-    		player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, Integer.MAX_VALUE, 0));
-    		player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 0));
+    		player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, Integer.MAX_VALUE, 0, false, false));
+    		player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 0, false, false));
     		World dreamWorld = Bukkit.getWorld("world_the_end");
     		Location location = new Location(dreamWorld, 0, 63, 0);
     		player.teleport(location);

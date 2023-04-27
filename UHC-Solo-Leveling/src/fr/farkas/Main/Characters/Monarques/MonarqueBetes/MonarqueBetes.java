@@ -81,8 +81,8 @@ public class MonarqueBetes extends Monarques{
     	}
     	this.currentForme = "loup";
 		super.getPlayer().sendMessage("§6You tooked Wolf forme");
-    	super.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 0));
-    	super.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, Integer.MAX_VALUE, 0));
+    	super.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 0, false, false));
+    	super.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, Integer.MAX_VALUE, 0, false, false));
     }
     
     
@@ -98,7 +98,7 @@ public class MonarqueBetes extends Monarques{
     	this.currentForme = "ours";
 		super.getPlayer().sendMessage("§6You tooked Bear forme");
     	super.getPlayer().setMaxHealth(26);
-    	super.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, Integer.MAX_VALUE, 0));
+    	super.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, Integer.MAX_VALUE, 0, false, false));
     	if(super.getPlayer().getHealth() == 20) {
         	super.getPlayer().setHealth(26);
     	}
@@ -125,9 +125,9 @@ public class MonarqueBetes extends Monarques{
         	if(super.getPlayer().getHealth() == 20) {
             	super.getPlayer().setHealth(26);
         	}
-        	super.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, GeneralVariable.ultimeEffect_MonarqueBetes, 0));
-        	super.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, GeneralVariable.ultimeEffect_MonarqueBetes, 0));
-        	super.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, GeneralVariable.ultimeEffect_MonarqueBetes, 0));
+        	super.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE, GeneralVariable.ultimeEffect_MonarqueBetes, 0, false, false));
+        	super.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.SPEED, GeneralVariable.ultimeEffect_MonarqueBetes, 0, false, false));
+        	super.getPlayer().addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, GeneralVariable.ultimeEffect_MonarqueBetes, 0, false, false));
         	
         	Player player = super.getPlayer();
         	

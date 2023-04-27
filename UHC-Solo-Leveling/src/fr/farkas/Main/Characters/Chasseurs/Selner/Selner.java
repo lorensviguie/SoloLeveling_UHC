@@ -71,7 +71,7 @@ public class Selner extends Chasseurs {
         	}
         	else {
         		day = days;
-            player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 20 * 5, 0));
+            player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, 20 * 5, 0, false, false));
         }
     	}
     }
