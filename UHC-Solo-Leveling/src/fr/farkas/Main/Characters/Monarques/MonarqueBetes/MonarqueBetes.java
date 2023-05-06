@@ -10,10 +10,8 @@ import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import fr.farkas.Main.Start;
-import fr.farkas.Main.Characters.DistribRole;
 import fr.farkas.Main.Characters.Monarques.Monarques;
 import fr.farkas.Main.General.GeneralVariable;
-import fr.farkas.Main.General.World.Portal;
 
 public class MonarqueBetes extends Monarques{
 	

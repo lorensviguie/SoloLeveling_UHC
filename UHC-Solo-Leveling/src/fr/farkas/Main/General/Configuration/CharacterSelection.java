@@ -38,6 +38,11 @@ public class CharacterSelection {
 		}else {
 			inventory.setItem(2, createMat(Material.IRON_BLOCK, "ThomasAndre"));
 		}
+		if (CharacterList.contains("ChristopherReed")) {
+			inventory.setItem(3, createMat(Material.GOLD_BLOCK, "ChristopherReed"));
+		}else {
+			inventory.setItem(3, createMat(Material.IRON_BLOCK, "ChristopherReed"));
+		}
 		if (CharacterList.contains("Anthares")) {
 			inventory.setItem(9, createMat(Material.GOLD_BLOCK, "Anthares"));
 		}else {
@@ -82,6 +87,11 @@ public class CharacterSelection {
 			inventory.setItem(20, createMat(Material.GOLD_BLOCK, "ChaHaeIn"));
 		}else {
 			inventory.setItem(20, createMat(Material.IRON_BLOCK, "ChaHaeIn"));
+		}
+		if (CharacterList.contains("LiuZhigang")) {
+			inventory.setItem(21, createMat(Material.GOLD_BLOCK, "LiuZhigang"));
+		}else {
+			inventory.setItem(21, createMat(Material.IRON_BLOCK, "LiuZhigang"));
 		}
 	}
     public void CharacterListclick(InventoryClickEvent event) {

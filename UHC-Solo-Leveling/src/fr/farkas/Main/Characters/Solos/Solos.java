@@ -6,7 +6,6 @@ import java.util.List;
 import org.bukkit.entity.Player;
 
 import fr.farkas.Main.Characters.Character;
-import fr.farkas.Main.Characters.Monstres.Monstres;
 
 public class Solos extends Character{
 	

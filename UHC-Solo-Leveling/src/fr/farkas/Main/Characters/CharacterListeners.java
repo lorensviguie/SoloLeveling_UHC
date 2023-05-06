@@ -4,6 +4,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 import fr.farkas.Main.Characters.Chasseurs.ChaHaeIn.ChaHaeIn;
+import fr.farkas.Main.Characters.Chasseurs.LiuZhigang.LiuZhigang;
+import fr.farkas.Main.Characters.Fragments.ChristopherReed.ChristopherReed;
 import fr.farkas.Main.Characters.Fragments.GoGunHee.GoGunHee;
 import fr.farkas.Main.Characters.Fragments.ThomasAndre.ThomasAndre;
 import fr.farkas.Main.Characters.Monarques.MonarqueBetes.MonarqueBetes;
@@ -38,6 +40,13 @@ public class CharacterListeners {
 			}else {
 			}
 		}
+		if ((game.getCharacterManager().getCharacterName(player).equals("ChristopherReed"))) {
+			if (event.getItem() != null &&event.getItem().getItemMeta().getDisplayName() == "§6Transformation") {
+				ChristopherReed christopherReed = (ChristopherReed) characterManager.getCharacter(player);
+				christopherReed.useability(game.getPlugin());
+			}else {
+			}
+		}
 		if ((game.getCharacterManager().getCharacterName(player).equals("Architect"))) {
 			if (event.getItem() != null &&event.getItem().getItemMeta().getDisplayName() == "§0TP Yourself to DreamWorld") {
 				Architecte architecte = (Architecte) characterManager.getCharacter(player);
@@ -64,6 +73,12 @@ public class CharacterListeners {
 			if (event.getItem() != null &&event.getItem().getItemMeta().getDisplayName() == "§6Light Power") {
 				ChaHaeIn chaHaeIn = (ChaHaeIn) characterManager.getCharacter(player);
 				chaHaeIn.useability(game.getPlugin());
+			}
+		}
+		if ((game.getCharacterManager().getCharacterName(player).equals("LiuZhigang"))) {
+			if (event.getItem() != null &&event.getItem().getItemMeta().getDisplayName() == "§6Power") {
+				LiuZhigang liuZhigang = (LiuZhigang) characterManager.getCharacter(player);
+				liuZhigang.useability(game.getPlugin(),event);
 			}
 		}
 		

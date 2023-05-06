@@ -9,7 +9,6 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import fr.farkas.Main.Characters.Character;
-import fr.farkas.Main.Characters.Monstres.Monstres;
 
 public class Fragments extends Character{
 	

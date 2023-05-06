@@ -11,6 +11,7 @@ import fr.farkas.Main.Start;
 import fr.farkas.Main.Characters.CharacterManager;
 import fr.farkas.Main.Characters.Chasseurs.ChaHaeIn.ChaHaeIn;
 import fr.farkas.Main.Characters.Chasseurs.Selner.Selner;
+import fr.farkas.Main.Characters.Fragments.ChristopherReed.ChristopherReed;
 import fr.farkas.Main.Characters.Monarques.ListMonarques;
 import fr.farkas.Main.Characters.SungJinWoo.DarkPower;
 import fr.farkas.Main.Characters.SungJinWoo.ShadowPower;
@@ -92,6 +93,14 @@ public class SlDarkCommands implements CommandExecutor {
         		}
         	}
         	return true;
+        }
+        if (args[0].equalsIgnoreCase("Fire")) {
+        	if (!(characterManager.getCharacterName(player).equals("ChristopherReed"))) {
+        		player.sendMessage(ChatColor.RED + "You must be Christopher Reed as Selner to use this command.");
+        	}else {
+        		ChristopherReed christopherReed = (ChristopherReed) characterManager.getCharacter(player);
+        		christopherReed.setFire(player);
+        	}
         }
         
         if (args[0].equalsIgnoreCase("dark")) {

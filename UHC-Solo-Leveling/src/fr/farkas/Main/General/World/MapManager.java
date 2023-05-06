@@ -39,7 +39,7 @@ public class MapManager {
 	public World takeLobby() {
 		return world;
 	}
-	public void RegenArea() {
+	public void RegenArea(Player player) {
 		World Area = Bukkit.getWorld("Game");
 		Bukkit.unloadWorld(Area, false);
 		File worldFolder = Area.getWorldFolder();
@@ -50,6 +50,7 @@ public class MapManager {
 		creator.seed(new Random().nextLong());
 		World newWorld = Bukkit.createWorld(creator);
 		newWorld.getPopulators().add(new GenerateRoof());
+		player.sendMessage("§6Map IS READY");
 	}
 
 	

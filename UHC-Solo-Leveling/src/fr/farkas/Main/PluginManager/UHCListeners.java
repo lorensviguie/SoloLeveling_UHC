@@ -34,7 +34,9 @@ import org.bukkit.potion.PotionEffectType;
 import fr.farkas.Main.Characters.CharacterListeners;
 import fr.farkas.Main.Characters.CharacterManager;
 import fr.farkas.Main.Characters.Chasseurs.ChaHaeIn.ChaHaeIn;
+import fr.farkas.Main.Characters.Chasseurs.LiuZhigang.LiuZhigang;
 import fr.farkas.Main.Characters.Chasseurs.Selner.Selner;
+import fr.farkas.Main.Characters.Fragments.ChristopherReed.ChristopherReed;
 import fr.farkas.Main.Characters.Fragments.GoGunHee.GoGunHee;
 import fr.farkas.Main.Characters.Fragments.ThomasAndre.ThomasAndre;
 import fr.farkas.Main.Characters.Monarques.Legia.Legia;
@@ -178,9 +180,15 @@ public class UHCListeners implements Listener {
 	        	}
 	        }
 	        if ((characterManager.getCharacterName(attacker).equals("Beru"))) {
-	            if (Math.random() < 0.2) { // 10% chance
+	            if (Math.random() < 0.2) { // 20% chance
 	                PotionEffect poisonEffect = new PotionEffect(PotionEffectType.POISON, 2 * 40, 0);
 	                victim.addPotionEffect(poisonEffect);
+	            }
+	        }
+	        if ((characterManager.getCharacterName(attacker).equals("ChristopherReed"))) {
+	        	ChristopherReed christopherReed = (ChristopherReed) characterManager.getCharacter(attacker);
+	            if (christopherReed.getFire()) { 
+	                victim.setFireTicks(200);
 	            }
 	        }
 	        // Insérez le code à exécuter lorsque le joueur attaque un autre joueur ici
@@ -314,6 +322,12 @@ public class UHCListeners implements Listener {
         if (killer instanceof Player) {
         	Player attacker = (Player) killer;
         	player.teleport(attacker.getLocation());
+        	if (characterManager.getCharacterName(attacker).equalsIgnoreCase("LiuZhigang")) {
+        		LiuZhigang liuZhigang = (LiuZhigang) characterManager.getCharacter(attacker);
+        		if(characterManager.getCharacter(player).getCamp() == 5 ){
+        			liuZhigang.setEveil(attacker);
+        		}
+        	}
         }else {
         	player.teleport(Bukkit.getWorld("Game").getSpawnLocation());
         }

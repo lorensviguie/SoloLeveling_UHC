@@ -1,14 +1,11 @@
 package fr.farkas.Main.Characters.Monarques.Anthares;
 
-import java.util.List;
-
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import fr.farkas.Main.Characters.Monarques.Monarques;
-import fr.farkas.Main.Characters.Solos.Solos;
 
 public class Anthares extends Monarques {
 

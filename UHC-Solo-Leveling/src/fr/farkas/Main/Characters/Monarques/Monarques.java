@@ -4,11 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.entity.Player;
-import org.bukkit.potion.PotionEffectType;
 
 import fr.farkas.Main.Characters.Character;
 import fr.farkas.Main.Characters.CharacterManager;
-import fr.farkas.Main.Characters.Monstres.Monstres;
 import fr.farkas.Main.Characters.Solos.Solos;
 
 public class Monarques extends Character{
