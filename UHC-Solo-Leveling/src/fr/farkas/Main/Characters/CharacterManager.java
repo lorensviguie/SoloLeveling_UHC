@@ -7,6 +7,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
 import fr.farkas.Main.Start;
+import fr.farkas.Main.Characters.Chasseurs.WooChinjul.WooChinjul;
 import fr.farkas.Main.Characters.SungJinWoo.DarkPower;
 
 public class CharacterManager {
@@ -35,6 +36,16 @@ public class CharacterManager {
     public String getCharacterName(Player player) {
         return playerCharacters.get(player).getName();
     }
+    public Player getPlayerWithWooChinjul() {
+        for (Map.Entry<Player, Character> entry : playerCharacters.entrySet()) {
+            if (entry.getValue() instanceof WooChinjul) {
+                return entry.getKey();
+            }
+        }
+        return null; // no player found with WooChinjul character
+    }
+
+
     public Character getCharacter(Player player) {
         return playerCharacters.get(player);
     }
@@ -42,6 +53,7 @@ public class CharacterManager {
     public void clearAll() {
         playerCharacters.clear();
     }
+    
 
     public void removeDeadCharacters() {
         playerCharacters.entrySet().removeIf(entry -> {

@@ -36,6 +36,7 @@ import fr.farkas.Main.Characters.CharacterManager;
 import fr.farkas.Main.Characters.Chasseurs.ChaHaeIn.ChaHaeIn;
 import fr.farkas.Main.Characters.Chasseurs.LiuZhigang.LiuZhigang;
 import fr.farkas.Main.Characters.Chasseurs.Selner.Selner;
+import fr.farkas.Main.Characters.Chasseurs.WooChinjul.WooChinjul;
 import fr.farkas.Main.Characters.Fragments.ChristopherReed.ChristopherReed;
 import fr.farkas.Main.Characters.Fragments.GoGunHee.GoGunHee;
 import fr.farkas.Main.Characters.Fragments.ThomasAndre.ThomasAndre;
@@ -49,7 +50,7 @@ import fr.farkas.Main.General.World.MapManager;
 
 public class UHCListeners implements Listener {
 		
-    private CharacterManager characterManager;
+	private CharacterManager characterManager;
     private BasicInventoryConfig basicinventoryconfig;
     private MapManager mapManager;
     private Game game;
@@ -328,6 +329,10 @@ public class UHCListeners implements Listener {
         			liuZhigang.setEveil(attacker);
         		}
         	}
+        	Player woochinjul = characterManager.getPlayerWithWooChinjul();
+        	WooChinjul wooChinjul = (WooChinjul) characterManager.getCharacter(woochinjul);
+        	wooChinjul.addArrowIndicator(woochinjul, attacker,game.getPlugin());
+        	
         }else {
         	player.teleport(Bukkit.getWorld("Game").getSpawnLocation());
         }

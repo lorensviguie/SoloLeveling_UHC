@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 import fr.farkas.Main.Characters.Chasseurs.ChaHaeIn.ChaHaeIn;
 import fr.farkas.Main.Characters.Chasseurs.LiuZhigang.LiuZhigang;
 import fr.farkas.Main.Characters.Chasseurs.Selner.Selner;
+import fr.farkas.Main.Characters.Chasseurs.WooChinjul.WooChinjul;
 import fr.farkas.Main.Characters.Fragments.ChristopherReed.ChristopherReed;
 import fr.farkas.Main.Characters.Fragments.GoGunHee.GoGunHee;
 import fr.farkas.Main.Characters.Fragments.ThomasAndre.ThomasAndre;
@@ -44,6 +45,10 @@ public class DistribRole {
 			return new Selner(player, name);
 		case "LiuZhigang":
 			return new LiuZhigang(player, name);
+		case "WooChinjul":
+			return new WooChinjul(player, name);
+			
+			
 		// Fragment
 		case "ThomasAndre":
 			return new ThomasAndre(player, name);
