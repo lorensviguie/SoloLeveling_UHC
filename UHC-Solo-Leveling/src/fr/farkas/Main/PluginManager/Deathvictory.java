@@ -20,7 +20,7 @@ public  class Deathvictory {
 	@SuppressWarnings("deprecation")
 	public static void Victory(Player player, CharacterManager characterManager, Game game, CharacterListeners characterListeners, MapManager mapManager) {
 		HashMap<Integer, Integer> campCount = new HashMap<>();
-		for (int i = 1; i <= 5; i++) {
+		for (int i = 1; i <= 6; i++) {
 		    campCount.put(i, 0);
 		}
 		for(Player play : mapManager.getWorld().getPlayers()) {
@@ -35,7 +35,7 @@ public  class Deathvictory {
 		System.out.println(campCount);
 		int numCampsAlive = 0;
 		int winningCamp = -1;
-		for (int i = 1; i <= 5; i++) {
+		for (int i = 1; i <= 6; i++) {
 		    if (campCount.get(i) > 0) {
 		        numCampsAlive++;
 		        winningCamp = i;
@@ -53,6 +53,8 @@ public  class Deathvictory {
 		    	message = "§cThe Monster player has won!";
 		    } else if(campCount.get(4) == 1){
 		        message = "§1The solo player has won!";
+		    }else if(winningCamp == 6) {
+		    	message = "§1Solo Sung Jin Woo has won!";
 		    }
 		    if (message != "") {
 			    for (Player playeres : Bukkit.getOnlinePlayers()) {

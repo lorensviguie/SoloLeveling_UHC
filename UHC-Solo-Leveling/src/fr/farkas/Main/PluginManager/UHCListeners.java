@@ -17,6 +17,8 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.inventory.CraftItemEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
@@ -45,6 +47,7 @@ import fr.farkas.Main.Characters.Monarques.MonarqueBetes.MonarqueBetes;
 import fr.farkas.Main.Characters.Solos.Architecte.Architecte;
 import fr.farkas.Main.Characters.SungJinWoo.SungJinWoo;
 import fr.farkas.Main.General.Game;
+import fr.farkas.Main.General.Tptogame;
 import fr.farkas.Main.General.Configuration.BasicInventoryConfig;
 import fr.farkas.Main.General.World.MapManager;
 
@@ -314,13 +317,35 @@ public class UHCListeners implements Listener {
 	}
     @EventHandler
     public void onDeath(PlayerDeathEvent event) {
-        Player player = event.getEntity();
-        Entity killer = player.getKiller();
+    	Player player = event.getEntity();
+    	Entity killer = player.getKiller();
+    	if (killer instanceof Player) {
+    	if ((characterManager.getCharacterName(player).equalsIgnoreCase("SungJinWoo")&& characterManager.getBlackHearth()== true)||(characterManager.getCharacterName(player).equalsIgnoreCase("Architect")&& characterManager.getBlackHearth() == true)) {
+    		event.setKeepInventory(true);
+    		characterManager.setBlackHearth(false);
+    		Player attacker = (Player) killer;
+    		if (characterManager.getCharacterName(player).equalsIgnoreCase("SungJinWoo")) {
+    			attacker.setMaxHealth(30);
+    			player.spigot().respawn();
+    			Tptogame.TPtoGame(player);
+    			Tptogame.TPtoGame(attacker);
+    		}else {
+    			player.spigot().respawn();
+    			Tptogame.TPtoGame(player);
+    			Tptogame.TPtoGame(attacker);
+    			Architecte architect = (Architecte) characterManager.getCharacter(player);
+    			architect.Igris(player);
+    			SungJinWoo sungJinWoo = (SungJinWoo) characterManager.getCharacter(attacker);
+    			sungJinWoo.MonarquesOmbres();
+    		}
+    		event.setKeepInventory(false);
+    		return;
+    	}else {
+        
         player.setMaxHealth(20);
-        player.getInventory().clear();
         player.spigot().respawn();
         player.setGameMode(GameMode.SPECTATOR);
-        if (killer instanceof Player) {
+        
         	Player attacker = (Player) killer;
         	player.teleport(attacker.getLocation());
         	if (characterManager.getCharacterName(attacker).equalsIgnoreCase("LiuZhigang")) {
@@ -329,11 +354,13 @@ public class UHCListeners implements Listener {
         			liuZhigang.setEveil(attacker);
         		}
         	}
+        	if (characterManager.getPlayerWithWooChinjul() != null) {
         	Player woochinjul = characterManager.getPlayerWithWooChinjul();
         	WooChinjul wooChinjul = (WooChinjul) characterManager.getCharacter(woochinjul);
         	wooChinjul.addArrowIndicator(woochinjul, attacker,game.getPlugin());
-        	
-        }else {
+        	}
+        }
+    	}else {
         	player.teleport(Bukkit.getWorld("Game").getSpawnLocation());
         }
 
@@ -362,5 +389,19 @@ private boolean isArmor(Material material) {
            material.name().endsWith("_CHESTPLATE") ||
            material.name().endsWith("_LEGGINGS") ||
            material.name().endsWith("_BOOTS");
+}
+
+
+@EventHandler
+public void fall(EntityDamageEvent e) {
+    if (e.getCause() != DamageCause.FALL) {
+        return; // not fall damage.
+    }
+
+    if (!(e.getEntity() instanceof Player)) {
+        return; // not a player
+    }
+
+    e.setCancelled(true);
 }
 }

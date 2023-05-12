@@ -7,7 +7,10 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
@@ -50,7 +53,7 @@ public class Architecte extends Solos {
     		int z = (int)(Math.random() * 1000) - 500;
     		Location loc = new Location(world, x, 150, z);
     		player.teleport(loc);
-    		player.setNoDamageTicks(20*5);
+    		player.setNoDamageTicks(20*10);
     	}else {
     		this.dreamornot = true;
     		player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, Integer.MAX_VALUE, 0, false, false));
@@ -61,7 +64,7 @@ public class Architecte extends Solos {
     	}
     }
     public void tpalltodream(Player playere) {
-    	World world = Bukkit.getWorld("Area");
+    	World world = Bukkit.getWorld("Game");
     	List<Player> players = world.getPlayers();
     	world = Bukkit.getWorld("world_the_end");
         for (Player player : players) {
@@ -72,5 +75,29 @@ public class Architecte extends Solos {
                 player.teleport(location);
             }
         }
+    }
+    
+    public void BlackHearth(Player Archi, Player Sung) {
+    	World world = Bukkit.getWorld("world_the_end");
+    	Location location1 = new Location(world, 10, 63, 10);
+    	Location location2 = new Location(world, -10, 63, -10);
+    	Archi.teleport(location1);
+    	Sung.teleport(location2);
+    	
+    }
+    public void Igris(Player player) {
+    	setCamp(6);
+    	player.sendMessage("§5 Tu gagne Maintenant avec SungJinWoo et tu devient Igris");
+    	player.addPotionEffect(new PotionEffect(PotionEffectType.SPEED, Integer.MAX_VALUE, 0, false, false));
+    	ItemStack diamondSword = new ItemStack(Material.DIAMOND_SWORD);
+        ItemMeta swordMeta = diamondSword.getItemMeta();
+
+        swordMeta.setDisplayName(ChatColor.YELLOW + "§bBaran Sword");
+
+        swordMeta.addEnchant(Enchantment.DAMAGE_ALL, 3, true);
+
+        diamondSword.setItemMeta(swordMeta);
+
+        player.getInventory().addItem(diamondSword);;
     }
 }

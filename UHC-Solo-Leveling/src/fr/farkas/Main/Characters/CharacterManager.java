@@ -3,20 +3,17 @@ package fr.farkas.Main.Characters;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
-import fr.farkas.Main.Start;
 import fr.farkas.Main.Characters.Chasseurs.WooChinjul.WooChinjul;
-import fr.farkas.Main.Characters.SungJinWoo.DarkPower;
+import fr.farkas.Main.Characters.SungJinWoo.SungJinWoo;
 
 public class CharacterManager {
     private static Map<Player, Character> playerCharacters;
-    private DarkPower darkPower;
+
+    private Boolean BlackHearth = false; 
     
-    public void SungJinWoo(Start plugin) {
-        this.darkPower = new DarkPower(plugin);
-    }
+
     public CharacterManager() {
         playerCharacters = new HashMap<>();
     }
@@ -39,6 +36,14 @@ public class CharacterManager {
     public Player getPlayerWithWooChinjul() {
         for (Map.Entry<Player, Character> entry : playerCharacters.entrySet()) {
             if (entry.getValue() instanceof WooChinjul) {
+                return entry.getKey();
+            }
+        }
+        return null; // no player found with WooChinjul character
+    }
+    public Player getPlayerWithSungJinWoo() {
+        for (Map.Entry<Player, Character> entry : playerCharacters.entrySet()) {
+            if (entry.getValue() instanceof SungJinWoo) {
                 return entry.getKey();
             }
         }
@@ -78,15 +83,10 @@ public class CharacterManager {
 	public void specialAbility(Player player) {		
 	}
 	
-    public void useAbility(Player player) {
-        if (darkPower.canUseAbility(player)) {
-            darkPower.useAbility(player);
-        } else {
-            long lastDarkTime = darkPower.getLastDarkTime(player);
-            long timeSinceLastDark = System.currentTimeMillis() - lastDarkTime;
-            long remainingTime = 120000 - timeSinceLastDark;
-            int seconds = (int) (remainingTime / 1000);
-            player.sendMessage(ChatColor.RED + "You cannot use the dark ability yet. Please wait " + seconds + " seconds.");
-        }
-    }
+	public Boolean getBlackHearth() {
+		return BlackHearth;
+	}
+	public void setBlackHearth(Boolean blackHearth) {
+		BlackHearth = blackHearth;
+	}
 }
