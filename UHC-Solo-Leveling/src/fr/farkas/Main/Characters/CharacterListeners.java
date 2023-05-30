@@ -10,6 +10,7 @@ import fr.farkas.Main.Characters.Fragments.GoGunHee.GoGunHee;
 import fr.farkas.Main.Characters.Fragments.ThomasAndre.ThomasAndre;
 import fr.farkas.Main.Characters.Monarques.MonarqueBetes.MonarqueBetes;
 import fr.farkas.Main.Characters.Monstres.Beru.Beru;
+import fr.farkas.Main.Characters.Monstres.Vulcan.Vulcan;
 import fr.farkas.Main.Characters.Solos.Architecte.Architecte;
 import fr.farkas.Main.General.Game;
 
@@ -26,6 +27,14 @@ public class CharacterListeners {
 	public void CharacterClick(PlayerInteractEvent event,Player player) {
 	
 		System.out.println(game.getCharacterManager().getCharacterName(player));
+		
+		if ((game.getCharacterManager().getCharacterName(player).equals("Vulcan"))) {
+			if (event.getItem() != null &&event.getItem().getItemMeta().getDisplayName() == "§6Rage") {
+				Vulcan vulcan = (Vulcan) characterManager.getCharacter(player);
+				vulcan.useability(game.getPlugin());
+			}
+		}
+		
 		if ((game.getCharacterManager().getCharacterName(player).equals("GoGunHee"))) {
 			if (event.getItem() != null &&event.getItem().getItemMeta().getDisplayName() == "§6Transformation") {
 				GoGunHee goGunHee = (GoGunHee) characterManager.getCharacter(player);
@@ -60,7 +69,7 @@ public class CharacterListeners {
 		if ((game.getCharacterManager().getCharacterName(player).equals("Beru"))) {
 			if (event.getItem() != null &&event.getItem().getItemMeta().getDisplayName() == "§6Evovle") {
 				Beru beru = (Beru) characterManager.getCharacter(player);
-				beru.useability(game.getPlugin());;
+				beru.useability(game.getPlugin());
 			}
 		}
 		if ((game.getCharacterManager().getCharacterName(player).equals("MonarqueBetes"))) {

@@ -98,6 +98,11 @@ public class CharacterSelection {
 		}else {
 			inventory.setItem(13, createMat(Material.IRON_BLOCK, "WooChinjul"));
 		}
+		if (CharacterList.contains("Vulcan")) {
+			inventory.setItem(21, createMat(Material.GOLD_BLOCK, "Vulcan"));
+		}else {
+			inventory.setItem(21, createMat(Material.IRON_BLOCK, "Vulcan"));
+		}
 	}
     public void CharacterListclick(InventoryClickEvent event) {
     	Inventory inv = event.getInventory();

@@ -17,6 +17,7 @@ import fr.farkas.Main.Characters.Monarques.Anthares.Anthares;
 import fr.farkas.Main.Characters.Monarques.Legia.Legia;
 import fr.farkas.Main.Characters.Monarques.MonarqueBetes.MonarqueBetes;
 import fr.farkas.Main.Characters.Monstres.Beru.Beru;
+import fr.farkas.Main.Characters.Monstres.Vulcan.Vulcan;
 import fr.farkas.Main.Characters.Solos.Architecte.Architecte;
 import fr.farkas.Main.Characters.SungJinWoo.SungJinWoo;
 
@@ -74,6 +75,8 @@ public class DistribRole {
 		// Monstre
 		case "Beru":
 			return new Beru(player, name);
+		case "Vulcan":
+			return new Vulcan(player, name);
 		default:
 			return null;
 		}

@@ -50,5 +50,8 @@ public class GeneralVariable {
 	// -------------------------------- Monarque des Bêtes --------->
 	public static int ultimeEffect_MonarqueBetes = isDebug ? (10*sec)*ticToSec : (5*min)*ticToSec;
 	public static int ultimeCooldown_MonarqueBetes = isDebug ? (10*sec)*ticToSec : (20*min)*ticToSec;
+	
+	// ------------------------------------- Vulcan -------------->
+	public static int abilityDuration_Vulcan = isDebug ? (1*min)*ticToSec : (1*min)*ticToSec;
 
 }
