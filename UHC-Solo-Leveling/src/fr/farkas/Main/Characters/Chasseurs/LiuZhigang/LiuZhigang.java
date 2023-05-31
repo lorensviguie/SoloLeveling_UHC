@@ -12,6 +12,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import fr.farkas.Main.Characters.Roles;
 import fr.farkas.Main.Characters.Chasseurs.Chasseurs;
 import fr.farkas.Main.Characters.Fragments.Fragments;
 
@@ -22,9 +23,9 @@ public class LiuZhigang extends Chasseurs {
     private Boolean Eveil;
 	
 	public LiuZhigang(Player player, String key) {
-		super(player, "Liu Zhigang");
+		super(player, Roles.LIUZHIGANG);
         player.sendMessage(ChatColor.GREEN + "You are now playing as " + LiuZhigang.getDescription());
-        this.name = "LiuZhigang";
+        this.name = Roles.LIUZHIGANG;
         player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, Integer.MAX_VALUE, 0, false, false));
         this.Eveil = false;
 	}

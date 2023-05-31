@@ -25,7 +25,6 @@ public class DistribRole {
 	public static void giveRole(List<String> roles, CharacterManager characterManager) {
 		@SuppressWarnings("unchecked")
 		List<Player> noRolePlayers = (List<Player>) Bukkit.getOnlinePlayers();
-		System.out.print("distrib");
 		for(Player player : noRolePlayers) {
 			Random r = new Random();
 			int rNum = r.nextInt(roles.size());
@@ -38,44 +37,45 @@ public class DistribRole {
 	
 	public static Character convertNameToRole(String name, Player player) {
 		System.out.print(name + " " + player.getName());
+		
 		switch (name){
 		// Chasseur
-		case "ChaHaeIn":
+		case Roles.CHAHAEIN:
 			return new ChaHaeIn(player, name);
-		case "Selner":
+		case Roles.SELNER:
 			return new Selner(player, name);
-		case "LiuZhigang":
+		case Roles.LIUZHIGANG:
 			return new LiuZhigang(player, name);
-		case "WooChinjul":
+		case Roles.WOOCHINJUL:
 			return new WooChinjul(player, name);
 			
 			
 		// Fragment
-		case "ThomasAndre":
+		case Roles.THOMASANDRE:
 			return new ThomasAndre(player, name);
-		case "GoGunHee":
+		case Roles.GOGUNHEE:
 			return new GoGunHee(player, name);
-		case "ChristopherReed":
+		case Roles.CHRISTOPHERREED:
 			return new ChristopherReed(player, name);
 
 		// Mornaques
-		case "Anthares":
+		case Roles.ANTHARES:
 			return new Anthares(player, name);
-		case "Legia":
+		case Roles.LEGIA:
 			return new Legia(player, name);
-		case "MonarqueBetes":
+		case Roles.MONARQUEBETES:
 			return new MonarqueBetes(player, name);
 
 		// Solo
-		case "Architect":
+		case Roles.ARCHITECT:
 			return new Architecte(player, name);
-		case "SungJinWoo":
+		case Roles.SUNGJINWOO:
 			return new SungJinWoo(player, name);
 			
 		// Monstre
-		case "Beru":
+		case Roles.BERU:
 			return new Beru(player, name);
-		case "Vulcan":
+		case Roles.VULCAN:
 			return new Vulcan(player, name);
 		default:
 			return null;

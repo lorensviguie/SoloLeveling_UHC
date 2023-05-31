@@ -6,6 +6,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import fr.farkas.Main.Characters.Character;
+import fr.farkas.Main.Characters.Roles;
 
 public class SungJinWoo extends Character {
 
@@ -16,11 +17,11 @@ public class SungJinWoo extends Character {
     private Player Player;
     
     public SungJinWoo(Player player, String key) {
-        super(player, "SungJinWoo");
+        super(player, Roles.SUNGJINWOO);
         player.sendMessage(ChatColor.GREEN + "You are now playing as " + SungJinWoo.getDescription());
         player.setMaxHealth(20.0);
         player.setHealth(player.getMaxHealth());
-        this.name = "SungJinWoo";
+        this.name = Roles.SUNGJINWOO;
         player.addPotionEffect(new PotionEffect(PotionEffectType.WEAKNESS, Integer.MAX_VALUE, 0, false, false));
         setCamp(1);
         this.Eveil = false;

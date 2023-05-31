@@ -8,6 +8,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import fr.farkas.Main.Characters.Roles;
 import fr.farkas.Main.Characters.Fragments.Fragments;
 
 public class ChristopherReed extends Fragments {
@@ -18,8 +19,8 @@ public class ChristopherReed extends Fragments {
     private Boolean Fire;
 	
 	public ChristopherReed(Player player, String key) {
-		super(player, "Christopher Reed");
-        this.name = "ChristopherReed";
+		super(player, Roles.CHRISTOPHERREED);
+        this.name = Roles.CHRISTOPHERREED;
         this.transformation = false;
         this.Fire = false;
         player.sendMessage(ChatColor.GREEN + "You are now playing as " + ChristopherReed.getDescription());

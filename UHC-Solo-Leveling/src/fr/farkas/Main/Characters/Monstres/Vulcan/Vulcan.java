@@ -9,6 +9,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import fr.farkas.Main.Characters.Roles;
 import fr.farkas.Main.Characters.Monstres.Monstres;
 import fr.farkas.Main.General.GeneralVariable;
 
@@ -17,9 +18,9 @@ public class Vulcan extends Monstres{
 	private String name;
 
 	public Vulcan(Player player, String key) {
-		super(player, "Vulcan");
+		super(player, Roles.VULCAN);
         player.sendMessage(ChatColor.GREEN + "You are now playing as " + Vulcan.getDescription());
-        this.name = "Vulcan";
+        this.name = Roles.VULCAN;
         
 		player.addPotionEffect(new PotionEffect(PotionEffectType.DAMAGE_RESISTANCE,Integer.MAX_VALUE, 0, false, false));
         player.getInventory().addItem(Monstres.createMat(Material.NETHER_STAR, "§6Rage"));

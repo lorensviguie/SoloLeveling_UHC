@@ -8,6 +8,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import fr.farkas.Main.Characters.Roles;
 import fr.farkas.Main.Characters.Fragments.Fragments;
 
 public class ThomasAndre extends Fragments {
@@ -17,9 +18,9 @@ public class ThomasAndre extends Fragments {
     private Boolean transformation;
 
 	public ThomasAndre(Player player, String key) {
-        super(player, "ThomasAndre");
+        super(player, Roles.THOMASANDRE);
         player.sendMessage(ChatColor.GREEN + "You are now playing as " + ThomasAndre.getDescription());
-        this.name = "ThomasAndre";
+        this.name = Roles.THOMASANDRE;
         this.transformation = false;
         player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, Integer.MAX_VALUE, 0, false, false)); // strength 1 for 30 seconds
         player.getInventory().addItem(Fragments.createMat(Material.NETHER_STAR, "§6Transformation"));

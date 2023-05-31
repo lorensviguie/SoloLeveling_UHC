@@ -8,6 +8,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.scheduler.BukkitRunnable;
 
+import fr.farkas.Main.Characters.Roles;
 import fr.farkas.Main.Characters.Fragments.Fragments;
 import fr.farkas.Main.General.GeneralVariable;
 
@@ -18,9 +19,9 @@ public class GoGunHee extends Fragments {
     private Boolean transformation;
 
     public GoGunHee(Player player, String key) {
-        super(player, "GoGunHee");
+        super(player, Roles.GOGUNHEE);
         player.sendMessage(ChatColor.GREEN + "You are now playing as " + GoGunHee.getDescription());
-        this.name = "GoGunHee";
+        this.name = Roles.GOGUNHEE;
         this.transformation = false;
         player.getInventory().addItem(Fragments.createMat(Material.NETHER_STAR, "§6Transformation"));
     }

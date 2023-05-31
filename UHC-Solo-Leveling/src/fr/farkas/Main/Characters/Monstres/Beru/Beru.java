@@ -7,6 +7,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import fr.farkas.Main.Characters.Roles;
 import fr.farkas.Main.Characters.Monstres.Monstres;
 
 public class Beru extends Monstres{
@@ -14,9 +15,9 @@ public class Beru extends Monstres{
     private String name;
     private int power;
 	public Beru(Player player, String key) {
-		super(player, "Beru");
+		super(player, Roles.BERU);
         player.sendMessage(ChatColor.GREEN + "You are now playing as " + Beru.getDescription());
-        this.name = "Beru";
+        this.name = Roles.BERU;
         this.power = 3;
         player.getInventory().addItem(Monstres.createMat(Material.NETHER_STAR, "§6Evovle"));
 	}

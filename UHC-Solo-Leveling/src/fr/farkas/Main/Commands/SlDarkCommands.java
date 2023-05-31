@@ -9,6 +9,7 @@ import org.bukkit.entity.Player;
 
 import fr.farkas.Main.Start;
 import fr.farkas.Main.Characters.CharacterManager;
+import fr.farkas.Main.Characters.Roles;
 import fr.farkas.Main.Characters.Chasseurs.ChaHaeIn.ChaHaeIn;
 import fr.farkas.Main.Characters.Chasseurs.Selner.Selner;
 import fr.farkas.Main.Characters.Fragments.ChristopherReed.ChristopherReed;
@@ -54,7 +55,7 @@ public class SlDarkCommands implements CommandExecutor {
         
         if (args[0].equalsIgnoreCase("sentir")) {
         	
-            if (!(characterManager.getCharacterName(player).equals("ChaHaeIn"))) {
+            if (!(characterManager.getCharacterName(player).equals(Roles.CHAHAEIN))) {
             	player.sendMessage(ChatColor.RED + "You must be playing as Cha Hae In to use this command.");
             	return true;
             }else {
@@ -65,7 +66,7 @@ public class SlDarkCommands implements CommandExecutor {
             	if (args[1] == null) {
             	}else {
                 Player test =	Bukkit.getServer().getPlayer(args[1]);
-                if (characterManager.getCharacterName(test) == "SungJinWoo") {
+                if (characterManager.getCharacterName(test) == Roles.SUNGJINWOO) {
                 eveil =true;
                 }
             	}
@@ -74,7 +75,7 @@ public class SlDarkCommands implements CommandExecutor {
             }     
         }
         if (args[0].equalsIgnoreCase("touch")) {
-        	if (!(characterManager.getCharacterName(player).equals("Selner"))) {
+        	if (!(characterManager.getCharacterName(player).equals(Roles.SELNER))) {
             	player.sendMessage(ChatColor.RED + "You must be playing as Selner to use this command.");
             	return true;
         	}else {
@@ -87,14 +88,14 @@ public class SlDarkCommands implements CommandExecutor {
         }
         if (args[0].equalsIgnoreCase("Liste")) {
         	if (characterManager.getCharacter(player) != null) {
-        		if (characterManager.getCharacterName(player) == "Anthares") {
+        		if (characterManager.getCharacterName(player) == Roles.ANTHARES) {
         			ListMonarques.SetupList(characterManager,player);
         		}
         	}
         	return true;
         }
         if (args[0].equalsIgnoreCase("Fire")) {
-        	if (!(characterManager.getCharacterName(player).equals("ChristopherReed"))) {
+        	if (!(characterManager.getCharacterName(player).equals(Roles.CHRISTOPHERREED))) {
         		player.sendMessage(ChatColor.RED + "You must be Christopher Reed as Selner to use this command.");
         	}else {
         		ChristopherReed christopherReed = (ChristopherReed) characterManager.getCharacter(player);
@@ -102,7 +103,7 @@ public class SlDarkCommands implements CommandExecutor {
         	}
         }
         if (args[0].equalsIgnoreCase("eveil")) {
-            if (!(characterManager.getCharacterName(player).equals("SungJinWoo"))) {
+            if (!(characterManager.getCharacterName(player).equals(Roles.SUNGJINWOO))) {
             	player.sendMessage(ChatColor.RED + "You must be playing as SungJinWoo to use this command.");
             	return true;
             }else {
@@ -116,7 +117,7 @@ public class SlDarkCommands implements CommandExecutor {
             }     
         }
         if (args[0].equalsIgnoreCase("BlackHearth")) {
-            if (!(characterManager.getCharacterName(player).equals("Architect"))) {
+            if (!(characterManager.getCharacterName(player).equals(Roles.ARCHITECT))) {
             	player.sendMessage(ChatColor.RED + "You must be playing as Architect to use this command.");
             	return true;
             }else {

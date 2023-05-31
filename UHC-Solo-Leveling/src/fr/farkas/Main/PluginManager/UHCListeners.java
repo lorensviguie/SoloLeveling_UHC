@@ -35,6 +35,7 @@ import org.bukkit.potion.PotionEffectType;
 
 import fr.farkas.Main.Characters.CharacterListeners;
 import fr.farkas.Main.Characters.CharacterManager;
+import fr.farkas.Main.Characters.Roles;
 import fr.farkas.Main.Characters.Chasseurs.ChaHaeIn.ChaHaeIn;
 import fr.farkas.Main.Characters.Chasseurs.LiuZhigang.LiuZhigang;
 import fr.farkas.Main.Characters.Chasseurs.Selner.Selner;
@@ -177,19 +178,19 @@ public class UHCListeners implements Listener {
 	        Player attacker = (Player) event.getDamager();
 	        Player victim = (Player) event.getEntity();
 	        
-	        if ((characterManager.getCharacterName(attacker).equals("Selner"))) {
+	        if ((characterManager.getCharacterName(attacker).equals(Roles.SELNER))) {
 	        	Selner selner = (Selner) characterManager.getCharacter(attacker);
 	        	if (selner.getTouch()) {
 	        		selner.touchAbility(attacker, victim.getName(),characterManager.getCharacterName(victim));
 	        	}
 	        }
-	        if ((characterManager.getCharacterName(attacker).equals("Beru"))) {
+	        if ((characterManager.getCharacterName(attacker).equals(Roles.BERU))) {
 	            if (Math.random() < 0.2) { // 20% chance
 	                PotionEffect poisonEffect = new PotionEffect(PotionEffectType.POISON, 2 * 40, 0);
 	                victim.addPotionEffect(poisonEffect);
 	            }
 	        }
-	        if ((characterManager.getCharacterName(attacker).equals("ChristopherReed"))) {
+	        if ((characterManager.getCharacterName(attacker).equals(Roles.CHRISTOPHERREED))) {
 	        	ChristopherReed christopherReed = (ChristopherReed) characterManager.getCharacter(attacker);
 	            if (christopherReed.getFire()) { 
 	                victim.setFireTicks(200);
@@ -207,7 +208,7 @@ public class UHCListeners implements Listener {
         ItemStack clickedItem = event.getCurrentItem();
         ItemStack cursorItem = event.getCursor();
         if (characterManager.getCharacter(player) != null ) {
-        if (characterManager.getCharacterName(player) == "Selner") {
+        if (characterManager.getCharacterName(player) == Roles.SELNER) {
         if (clickedItem == null || clickedItem.getType() == Material.AIR) {
             // The player is removing armor
             if (cursorItem != null && isArmor(cursorItem.getType())) {
@@ -250,7 +251,7 @@ public class UHCListeners implements Listener {
 				break;
 			case BOOKSHELF:
 				// Assuming you have a player object called "player"
-				Legia legia = new Legia(player, "legia");
+				Legia legia = new Legia(player, Roles.LEGIA);
 				characterManager.chooseCharacter(player, legia);
 				System.out.println(characterManager.getCharacter(player));
 
@@ -320,11 +321,11 @@ public class UHCListeners implements Listener {
     	Player player = event.getEntity();
     	Entity killer = player.getKiller();
     	if (killer instanceof Player) {
-    	if ((characterManager.getCharacterName(player).equalsIgnoreCase("SungJinWoo")&& characterManager.getBlackHearth()== true)||(characterManager.getCharacterName(player).equalsIgnoreCase("Architect")&& characterManager.getBlackHearth() == true)) {
+    	if ((characterManager.getCharacterName(player).equalsIgnoreCase(Roles.SUNGJINWOO)&& characterManager.getBlackHearth()== true)||(characterManager.getCharacterName(player).equalsIgnoreCase(Roles.ARCHITECT)&& characterManager.getBlackHearth() == true)) {
     		event.setKeepInventory(true);
     		characterManager.setBlackHearth(false);
     		Player attacker = (Player) killer;
-    		if (characterManager.getCharacterName(player).equalsIgnoreCase("SungJinWoo")) {
+    		if (characterManager.getCharacterName(player).equalsIgnoreCase(Roles.SUNGJINWOO)) {
     			attacker.setMaxHealth(30);
     			player.spigot().respawn();
     			Tptogame.TPtoGame(player);
@@ -348,7 +349,7 @@ public class UHCListeners implements Listener {
         
         	Player attacker = (Player) killer;
         	player.teleport(attacker.getLocation());
-        	if (characterManager.getCharacterName(attacker).equalsIgnoreCase("LiuZhigang")) {
+        	if (characterManager.getCharacterName(attacker).equalsIgnoreCase(Roles.LIUZHIGANG)) {
         		LiuZhigang liuZhigang = (LiuZhigang) characterManager.getCharacter(attacker);
         		if(characterManager.getCharacter(player).getCamp() == 5 ){
         			liuZhigang.setEveil(attacker);

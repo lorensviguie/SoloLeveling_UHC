@@ -12,6 +12,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 import org.bukkit.util.Vector;
 
+import fr.farkas.Main.Characters.Roles;
 import fr.farkas.Main.Characters.Chasseurs.Chasseurs;
 
 public class WooChinjul extends Chasseurs {
@@ -22,9 +23,9 @@ public class WooChinjul extends Chasseurs {
 
 	
 	public WooChinjul(Player player, String key) {
-		super(player, "WooChinjul");
+		super(player, Roles.WOOCHINJUL);
         player.sendMessage(ChatColor.GREEN + "You are now playing as " + WooChinjul.getDescription());
-        this.name = "WooChinjul";
+        this.name = Roles.WOOCHINJUL;
         this.Eveil =false;
         
         //player.getInventory().addItem(Fragments.createMat(Material.NETHER_STAR, "§6Light Power"));

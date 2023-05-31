@@ -28,66 +28,75 @@ public class CharacterListeners {
 	
 		System.out.println(game.getCharacterManager().getCharacterName(player));
 		
-		if ((game.getCharacterManager().getCharacterName(player).equals("Vulcan"))) {
-			if (event.getItem() != null &&event.getItem().getItemMeta().getDisplayName() == "§6Rage") {
-				Vulcan vulcan = (Vulcan) characterManager.getCharacter(player);
-				vulcan.useability(game.getPlugin());
-			}
-		}
-		
-		if ((game.getCharacterManager().getCharacterName(player).equals("GoGunHee"))) {
-			if (event.getItem() != null &&event.getItem().getItemMeta().getDisplayName() == "§6Transformation") {
-				GoGunHee goGunHee = (GoGunHee) characterManager.getCharacter(player);
-				goGunHee.useability(game.getPlugin());
-			}else {
-			}
-		}
-		if ((game.getCharacterManager().getCharacterName(player).equals("ThomasAndre"))) {
-			if (event.getItem() != null &&event.getItem().getItemMeta().getDisplayName() == "§6Transformation") {
-				ThomasAndre thomasAndre = (ThomasAndre) characterManager.getCharacter(player);
-				thomasAndre.useability(game.getPlugin());
-			}else {
-			}
-		}
-		if ((game.getCharacterManager().getCharacterName(player).equals("ChristopherReed"))) {
-			if (event.getItem() != null &&event.getItem().getItemMeta().getDisplayName() == "§6Transformation") {
-				ChristopherReed christopherReed = (ChristopherReed) characterManager.getCharacter(player);
-				christopherReed.useability(game.getPlugin());
-			}else {
-			}
-		}
-		if ((game.getCharacterManager().getCharacterName(player).equals("Architect"))) {
-			if (event.getItem() != null &&event.getItem().getItemMeta().getDisplayName() == "§0TP Yourself to DreamWorld") {
-				Architecte architecte = (Architecte) characterManager.getCharacter(player);
-				architecte.tptodreamWorld(player);
-			}else {
-			}
-		}
-		if ((game.getCharacterManager().getCharacterName(player).equals("SungJinWoo"))) {
-			System.out.println("CANARD");
-		}
-		if ((game.getCharacterManager().getCharacterName(player).equals("Beru"))) {
-			if (event.getItem() != null &&event.getItem().getItemMeta().getDisplayName() == "§6Evovle") {
-				Beru beru = (Beru) characterManager.getCharacter(player);
-				beru.useability(game.getPlugin());
-			}
-		}
-		if ((game.getCharacterManager().getCharacterName(player).equals("MonarqueBetes"))) {
-			if (event.getItem() != null &&event.getItem().getItemMeta().getDisplayName() == "§6Formes") {
-				MonarqueBetes monarquesBetes = (MonarqueBetes) characterManager.getCharacter(player);
-				monarquesBetes.getFormeInventory().openFormInventory();
-			}
-		}
-		if ((game.getCharacterManager().getCharacterName(player).equals("ChaHaeIn"))) {
-			if (event.getItem() != null &&event.getItem().getItemMeta().getDisplayName() == "§6Light Power") {
-				ChaHaeIn chaHaeIn = (ChaHaeIn) characterManager.getCharacter(player);
-				chaHaeIn.useability(game.getPlugin());
-			}
-		}
-		if ((game.getCharacterManager().getCharacterName(player).equals("LiuZhigang"))) {
-			if (event.getItem() != null &&event.getItem().getItemMeta().getDisplayName() == "§6Power") {
-				LiuZhigang liuZhigang = (LiuZhigang) characterManager.getCharacter(player);
-				liuZhigang.useability(game.getPlugin(),event);
+		if (event.getItem() != null) {
+			switch (game.getCharacterManager().getCharacterName(player)){
+			
+			case Roles.VULCAN:
+				if (event.getItem().getItemMeta().getDisplayName() == "§6Rage") {
+					Vulcan vulcan = (Vulcan) characterManager.getCharacter(player);
+					vulcan.useability(game.getPlugin());
+				}
+				break;
+				
+			case Roles.GOGUNHEE:
+				if (event.getItem().getItemMeta().getDisplayName() == "§6Transformation") {
+					GoGunHee goGunHee = (GoGunHee) characterManager.getCharacter(player);
+					goGunHee.useability(game.getPlugin());
+				}
+				break;
+				
+			case Roles.THOMASANDRE:
+				if (event.getItem().getItemMeta().getDisplayName() == "§6Transformation") {
+					ThomasAndre thomasAndre = (ThomasAndre) characterManager.getCharacter(player);
+					thomasAndre.useability(game.getPlugin());
+				}
+				break;
+				
+			case Roles.CHRISTOPHERREED:
+				if (event.getItem().getItemMeta().getDisplayName() == "§6Transformation") {
+					ChristopherReed christopherReed = (ChristopherReed) characterManager.getCharacter(player);
+					christopherReed.useability(game.getPlugin());
+				}
+				break;
+				
+			case Roles.ARCHITECT:
+				if (event.getItem().getItemMeta().getDisplayName() == "§0TP Yourself to DreamWorld") {
+					Architecte architecte = (Architecte) characterManager.getCharacter(player);
+					architecte.tptodreamWorld(player);
+				}
+				break;
+				
+			case Roles.SUNGJINWOO:
+				System.out.println("CANARD");
+				break;
+				
+			case Roles.BERU:
+				if (event.getItem().getItemMeta().getDisplayName() == "§6Evovle") {
+					Beru beru = (Beru) characterManager.getCharacter(player);
+					beru.useability(game.getPlugin());
+				}
+				break;
+				
+			case Roles.MONARQUEBETES:
+				if (event.getItem().getItemMeta().getDisplayName () == "§6Formes") {
+					MonarqueBetes monarquesBetes = (MonarqueBetes) characterManager.getCharacter(player);
+					monarquesBetes.getFormeInventory().openFormInventory();
+				}
+				break;
+				
+			case Roles.CHAHAEIN:
+				if (event.getItem().getItemMeta().getDisplayName() == "§6Light Power") {
+					ChaHaeIn chaHaeIn = (ChaHaeIn) characterManager.getCharacter(player);
+					chaHaeIn.useability(game.getPlugin());
+				}
+				break;
+				
+			case Roles.LIUZHIGANG:
+				if (event.getItem().getItemMeta().getDisplayName() == "§6Power") {
+					LiuZhigang liuZhigang = (LiuZhigang) characterManager.getCharacter(player);
+					liuZhigang.useability(game.getPlugin(),event);
+				}
+				break;
 			}
 		}
 		

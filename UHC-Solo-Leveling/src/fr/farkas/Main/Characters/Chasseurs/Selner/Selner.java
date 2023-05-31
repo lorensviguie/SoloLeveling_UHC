@@ -8,6 +8,7 @@ import org.bukkit.plugin.Plugin;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import fr.farkas.Main.Characters.Roles;
 import fr.farkas.Main.Characters.Chasseurs.Chasseurs;
 
 public class Selner extends Chasseurs {
@@ -19,9 +20,9 @@ public class Selner extends Chasseurs {
     private Boolean touch;
     
 	public Selner(Player player, String key) {
-		super(player, "Selner");
+		super(player, Roles.SELNER);
 		player.sendMessage(ChatColor.GREEN + "You are now playing as " + Selner.getDescription());
-        this.name = "Selner";
+        this.name = Roles.SELNER;
 		this.day = 0;
 		this.people = "";
 		this.dayPower = 0;

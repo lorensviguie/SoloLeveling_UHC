@@ -14,6 +14,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import fr.farkas.Main.Characters.Roles;
 import fr.farkas.Main.Characters.Fragments.Fragments;
 import fr.farkas.Main.Characters.Solos.Solos;
 
@@ -24,9 +25,9 @@ public class Architecte extends Solos {
     private String name;
     private Boolean dreamornot;
 	public Architecte(Player player, String key) {
-		super(player, "Architect");
+		super(player, Roles.ARCHITECT);
         player.sendMessage(ChatColor.GREEN + "You are now playing as " + Architecte.getDescription());
-		this.name = "Architect";
+		this.name = Roles.ARCHITECT;
 		player.setMaxHealth(24);
 		player.setHealth(24);
 		this.dreamornot = false;

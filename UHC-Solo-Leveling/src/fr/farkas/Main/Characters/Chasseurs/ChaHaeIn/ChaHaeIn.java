@@ -16,6 +16,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import fr.farkas.Main.Start;
+import fr.farkas.Main.Characters.Roles;
 import fr.farkas.Main.Characters.Chasseurs.Chasseurs;
 import fr.farkas.Main.Characters.Fragments.Fragments;
 import fr.farkas.Main.General.GeneralVariable;
@@ -28,9 +29,9 @@ public class ChaHaeIn extends Chasseurs {
     private int day;
 	
 	public ChaHaeIn(Player player, String key) {
-		super(player, "ChaHaeIn");
+		super(player, Roles.CHAHAEIN);
         player.sendMessage(ChatColor.GREEN + "You are now playing as " + ChaHaeIn.getDescription());
-        this.name = "ChaHaeIn";
+        this.name = Roles.CHAHAEIN;
         this.Eveil =false;
         this.day = 0;
         player.getInventory().addItem(Fragments.createMat(Material.NETHER_STAR, "§6Light Power"));
