@@ -15,8 +15,10 @@
     ✅ - Spawn
     ✅ - Dispawn
     ✅ - Selection des Gardiens
+        ❌ - Message de TP
     ❌ - Build
     ❌ - Effet sur les monstres
+
 
 <br>
 
