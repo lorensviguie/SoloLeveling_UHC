@@ -22,23 +22,23 @@
 
 <br>
 
-❔Monde des Rêves
+🕒Monde des Rêves
 
 <br>
 
-❔Selner
+🕒Selner
 
 <br>
 
-❔Cha-Hae-In
+✅Cha-Hae-In
 
 <br>
 
-❔Liu Zhigang
+✅Liu Zhigang
 
 <br>
 
-❔Woo Chinjul
+🕒Woo Chinjul
 
 <br>
 
@@ -76,15 +76,15 @@
 
 <br>
 
-❔Go Gunhee
+✅Go Gunhee
 
 <br>
 
-❔Thomas Andre
+✅Thomas Andre
 
 <br>
 
-❔Christopher Reed
+🕒Christopher Reed
 
 <br>
 
@@ -112,11 +112,11 @@
 
 <br>
 
-❔Architect
+🕒Architect
 
 <br>
 
-❌Sung Jin Woo
+🕒Sung Jin Woo
 
 <br>
 
