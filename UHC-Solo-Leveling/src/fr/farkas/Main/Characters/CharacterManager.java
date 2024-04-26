@@ -6,6 +6,8 @@ import java.util.Map;
 import org.bukkit.entity.Player;
 
 import fr.farkas.Main.Characters.Chasseurs.WooChinjul.WooChinjul;
+import fr.farkas.Main.Characters.Monstres.Baruka.Baruka;
+import fr.farkas.Main.Characters.Monstres.Esil.Esil;
 import fr.farkas.Main.Characters.SungJinWoo.SungJinWoo;
 
 public class CharacterManager {
@@ -41,6 +43,25 @@ public class CharacterManager {
         }
         return null; // no player found with WooChinjul character
     }
+    
+    public Player getPlayerWithBaruka() {
+        for (Map.Entry<Player, Character> entry : playerCharacters.entrySet()) {
+            if (entry.getValue() instanceof Baruka) {
+                return entry.getKey();
+            }
+        }
+        return null; // no player found with WooChinjul character
+    }
+    
+    public Player getPlayerEsil() {
+        for (Map.Entry<Player, Character> entry : playerCharacters.entrySet()) {
+            if (entry.getValue() instanceof Esil) {
+                return entry.getKey();
+            }
+        }
+        return null; // no player found with WooChinjul character
+    }
+    
     public Player getPlayerWithSungJinWoo() {
         for (Map.Entry<Player, Character> entry : playerCharacters.entrySet()) {
             if (entry.getValue() instanceof SungJinWoo) {

@@ -22,7 +22,7 @@ public class GeneralVariable {
 	 * GeneralVariable.<variableName>
 	 * 
 	 * */
-	
+
 	
 	public static int h = 360;
 	public static int min = 60;
@@ -30,13 +30,13 @@ public class GeneralVariable {
 	public static int ticToSec = 20;
 	
 	
-	public static int dayDuration = isDebug ? 20*sec : 20*min;
+	public static int dayDuration = isDebug ? 2*min : 20*min;
 	public static int roleAttribution = isDebug ? (5*sec)*ticToSec : (20*min)*ticToSec;
 	
-	public static int portalDuration = isDebug ? (30*sec)*ticToSec : (10*min)*ticToSec;
-	public static int portalCooldown = isDebug ? (5*sec)*ticToSec : (30*min)*ticToSec;
+	public static int portalDuration = isDebug ? (1*min)*ticToSec : (10*min)*ticToSec;
+	public static int portalCooldown = isDebug ? (1*min)*ticToSec : (10*min)*ticToSec;
 	public static int portalDefender = isDebug ? 1:5;
-	public static int portalFirstApparition = isDebug ? (5*sec)*ticToSec : (40*min)*ticToSec;
+	public static int portalFirstApparition = isDebug ? (0*sec)*ticToSec : (40*min)*ticToSec;
 	
 
 	
@@ -53,5 +53,16 @@ public class GeneralVariable {
 	
 	// ------------------------------------- Vulcan -------------->
 	public static int abilityDuration_Vulcan = isDebug ? (1*min)*ticToSec : (1*min)*ticToSec;
+	public static int Vulcan_weakduration = isDebug ? (5*min)*ticToSec : (5*min)*ticToSec;
+	
+	
+	// ------------------------------------- message -------------->
+	public static String MessagePrefix = "§e[§bUHC§e]§b";
+	
+	// ------------------------------------- Game -------------->
+	public static boolean hisGameinprogress = false;
+	public static boolean PortailDefenseSucces = false;
+	public static String DonjonWorld = "world_the_end";
+
 
 }

@@ -37,12 +37,13 @@ public class Monarques extends Character{
 	}
     
     public void turnToSolo() {
+    	this.setCamp(4);
     }
 	
 	public static void campToSolo() {
 		areSolo = true;
 		for(Player player : members) {
-			player.sendMessage("§8Anthares §4 is dead, now you have to win alone !");
+			player.sendMessage("§8Anthares §4 Est mort vous devez mtn Gagner en solitaire!");
     		Solos.addMember(player);
     		((Monarques) CharacterManager.getPlayerCharacters().get(player)).turnToSolo();
 		}

@@ -1,10 +1,21 @@
 package fr.farkas.Main.Characters;
 
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerInteractEvent;
 
+import fr.farkas.Main.Characters.Chasseurs.Chasseurs;
+import fr.farkas.Main.Characters.Chasseurs.BaekYonho.BaekYoonho;
 import fr.farkas.Main.Characters.Chasseurs.ChaHaeIn.ChaHaeIn;
 import fr.farkas.Main.Characters.Chasseurs.LiuZhigang.LiuZhigang;
+import fr.farkas.Main.Characters.Chasseurs.MinByung.MinByung;
+import fr.farkas.Main.Characters.Chasseurs.YooJinho.YooJinHo;
 import fr.farkas.Main.Characters.Fragments.ChristopherReed.ChristopherReed;
 import fr.farkas.Main.Characters.Fragments.GoGunHee.GoGunHee;
 import fr.farkas.Main.Characters.Fragments.ThomasAndre.ThomasAndre;
@@ -24,17 +35,15 @@ public class CharacterListeners {
 		this.characterManager = game.getCharacterManager();
 	}
 	
-	public void CharacterClick(PlayerInteractEvent event,Player player) {
-	
-		System.out.println(game.getCharacterManager().getCharacterName(player));
-		
+	public void CharacterClick(PlayerInteractEvent event,Player player) {		
 		if (event.getItem() != null) {
 			switch (game.getCharacterManager().getCharacterName(player)){
 			
 			case Roles.VULCAN:
 				if (event.getItem().getItemMeta().getDisplayName() == "§6Rage") {
 					Vulcan vulcan = (Vulcan) characterManager.getCharacter(player);
-					vulcan.useability(game.getPlugin());
+					int day = game.getScoreboard().GetTimer().getDay();
+					vulcan.useAbility(game.getPlugin(),day);
 				}
 				break;
 				
@@ -97,6 +106,35 @@ public class CharacterListeners {
 					liuZhigang.useability(game.getPlugin(),event);
 				}
 				break;
+			case Roles.BAEKYOONHO:
+				if (event.getItem().getItemMeta().getDisplayName() == "§6Forme Bête") {
+					BaekYoonho baekyoonho = (BaekYoonho) characterManager.getCharacter(player);
+					baekyoonho.useability(game.getPlugin());
+				}
+				break;
+			case Roles.YOOJINHO:
+				if (event.getItem().getItemMeta().getDisplayName() == "§6TPALLMAP") {
+					YooJinHo yoojinho = (YooJinHo) characterManager.getCharacter(player);
+					int day = game.getScoreboard().GetTimer().getDay();
+					yoojinho.useTP(player,day,game.getPlugin());
+				}
+			
+			case Roles.MINBYUNG:
+			    if (event.getItem().getItemMeta().getDisplayName().equals("§6Derniere Espoir")) {
+			        Location location = player.getLocation();
+			        World world = player.getWorld();
+			        List<Player> hunters = new ArrayList<>();
+			        List<Player> players = world.getPlayers().stream().filter(p -> p.getLocation().distance(location) <= 50).collect(Collectors.toList());
+			        for (Player nearbyPlayer : players) {
+			            if (characterManager.getCharacter(nearbyPlayer) instanceof Chasseurs) {
+			                hunters.add(nearbyPlayer);
+			            }
+			        }
+			        MinByung minbyung = (MinByung) characterManager.getCharacter(player);
+			        minbyung.usePower(player, hunters);
+			    }
+			    break;
+
 			}
 		}
 		

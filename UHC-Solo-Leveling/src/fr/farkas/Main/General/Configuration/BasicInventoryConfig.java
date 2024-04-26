@@ -91,7 +91,6 @@ public class BasicInventoryConfig {
     			borderConfig.openConfig(player);
     		}
     		if(inv.getName().equalsIgnoreCase("§6Character Liste")) {
-    			System.out.println("coucou");
     			characterSelection.CharacterListclick(event);
     			characterSelection.openConfig(player);
     		}

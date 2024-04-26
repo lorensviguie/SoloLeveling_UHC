@@ -7,20 +7,39 @@ import org.bukkit.entity.Player;
 
 import fr.farkas.Main.Characters.Character;
 
-public class Chasseurs extends Character{
+public abstract class Chasseurs extends Character{
 	
 	private static List<Player> members = new ArrayList<Player>();
+	public boolean Eveil;
+	public String Rank;
 	
 	public Chasseurs(Player player, String key) {
 		super(player,key);
 		setCamp(1);
 		addMember(player);
+		this.Eveil = false;
+		this.Rank = "E";
 	}
 
 	@Override
 	public String getName() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	public abstract void setEveil(boolean change, Player player);
+
+	
+	public Boolean getEveil() {
+		return this.Eveil;
+	}
+	
+	public void setRank(String rank) {
+		this.Rank = rank;
+	}
+	
+	public String getRank() {
+		return this.Rank;
 	}
 	
 	public void addMember(Player player) {

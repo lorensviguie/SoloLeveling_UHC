@@ -15,17 +15,18 @@ import org.bukkit.potion.PotionEffectType;
 import fr.farkas.Main.Characters.Roles;
 import fr.farkas.Main.Characters.Chasseurs.Chasseurs;
 import fr.farkas.Main.Characters.Fragments.Fragments;
+import fr.farkas.Main.General.GeneralVariable;
 
 public class LiuZhigang extends Chasseurs {
 
     private static final String DESCRIPTION = "Liu Zhigang";
     private String name;
-    private Boolean Eveil;
 	
 	public LiuZhigang(Player player, String key) {
 		super(player, Roles.LIUZHIGANG);
         player.sendMessage(ChatColor.GREEN + "You are now playing as " + LiuZhigang.getDescription());
         this.name = Roles.LIUZHIGANG;
+        super.setRank("A");
         player.addPotionEffect(new PotionEffect(PotionEffectType.INCREASE_DAMAGE, Integer.MAX_VALUE, 0, false, false));
         this.Eveil = false;
 	}
@@ -64,12 +65,16 @@ public class LiuZhigang extends Chasseurs {
         return DESCRIPTION;
     }
 	public Boolean getEveil() {
-		return Eveil;
+		return super.getEveil();
 	}
-	public void setEveil (Player player) {
-		Eveil = true;
+
+    @Override
+    public void setEveil(boolean change, Player player) {
+    	Eveil = true;
+		super.setRank("S");
+		player.sendMessage(GeneralVariable.MessagePrefix+"§6You Pass to rank S GG");
 		player.getInventory().addItem(Fragments.createMat(Material.NETHER_STAR, "§6Power"));
-	}
+    }
     public void getAbility(Player player) {
     	player.sendMessage("§2Tu joue Liu Zhang Tu gagne avec les Chasseurs\n"
     			+ "§6-------------------------\n"

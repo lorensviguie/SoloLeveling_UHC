@@ -54,7 +54,6 @@ public class GoGunHee extends Fragments {
             	@Override
             	public void run() {
                 	if (transformation == true) {
-                		transformation = false;
                 		useability(plugin);
                 	}
             	}

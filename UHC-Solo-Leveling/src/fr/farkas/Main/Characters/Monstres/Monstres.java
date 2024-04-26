@@ -9,6 +9,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
 import fr.farkas.Main.Characters.Character;
+import fr.farkas.Main.General.GeneralVariable;
 
 public class Monstres extends Character{
 	
@@ -30,8 +31,21 @@ public class Monstres extends Character{
 	}
 	
 	public static List<Player> getMembers(){
-		System.out.print("Les Monstres sont : " + members);
+		//System.out.print("Les Monstres sont : " + members);
 		return Monstres.members;
+	}
+	
+	public static void sendlist(Player player) {
+		List<Player> liste = Monstres.getMembers();
+	    StringBuilder message = new StringBuilder();
+	    message.append(GeneralVariable.MessagePrefix).append("Liste des Monstres : §4");
+	    for (Player member : liste) {
+	        message.append(member.getName()).append("§b,§4 ");
+	    }
+	    if (message.length() > 2) {
+	        message.delete(message.length() - 2, message.length());
+	    }
+	    player.sendMessage(message.toString());
 	}
 
 	@Override

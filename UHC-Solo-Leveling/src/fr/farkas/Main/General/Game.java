@@ -25,6 +25,7 @@ public class Game {
 	private Scoreboard scoreboard;
 	private Config config;
 	private TimerTask task;
+	private Portal portal;
 	private CharacterManager characterManager;
 	private Plugin plugin;
 	
@@ -69,7 +70,7 @@ public class Game {
         		new BukkitRunnable() {
         			@Override
         			public void run() {
-        				new Portal(plugin);
+        				portal = new Portal(plugin,characterManager);
         			}
         		}.runTaskLater(plugin, GeneralVariable.portalFirstApparition);
         	}
@@ -87,6 +88,10 @@ public class Game {
 		this.StopGame();
 		this.timer.cancel();
 		this.timer.purge();
+	}
+	
+	public Portal getPortal() {
+		return this.portal;
 	}
 	
 	

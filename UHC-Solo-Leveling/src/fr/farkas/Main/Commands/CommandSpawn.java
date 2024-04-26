@@ -14,6 +14,7 @@ import org.bukkit.entity.Player;
 
 import fr.farkas.Main.Characters.Monarques.Monarques;
 import fr.farkas.Main.General.Game;
+import fr.farkas.Main.General.GeneralVariable;
 import fr.farkas.Main.General.Configuration.ApplyRules;
 import fr.farkas.Main.General.Configuration.BasicInventoryConfig;
 import fr.farkas.Main.General.Scoreboard.Scoreboard;
@@ -41,27 +42,36 @@ public class CommandSpawn implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (sender.isOp()) {
 			if (args[0].equalsIgnoreCase("start")) {
-				World Area = Bukkit.getWorld("Game");
-				
-				if((Bukkit.getOnlinePlayers().size() != configdata.get("CharacterList").size())) {
-					sender.sendMessage("§2Le nombre de role present dans la partie est different du nombre de joueur present");
-					return false;
-				}else {
-				this.game.StartGame();
-				BorderManager.createBorder(Area, configdata);
-				this.scoreboard.GetTimer().Start();
-				for(Player player : world.getPlayers()) {
-				    player.setNoDamageTicks(20*10);
-				    player.teleport(new Location(Area, 0, 120, 0)); // teleport each player to the specified location
-				    player.setNoDamageTicks(20*10);
-				    Area.setTime(0);
-				}
+				if (!GeneralVariable.hisGameinprogress) {
+					World Area = Bukkit.getWorld("Game");
+					
+					if((Bukkit.getOnlinePlayers().size() != configdata.get("CharacterList").size())) {
+						sender.sendMessage("§2Le nombre de role present dans la partie est different du nombre de joueur present");
+						return false;
+					}else {
+					this.game.StartGame();
+					GeneralVariable.hisGameinprogress = true;
+					BorderManager.createBorder(Area, configdata);
+					this.scoreboard.GetTimer().Start();
+					System.out.print(Bukkit.getWorld("Game").getTime());
+					for(Player player : world.getPlayers()) {
+						player.setFoodLevel(20);
+			            player.setHealth(player.getMaxHealth());
+					    player.setNoDamageTicks(20*10);
+					    player.teleport(new Location(Area, 0, 120, 0)); // teleport each player to the specified location
+					    player.setNoDamageTicks(20*10);
+					    Area.setTime(0);
+					}
 
-				UHCListeners.onstart();
-				ApplyRules uhcrule = new ApplyRules(configdata);
-				uhcrule.Applyallrules();
-				return true;
+					UHCListeners.onstart();
+					ApplyRules uhcrule = new ApplyRules(configdata);
+					uhcrule.Applyallrules();
+					return true;
+					}
+				}else {
+					sender.sendMessage(GeneralVariable.MessagePrefix+" !Une Game est deja en cour!");
 				}
+				
 			}
 			if (args[0].equalsIgnoreCase("config")) {
 				basicInventory.editConfig((Player) sender);
@@ -70,6 +80,7 @@ public class CommandSpawn implements CommandExecutor {
 			if (args[0].equalsIgnoreCase("stop")) {
 				World Area = Bukkit.getWorld("Game");
 				game.StopGame();
+				GeneralVariable.hisGameinprogress = false;
 				BorderManager.destroyBorder(Area);
 				for (Player player : Bukkit.getOnlinePlayers()) {
 					player.getActivePotionEffects().forEach(potionEffect -> player.removePotionEffect(potionEffect.getType()));
@@ -82,6 +93,7 @@ public class CommandSpawn implements CommandExecutor {
 			    	player.setGameMode(GameMode.SURVIVAL);
 			        player.teleport(new Location(world, 5, 128, 5)); // teleport each player to the specified location
 			    }
+			    GeneralVariable.hisGameinprogress = false;
 			    for (Player player : Bukkit.getOnlinePlayers()) {
 			        player.playSound(player.getLocation(), "Sound.Stop.ogg", 1.0f, 1.0f);
 			    }

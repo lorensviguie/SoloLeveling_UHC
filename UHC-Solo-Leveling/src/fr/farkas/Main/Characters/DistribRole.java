@@ -6,17 +6,23 @@ import java.util.Random;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+import fr.farkas.Main.Characters.Chasseurs.BaekYonho.BaekYoonho;
 import fr.farkas.Main.Characters.Chasseurs.ChaHaeIn.ChaHaeIn;
+import fr.farkas.Main.Characters.Chasseurs.GotoRyuji.GotoRyuji;
 import fr.farkas.Main.Characters.Chasseurs.LiuZhigang.LiuZhigang;
+import fr.farkas.Main.Characters.Chasseurs.MinByung.MinByung;
 import fr.farkas.Main.Characters.Chasseurs.Selner.Selner;
 import fr.farkas.Main.Characters.Chasseurs.WooChinjul.WooChinjul;
+import fr.farkas.Main.Characters.Chasseurs.YooJinho.YooJinHo;
 import fr.farkas.Main.Characters.Fragments.ChristopherReed.ChristopherReed;
 import fr.farkas.Main.Characters.Fragments.GoGunHee.GoGunHee;
 import fr.farkas.Main.Characters.Fragments.ThomasAndre.ThomasAndre;
 import fr.farkas.Main.Characters.Monarques.Anthares.Anthares;
 import fr.farkas.Main.Characters.Monarques.Legia.Legia;
 import fr.farkas.Main.Characters.Monarques.MonarqueBetes.MonarqueBetes;
+import fr.farkas.Main.Characters.Monstres.Baruka.Baruka;
 import fr.farkas.Main.Characters.Monstres.Beru.Beru;
+import fr.farkas.Main.Characters.Monstres.Esil.Esil;
 import fr.farkas.Main.Characters.Monstres.Vulcan.Vulcan;
 import fr.farkas.Main.Characters.Solos.Architecte.Architecte;
 import fr.farkas.Main.Characters.SungJinWoo.SungJinWoo;
@@ -31,7 +37,6 @@ public class DistribRole {
 			String role = roles.get(rNum);
 			roles.remove(rNum);
 			characterManager.chooseCharacter(player, convertNameToRole(role, player));
-			player.sendMessage("here the number of youre camp" + characterManager.getCharacter(player).getCamp());
 		}	
 	}
 	
@@ -48,6 +53,14 @@ public class DistribRole {
 			return new LiuZhigang(player, name);
 		case Roles.WOOCHINJUL:
 			return new WooChinjul(player, name);
+		case Roles.GOTORYUJI:
+			return new GotoRyuji(player, name);
+		case Roles.MINBYUNG:
+			return new MinByung(player, name);
+		case Roles.BAEKYOONHO:
+			return new BaekYoonho(player, name);
+		case Roles.YOOJINHO:
+			return new YooJinHo(player, name);
 			
 			
 		// Fragment
@@ -73,10 +86,14 @@ public class DistribRole {
 			return new SungJinWoo(player, name);
 			
 		// Monstre
+		case Roles.ESIL:
+			return new Esil(player, name);
 		case Roles.BERU:
 			return new Beru(player, name);
 		case Roles.VULCAN:
 			return new Vulcan(player, name);
+		case Roles.BARUKA:
+			return new Baruka(player, name);
 		default:
 			return null;
 		}

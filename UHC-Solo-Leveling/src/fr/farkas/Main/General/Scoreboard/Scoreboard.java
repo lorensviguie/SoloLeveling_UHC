@@ -16,6 +16,7 @@ public class Scoreboard {
 	private org.bukkit.scoreboard.Scoreboard board = manager.getNewScoreboard();
 	private Objective objective;
     private String cycle;
+    //private String lastCycle;
     private TimerManager timer;
     private String last_timer;
     private int last_day;
@@ -39,6 +40,7 @@ public class Scoreboard {
 	
 	@SuppressWarnings("deprecation")
 	public void Creation() {
+		//this.lastCycle = "jour"; 
         this.last_timer = this.timer.GetTimeString();
         this.last_day = 0;
 		
@@ -78,7 +80,9 @@ public class Scoreboard {
 	}
 	
 	public void Update() { 
-		
+//		if (!this.cycle.equalsIgnoreCase(this.lastCycle)) {
+//		
+//		}
 		Server server = Bukkit.getServer();
 	    long time = server.getWorld("world").getTime();
 	    

@@ -24,25 +24,28 @@ public class ApplyRules {
 
 	public void Applyallrules() {
 		List<String> rules = configdata.get("UHCBasicRules");
+		System.out.print(rules);
 		if (rules.contains("NightVision")) {
 			// Récupérer tous les joueurs connectés
 			Collection<? extends Player> players = Bukkit.getOnlinePlayers();
 
 			// Appliquer l'effet Night Vision à tous les joueurs
 			for (Player player : players) {
-			    player.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, Integer.MAX_VALUE, 0));
+			    player.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, Integer.MAX_VALUE, 0, true, false));
 			}
 		}
+		System.out.print(rules);
 		if (rules.contains("SafeMiner")) {
 			// Récupérer tous les joueurs connectés
 			Collection<? extends Player> players = Bukkit.getOnlinePlayers();
 
 			// Appliquer l'effet Night Vision à tous les joueurs
 			for (Player player : players) {
-				player.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 50 * 60 * 20, 0));
+			    player.addPotionEffect(new PotionEffect(PotionEffectType.FIRE_RESISTANCE, 20 * 60 * 20, 0));
 			}
+		}
+		System.out.print(rules);
 		if (rules.contains("StarterKit")) {
-			// Ajouter 64 bûches de bois à l'inventaire de tous les joueurs
 			for (Player player : Bukkit.getOnlinePlayers()) {
 			    player.getInventory().addItem(new ItemStack(Material.WOOD, 64));
 			    player.getInventory().addItem(new ItemStack(Material.APPLE, 16));
@@ -57,6 +60,6 @@ public class ApplyRules {
 			}
 
 		}
-		}
 	}
+	
 }
